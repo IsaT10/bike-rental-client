@@ -4,9 +4,9 @@ import PrivateRoute from './PrivateRoute';
 import MainLayout from '@/layouts/MainLayout';
 import { routesGenerator } from '@/utils/routerGenerator';
 
-import Login from '@/pages/Public/Login';
 import { publicRoutes } from './publicRoutes';
 import { dashboardRoutes } from './dashboardRoutes';
+import Login from '@/pages/Public/Login';
 
 export const router = createBrowserRouter([
   {

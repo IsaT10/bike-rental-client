@@ -4,6 +4,9 @@ import Container from '../Container';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { publicRoutes } from '@/routes/publicRoutes';
 import { NavClose, NavOpen } from './Icons';
+import { Button } from '../ui/button';
+import { useAppDispatch } from '@/redux/hooks';
+import { logout } from '@/redux/features/auth/authSlice';
 
 const navItems = nav_sidebarGenerator(publicRoutes);
 
@@ -13,6 +16,11 @@ const Nav = () => {
   const [navVisible, setNavVisible] = useState(true);
   const [nav, setNav] = useState(false);
   const location = useLocation();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   const scrollThreshold = window.innerWidth < 768 ? 150 : 300;
   const handleScroll = () => {
@@ -77,6 +85,17 @@ const Nav = () => {
                 <li>{item.key}</li>
               </NavLink>
             ))}
+            <NavLink
+              to='/dashboard'
+              className={({ isActive }) =>
+                `py-2.5 font-medium rounded-md text-sm 900:text-base hover:text-orange-500  cursor-pointer duration-150 ${
+                  isActive ? 'text-orange-500' : 'text-stone-900'
+                } hover:text-tertiaryColor`
+              }
+            >
+              <li>Dashboard</li>
+            </NavLink>
+            <Button onClick={handleLogout}>Logout</Button>
           </ul>
 
           {/* Mobile Navigation Icon */}

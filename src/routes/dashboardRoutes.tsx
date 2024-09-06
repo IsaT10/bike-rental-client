@@ -8,7 +8,7 @@ import UserProfile from '@/pages/user/UserProfile';
 export const dashboardRoutes = [
   {
     name: 'Profile',
-    path: '/dashboard',
+    path: 'dashboard',
     element: <UserProfile />,
   },
   {
@@ -19,7 +19,7 @@ export const dashboardRoutes = [
   {
     name: 'My Rental',
     path: 'my-rental',
-    element: <MyRentals />, // User profile route
+    element: <MyRentals />,
   },
   {
     name: 'Bike Manage',
@@ -28,7 +28,7 @@ export const dashboardRoutes = [
       <AdminRoute>
         <AdminBikeManagement />
       </AdminRoute>
-    ), // Admin bike management
+    ),
   },
   {
     name: 'User Manage',
@@ -37,6 +37,6 @@ export const dashboardRoutes = [
       <AdminRoute>
         <AdminUserManagement />
       </AdminRoute>
-    ), // Admin user management
+    ),
   },
 ];

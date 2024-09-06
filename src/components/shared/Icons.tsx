@@ -192,15 +192,32 @@ export const Email = () => (
 
 export const NavClose = () => (
   <svg
-    width='40'
-    height='40'
+    width='28'
+    height='28'
     viewBox='0 0 40 40'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    className='cursor-pointer'
   >
     <path
       d='M27 14.41L25.59 13L20 18.59L14.41 13L13 14.41L18.59 20L13 25.59L14.41 27L20 21.41L25.59 27L27 25.59L21.41 20L27 14.41Z'
-      fill='#001F33'
+      fill='#000'
+    />
+  </svg>
+);
+export const Close = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    fill='none'
+    viewBox='0 0 24 24'
+    strokeWidth='2.5'
+    stroke='currentColor'
+    className='size-5 cursor-pointer'
+  >
+    <path
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      d='M6 18 18 6M6 6l12 12'
     />
   </svg>
 );
