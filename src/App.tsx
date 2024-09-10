@@ -5,6 +5,9 @@
 // import PrivateRoute from './routes/PrivateRoute';
 // import PublicRoute from './routes/PublicRoute';
 
+import { RouterProvider } from 'react-router-dom';
+import CreateAppRouter from './routes/routes';
+
 // function App() {
 //   return <App />;
 // }
@@ -44,3 +47,11 @@
 // // </Router>
 
 // export default App;
+
+const App = () => {
+  const router = CreateAppRouter(); // Call the component function to get the router
+
+  return <RouterProvider router={router} />;
+};
+
+export default App;

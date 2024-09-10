@@ -6,21 +6,29 @@ import AdminRoute from './AdminRoute';
 import UserProfile from '@/pages/user/UserProfile';
 
 export const dashboardRoutes = [
+  // Routes accessible to both users and admins
   {
     name: 'Profile',
     path: 'profile',
     element: <UserProfile />,
+    roles: ['user', 'admin'], // Both users and admins can access
   },
-  {
-    name: 'Bike Listing',
-    path: 'bike-listing',
-    element: <BikeListing />,
-  },
+  // {
+  //   name: 'Bike Listing',
+  //   path: 'bike-listing',
+  //   element: <BikeListing />,
+  //   roles: ['user', 'admin'],
+  // },
+
+  // Routes only for users
   {
     name: 'My Rental',
     path: 'my-rental',
     element: <MyRentals />,
+    roles: ['user'],
   },
+
+  // Routes only for admins
   {
     name: 'Bike Manage',
     path: 'bike-management',
@@ -29,6 +37,7 @@ export const dashboardRoutes = [
         <AdminBikeManagement />
       </AdminRoute>
     ),
+    roles: ['admin'],
   },
   {
     name: 'User Manage',
@@ -38,5 +47,6 @@ export const dashboardRoutes = [
         <AdminUserManagement />
       </AdminRoute>
     ),
+    roles: ['admin'],
   },
 ];

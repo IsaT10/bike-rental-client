@@ -3,8 +3,6 @@ import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import EditProfileModal from '@/components/EditProfileModal';
 
 export default function UserProfile() {
-  const [open, setOpen] = React.useState<boolean>(false);
-
   const { data, isLoading } = useGetProfileQuery(undefined);
 
   if (isLoading) return <p>Loading...</p>;

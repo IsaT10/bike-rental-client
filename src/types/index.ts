@@ -22,3 +22,26 @@ export type TUser = {
   iat: number;
   exp: number;
 };
+
+export type TRental = {
+  _id: string;
+  userId: string;
+  bikeId: string;
+  startTime: Date;
+  returnTime: Date;
+  totalCost: number;
+  isReturned: boolean;
+};
+
+export type TBike = {
+  _id: string;
+  name: string;
+  description: string;
+  pricePerHour: number;
+  isAvailable: boolean;
+  cc: number;
+  image: string;
+  year: number;
+  model: string;
+  brand: string;
+};

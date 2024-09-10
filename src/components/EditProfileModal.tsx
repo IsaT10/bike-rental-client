@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Edit } from './shared/Icons';
+import React from 'react';
 
 const profileUpdateSchema = z.object({
   name: z.string().optional(),
@@ -23,7 +24,19 @@ const profileUpdateSchema = z.object({
   address: z.string().optional(),
 });
 
-export default function EditProfileModal({ profileData }) {
+type TEditProfileModalProps = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+};
+
+export default function EditProfileModal({
+  profileData,
+}: {
+  profileData: TEditProfileModalProps;
+}) {
+  const [open, setOpen] = React.useState<boolean>(false);
   const { name, email, phone, address } = profileData;
   const form = useForm<z.infer<typeof profileUpdateSchema>>({
     resolver: zodResolver(profileUpdateSchema),
@@ -48,10 +61,12 @@ export default function EditProfileModal({ profileData }) {
     } catch (error) {
       console.log(error);
       toast.error('Something went wrong!', { id: sonnerId });
+    } finally {
+      setOpen(false);
     }
   }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button className='absolute top-5 right-5'>
           <Edit />
