@@ -9,14 +9,14 @@ export const routesGenerator = (items: TPathItem[]) => {
       });
     }
 
-    if (item.children) {
-      item.children.forEach((child) =>
-        acc.push({
-          path: child.path!,
-          element: child.element,
-        })
-      );
-    }
+    // if (item.children) {
+    //   item.children.forEach((child) =>
+    //     acc.push({
+    //       path: child.path!,
+    //       element: child.element,
+    //     })
+    //   );
+    // }
     return acc;
   }, []);
 

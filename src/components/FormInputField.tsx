@@ -4,7 +4,7 @@ import { Label } from './ui/label';
 
 type TFormField = {
   name: string;
-  placeholder: string;
+  placeholder?: string;
   isUpdate?: boolean;
   type: string;
   label: string;
@@ -24,7 +24,7 @@ export default function FormInputField({
         <FormItem>
           <FormControl>
             <div>
-              {/* <Label htmlFor={name}>{label}</Label> */}
+              <Label htmlFor={name}>{label}</Label>
               <Input
                 type={type}
                 className='py-6 outline-none border-stone-300'

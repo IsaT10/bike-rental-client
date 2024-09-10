@@ -17,6 +17,6 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  //   tagTypes: ['semesterRegistration', 'course'],
+  tagTypes: ['profile'],
   endpoints: () => ({}),
 });

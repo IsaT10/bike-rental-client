@@ -1,5 +1,5 @@
 import DashboardLayout from '@/layouts/DashboardLayout';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import MainLayout from '@/layouts/MainLayout';
 import { routesGenerator } from '@/utils/routerGenerator';
@@ -23,7 +23,13 @@ export const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    children: routesGenerator(dashboardRoutes),
+    children: [
+      {
+        path: '', // Default route for `/dashboard`
+        element: <Navigate to='profile' replace />,
+      },
+      ...routesGenerator(dashboardRoutes),
+    ],
   },
 
   {

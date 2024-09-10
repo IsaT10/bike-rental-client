@@ -8,7 +8,7 @@ import UserProfile from '@/pages/user/UserProfile';
 export const dashboardRoutes = [
   {
     name: 'Profile',
-    path: 'dashboard',
+    path: 'profile',
     element: <UserProfile />,
   },
   {

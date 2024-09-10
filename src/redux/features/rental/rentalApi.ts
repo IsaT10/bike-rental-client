@@ -1,6 +1,6 @@
 import { baseApi } from '@/redux/api/baseApi';
 
-const authApi = baseApi.injectEndpoints({
+const rentalApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllRental: builder.query({
       query: () => ({
@@ -11,4 +11,4 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllRentalQuery } = authApi;
+export const { useGetAllRentalQuery } = rentalApi;

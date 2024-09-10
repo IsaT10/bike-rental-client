@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { token, user } = useAppSelector((state) => state.auth);
-  console.log(user);
   const navigate = useNavigate();
 
   const currentTime = Math.floor(Date.now() / 1000);

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
 export type TPathItem = {
-  name: string;
-  path?: string;
-  element?: ReactNode;
+  name?: string;
+  path: string;
+  element: ReactNode;
 };
 
 export type TRoute = {

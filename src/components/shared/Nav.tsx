@@ -48,8 +48,8 @@ const Nav = () => {
   };
   return (
     <nav
-      className={`transition-all duration-300  fixed left-0 bg-stone-600 bg- right-0 z-50 py-3 md:py-5 ${
-        scrollY >= scrollThreshold ? 'shadow-md ' : ''
+      className={`transition-all duration-300  fixed left-0 bg-transparent bg- right-0 z-50 py-3 md:py-5 ${
+        scrollY >= scrollThreshold ? 'shadow-md bg-white' : ''
       } ${navVisible ? 'top-0' : '-top-full'}`}
       // className={`transition-all duration-300 ${
       //   location.pathname === '/' ? 'bg-transparent' : 'bg-white shadow-md'
@@ -60,7 +60,7 @@ const Nav = () => {
       <Container>
         <div className='flex justify-between items-center'>
           <Link to='/' className='flex items-center gap-3'>
-            <h2 className='md:text-3xl text-xl font-bold text-brightOrange'>
+            <h2 className='md:text-3xl text-xl font-bold text-primary-color'>
               GearPro
             </h2>
           </Link>
@@ -118,7 +118,7 @@ const Nav = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`fixed md:hidden left-0 top-0 bottom-0 w-full h-screen bg-offWhite z-50 transition-transform duration-500 ${
+            className={`fixed md:hidden left-0 top-0 bottom-0 w-full h-screen bg-white z-50 transition-transform duration-500 ${
               nav ? '-translate-x-0' : 'translate-x-full'
             }`}
           >

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
 
 export default function Container({ children }: { children: ReactNode }) {
-  return <div className='max-w-7xl xl:mx-auto mx-4 xl:px-5'>{children}</div>;
+  return <div className='w-full px-6 md:px-10 lg:px-16'>{children}</div>;
 }
