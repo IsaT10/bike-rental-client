@@ -33,9 +33,9 @@ type TBikeFormProps = {
 export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
   const bikeDetails = {
     ...bike,
-    pricePerHour: bike?.pricePerHour.toString(),
-    cc: bike?.cc.toString(),
-    year: bike?.year.toString(),
+    pricePerHour: bike?.pricePerHour?.toString(),
+    cc: bike?.cc?.toString(),
+    year: bike?.year?.toString(),
   };
 
   const defaultValues = {
@@ -65,7 +65,7 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
   const [updateBike] = useUpdateBikeMutation();
 
   async function onSubmit(values: z.infer<typeof bikeSchema>) {
-    const sonnerId = toast.loading('Creating...');
+    const sonnerId = toast.loading('Loading...');
 
     const data = {
       ...values,
@@ -74,9 +74,8 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
       year: parseInt(values.year, 10),
     };
     try {
-      const sonnerId = toast.loading('Updating...');
-
       if (isUpdate) {
+        // const sonnerId = toast.loading('Updating...');
         await updateBike({
           id: bike?._id,
           data,

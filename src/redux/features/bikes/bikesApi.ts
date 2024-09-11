@@ -1,12 +1,25 @@
 import { baseApi } from '@/redux/api/baseApi';
+import { TQueryParam } from '@/types';
 
 const bikeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBikes: builder.query({
-      query: () => ({
-        url: '/bikes',
-        method: 'GET',
-      }),
+      query: (query) => {
+        const params = new URLSearchParams();
+
+        if (query) {
+          query?.forEach((el: TQueryParam) => {
+            if (el.value !== 'all' && el.value !== '') {
+              params.append(el.name, el.value as string);
+            }
+          });
+        }
+        return {
+          url: '/bikes',
+          method: 'GET',
+          params: params,
+        };
+      },
       providesTags: ['bike'],
     }),
     singleBike: builder.query({

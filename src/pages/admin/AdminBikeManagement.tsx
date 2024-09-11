@@ -1,11 +1,28 @@
 import AddBikeModal from '@/components/AddBikeModal';
 import BikeListItem from '@/components/BikeListItem';
+import FilterSelect from '@/components/FilterSelect';
 import { Spinner } from '@/components/shared/Icons';
+import useBrand from '@/hooks/useBrand';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import { TBike } from '@/types';
+import React from 'react';
 
 export default function AdminBikeManagement() {
-  const { data: bikeData, error, isLoading } = useGetAllBikesQuery(undefined);
+  const [availability, setAvailability] = React.useState<string>('');
+  const [brand, setBrand] = React.useState<string>('');
+  const [model, setModel] = React.useState<string>('');
+
+  const { brandOptions, modelOptions } = useBrand();
+
+  const {
+    data: bikeData,
+    error,
+    isLoading,
+  } = useGetAllBikesQuery([
+    { name: 'isAvailable', value: availability },
+    { name: 'brand', value: brand },
+    { name: 'model', value: model },
+  ]);
 
   if (isLoading)
     return (
@@ -27,16 +44,29 @@ export default function AdminBikeManagement() {
         <div className='flex flex-col gap-5'>
           <AddBikeModal />
           {/* <SortByStock byStock={byStock} setByStock={setByStock} /> */}
+          <FilterSelect
+            label='Models'
+            options={modelOptions}
+            setValue={setModel}
+            value={model}
+          />
         </div>
         <div className='flex flex-col gap-5 md:w-[30%] lg:w-[25%] items-end'>
-          {/* <Input
-            value={searchTerm}
-            type='text'
-            placeholder='Search by name...'
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className=''
+          <FilterSelect
+            label='Brands'
+            options={brandOptions}
+            setValue={setBrand}
+            value={brand}
           />
-          <FilterdByCategory category={category} setCategory={setCategory} /> */}
+          <FilterSelect
+            label='Availability'
+            options={[
+              { value: 'true', label: 'Available' },
+              { value: 'false', label: ' Not-Available' },
+            ]}
+            setValue={setAvailability}
+            value={availability}
+          />
         </div>
       </div>
 

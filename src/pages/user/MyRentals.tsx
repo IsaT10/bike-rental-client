@@ -30,8 +30,6 @@ export default function MyRentals() {
     (item: TRental) => item.isReturned === true
   );
 
-  console.log({ upaidRent });
-  console.log({ data });
   return (
     <Tabs defaultValue='unpaid' className='min-w-[400px] max-w-[1000px]'>
       <TabsList className='w-[400px] grid  grid-cols-2'>

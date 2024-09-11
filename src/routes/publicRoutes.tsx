@@ -1,6 +1,6 @@
 import Bookings from '@/components/Bookings';
+import Home from '@/pages/Home/Home';
 import AboutUs from '@/pages/Public/AboutUs';
-import Home from '@/pages/Public/Home';
 import BikeDetail from '@/pages/user/BikeDetail';
 import BikeListing from '@/pages/user/BikeListing';
 

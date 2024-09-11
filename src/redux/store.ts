@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { baseApi } from './api/baseApi';
 import authReducer from './features/auth/authSlice';
+import cuponReducer from './features/cupon/cuponSlice';
 
 import {
   persistStore,
@@ -14,17 +15,26 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const persistConfig = {
+// Persist configuration for auth
+const authPersistConfig = {
   key: 'auth',
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+// Persist configuration for cupon
+const cuponPersistConfig = {
+  key: 'cupon',
+  storage,
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistedCuponReducer = persistReducer(cuponPersistConfig, cuponReducer);
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
-    auth: persistedReducer,
+    auth: persistedAuthReducer,
+    cupon: persistedCuponReducer,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

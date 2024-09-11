@@ -10,7 +10,7 @@ import React from 'react';
 import { TBike } from '@/types';
 import { BikeForm } from './BikeForm';
 
-export default function EditBikeModal({ bike }: { bike: TBike }) {
+export default function EditBikeModal({ item }: { item: TBike }) {
   const [open, setOpen] = React.useState(false);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -26,7 +26,7 @@ export default function EditBikeModal({ bike }: { bike: TBike }) {
             Make changes to your bike here. Click submit when you're done.
           </DialogDescription>
         </DialogHeader>
-        <BikeForm bike={bike} isUpdate={true} setOpen={setOpen} />
+        <BikeForm bike={item} isUpdate={true} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );

@@ -1,9 +1,9 @@
 import AdminBikeManagement from '@/pages/admin/AdminBikeManagement';
-import BikeListing from '@/pages/user/BikeListing';
 import MyRentals from '@/pages/user/MyRentals';
 import AdminUserManagement from '@/pages/admin/AdminUserManagement';
 import AdminRoute from './AdminRoute';
 import UserProfile from '@/pages/user/UserProfile';
+import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
@@ -39,12 +39,23 @@ export const dashboardRoutes = [
     ),
     roles: ['admin'],
   },
+
   {
     name: 'User Manage',
     path: 'users',
     element: (
       <AdminRoute>
         <AdminUserManagement />
+      </AdminRoute>
+    ),
+    roles: ['admin'],
+  },
+  {
+    name: 'Return & Billing',
+    path: 'return-&-billing',
+    element: (
+      <AdminRoute>
+        <ReturnAndBilling />
       </AdminRoute>
     ),
     roles: ['admin'],
