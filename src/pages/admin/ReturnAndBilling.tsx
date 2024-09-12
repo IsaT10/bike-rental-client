@@ -9,7 +9,7 @@ export default function ReturnAndBilling() {
     isLoading,
   } = useGetAllUserRentalQuery([
     // { name: 'isReturned', value: 'false' },
-    { name: 'sort', value: 'isReturned' },
+    { name: 'sort', value: 'returnTime' },
   ]);
 
   if (isLoading)
@@ -30,7 +30,7 @@ export default function ReturnAndBilling() {
   console.log({ rentalData });
 
   return (
-    <div className='max-w-[900px]'>
+    <div className='max-w-[1000px]'>
       <div className='bg-stone-200 items-center px-6 py-2.5 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200'>
         <p className='flex-[2]'>Bike Name</p>
         <p className='flex-[2]'>Start Time</p>

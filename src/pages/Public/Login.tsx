@@ -3,15 +3,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
 import { setUser } from '@/redux/features/auth/authSlice';
@@ -35,12 +27,12 @@ export default function Login() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: 'rakib@gmail.com',
-      password: '12345678',
+      // email: 'rakib@gmail.com',
+      // password: '12345678',
       // email: '',
       // password: '',
-      // email: 'john@example.com',
-      // password: 'password123',
+      email: 'john@example.com',
+      password: 'password123',
     },
   });
 

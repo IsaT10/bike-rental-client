@@ -3,6 +3,8 @@ import Home from '@/pages/Home/Home';
 import AboutUs from '@/pages/Public/AboutUs';
 import BikeDetail from '@/pages/user/BikeDetail';
 import BikeListing from '@/pages/user/BikeListing';
+import PrivateRoute from './PrivateRoute';
+import Payment from '@/pages/payment/Payment/Payment';
 
 export const publicRoutes = [
   {
@@ -25,7 +27,19 @@ export const publicRoutes = [
     element: <BikeDetail />,
   },
   {
-    path: '/bookings',
-    element: <Bookings />,
+    path: '/bookings/:id',
+    element: (
+      <PrivateRoute>
+        <Bookings />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: '/payment',
+    element: (
+      <PrivateRoute>
+        <Payment />
+      </PrivateRoute>
+    ),
   },
 ];

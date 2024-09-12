@@ -6,7 +6,9 @@ import UnpaidRent from '@/components/UnpaidRent';
 import { TRental } from '@/types';
 
 export default function MyRentals() {
-  const { data, error, isLoading } = useGetAllRentalQuery(undefined);
+  const { data, error, isLoading } = useGetAllRentalQuery([
+    { name: 'isRental', value: 'false' },
+  ]);
 
   if (isLoading)
     return (
@@ -23,12 +25,10 @@ export default function MyRentals() {
       </div>
     );
 
-  const upaidRent = data.data.filter(
-    (item: TRental) => item.isReturned === false
-  );
-  const paidRent = data.data.filter(
-    (item: TRental) => item.isReturned === true
-  );
+  const upaidRent = data.data.filter((item: TRental) => item.isPaid === false);
+  const paidRent = data.data.filter((item: TRental) => item.isPaid === true);
+
+  console.log(data.data);
 
   return (
     <Tabs defaultValue='unpaid' className='min-w-[400px] max-w-[1000px]'>

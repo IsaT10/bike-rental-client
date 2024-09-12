@@ -31,6 +31,8 @@ export type TRental = {
   returnTime: Date;
   totalCost: number;
   isReturned: boolean;
+  isPaid: boolean;
+  advancedPayment: number;
 };
 
 export type TBike = {
@@ -62,7 +64,7 @@ export type TUserProfile = {
 };
 
 export interface ISpinWheelProps {
-  segments: ISegments[];
+  segments: ISegments[] | [];
   onFinished: (result: string) => void;
   primaryColor?: string;
   contrastColor?: string;

@@ -18,8 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary-color': '#DE453E',
-        'secondary-color': '#1B3E41',
+        'primary-color': '#97A253',
+        'secondary-color': '#202020',
       },
       keyframes: {
         'accordion-down': {

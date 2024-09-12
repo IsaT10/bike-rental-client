@@ -37,7 +37,31 @@ const rentalApi = baseApi.injectEndpoints({
       },
       providesTags: ['rent'],
     }),
+    returnBike: builder.mutation({
+      query: (rentId) => {
+        return {
+          url: `/rentals/${rentId}/return`,
+          method: 'PUT',
+        };
+      },
+      invalidatesTags: ['rent'],
+    }),
+    rentBike: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/rentals`,
+          method: 'POST',
+          body: data,
+        };
+      },
+      invalidatesTags: ['rent'],
+    }),
   }),
 });
 
-export const { useGetAllRentalQuery, useGetAllUserRentalQuery } = rentalApi;
+export const {
+  useGetAllRentalQuery,
+  useGetAllUserRentalQuery,
+  useReturnBikeMutation,
+  useRentBikeMutation,
+} = rentalApi;

@@ -1,6 +1,7 @@
 import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import { TRental } from '@/types';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default function UnpaidRent({
   item,
@@ -23,9 +24,12 @@ export default function UnpaidRent({
       <p className='flex-1'>$ {item.totalCost}</p>
 
       {!isPaid && (
-        <button className='flex-1 justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'>
+        <Link
+          to='/payment'
+          className='flex-1 text-center justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'
+        >
           Pay
-        </button>
+        </Link>
       )}
     </div>
   );

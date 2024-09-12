@@ -14,7 +14,7 @@ export default function BikeDetail() {
 
   const handleBookNow = () => {
     // Change route to bookings and open modal
-    navigate('/bookings');
+    navigate(`/bookings/${id}`);
   };
 
   return (

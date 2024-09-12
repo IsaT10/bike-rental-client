@@ -7,6 +7,7 @@ import { publicRoutes } from './publicRoutes';
 import { dashboardRoutes } from './dashboardRoutes';
 import Login from '@/pages/Public/Login';
 import { useAppSelector } from '@/redux/hooks'; // Import your custom hook
+import BookingSuccess from '@/pages/Public/BookingSuccess';
 
 const CreateAppRouter = () => {
   const { user } = useAppSelector((state) => state.auth); // Get user from Redux store
@@ -41,6 +42,15 @@ const CreateAppRouter = () => {
     {
       path: '/login',
       element: <Login />,
+    },
+
+    {
+      path: '/booking-complete',
+      element: (
+        <PrivateRoute>
+          <BookingSuccess />
+        </PrivateRoute>
+      ),
     },
   ]);
 };
