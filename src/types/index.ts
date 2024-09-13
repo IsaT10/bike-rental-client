@@ -63,6 +63,18 @@ export type TUserProfile = {
   role: 'admin' | 'user';
 };
 
+export type TErrorData = {
+  success: boolean;
+  message: string;
+  statusCode?: number;
+  stack?: string;
+};
+
+export type TErrorResponse = {
+  status: number;
+  data: TErrorData;
+};
+
 export interface ISpinWheelProps {
   segments: ISegments[] | [];
   onFinished: (result: string) => void;

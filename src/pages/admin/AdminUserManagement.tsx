@@ -1,7 +1,7 @@
-import { Spinner } from '@/components/shared/Icons';
 import UserListItem from '@/components/UserListItem';
 import { useGetAllUserQuery } from '@/redux/features/user/userApi';
 import { TUserProfile } from '@/types';
+import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminUserManagement() {
   const { data: userData, error, isLoading } = useGetAllUserQuery(undefined);
@@ -9,8 +9,13 @@ export default function AdminUserManagement() {
 
   if (isLoading)
     return (
-      <div className='h-[calc(100vh-150px)] flex justify-center items-center'>
-        <Spinner className='h-10 w-10' />
+      <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
+        <GridLoader
+          color='#97A253'
+          size={10}
+          aria-label='Loading Spinner'
+          data-testid='loader'
+        />
       </div>
     );
 
@@ -23,7 +28,7 @@ export default function AdminUserManagement() {
     );
   return (
     <div className=''>
-      <div className='border border-stone-200 font-semibold rounded-b-none text-stone-800 text-sm rounded-lg py-4 px-6 md:px-10 flex justify-between items-center mt-10 bg-stone-100'>
+      <div className='border border-stone-200 font-semibold rounded-b-none text-stone-800 text-xs md:text-sm rounded-lg py-3 md:py-4 px-6 md:px-10 flex justify-between items-center mt-10 bg-stone-100'>
         <span className='flex-1 md:ml-6'>Name</span>
         <span className='flex-1  text-center'>Email</span>
         <span className='flex-1 text-center'>Role</span>

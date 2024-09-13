@@ -46,6 +46,8 @@ export default function BookingDialog() {
       advancedPayment: 100,
     };
 
+    console.log({ bookingData });
+
     dispatch(setBooking(bookingData));
 
     navigate('/payment');
@@ -57,7 +59,7 @@ export default function BookingDialog() {
         <DialogHeader>
           <DialogTitle>Complete Your Booking</DialogTitle>
           <DialogDescription>
-            For complete booking you have to pay 100 tk advanced
+            For complete booking you have to pay $100 USD advanced
           </DialogDescription>
         </DialogHeader>
         <div className=' flex flex-col gap-1 text-sm font-semibold mt-5'>
@@ -76,7 +78,7 @@ export default function BookingDialog() {
             htmlFor='terms'
             className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
           >
-            For complete booking you have to pay 100 tk advanced
+            For complete booking you have to pay $100 USD advanced
           </label>
         </div>
         <button

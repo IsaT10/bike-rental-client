@@ -94,12 +94,12 @@ export default function AboutUs() {
                 <div className='flex gap-2 items-center justify-center'>
                   <img
                     className='lg:w-16 w-12 h-12 lg:h-16'
-                    src={png3}
+                    src={png2}
                     alt=''
                   />
                   <div>
                     <p className='text-2xl lg:text-3xl xl:text-4xl text-primary-color font-bold'>
-                      25469+
+                      1000+
                     </p>
                     <p className='text-sm lg:text-lg '>Bike In Garage</p>
                   </div>
@@ -107,12 +107,12 @@ export default function AboutUs() {
                 <div className='flex gap-2 items-center justify-center'>
                   <img
                     className='lg:w-16 w-12 h-12 lg:h-16'
-                    src={png2}
+                    src={png3}
                     alt=''
                   />
                   <div>
                     <p className='text-2xl lg:text-3xl xl:text-4xl text-primary-color font-bold'>
-                      50,000+
+                      1500+
                     </p>
                     <p className='text-sm lg:text-lg '>Successful Rentals</p>
                   </div>
@@ -125,7 +125,7 @@ export default function AboutUs() {
                   />
                   <div>
                     <p className='text-2xl lg:text-3xl xl:text-4xl text-primary-color font-bold'>
-                      10 Years
+                      5 Years
                     </p>
                     <p className='text-sm lg:text-lg '>Of Trusted Service</p>
                   </div>
@@ -196,11 +196,11 @@ export default function AboutUs() {
                 <p className='flex items-center gap-1.5'>
                   <Message />
                   <span className='text-stone-600 font-normal'>
-                    contact@gearpro.com
+                    contact@xrides.com
                   </span>
                 </p>
               </div>
-              <div className='flex flex-col items-center md:items-start  my-10'>
+              <div className='flex flex-col items-center md:items-start mb-8 md:mb-16'>
                 <p className='text-sm lg:text-lg  font-bold mb-4'>Follow us</p>
                 <div className='flex gap-3 flex-wrap'>
                   <a href='#' target='_blank'>

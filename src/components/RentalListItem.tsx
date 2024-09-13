@@ -24,8 +24,8 @@ export default function RentalListItem({ item }) {
   };
 
   return (
-    <div className='bg-stone-50 duration-150 border-b border-b-stone-200 hover:bg-stone-100 items-center px-6 py-8 text-stone-600  flex justify-between'>
-      <p className='flex-[2]'>{data?.data?.name}</p>
+    <div className='bg-stone-50 duration-150 text-xs sm:text-sm lg:text-base border-b border-b-stone-200 hover:bg-stone-100 items-center px-6 lg:px-10 py-8 gap-4 text-stone-600  flex justify-between'>
+      <p className='flex-[2]'>{data?.data?.brand}</p>
       <p className='flex-[2]'>{formateDate(item.startTime)}</p>
 
       <p className='flex-[2]'>
@@ -35,7 +35,7 @@ export default function RentalListItem({ item }) {
       {!item.isReturned ? (
         <button
           onClick={handleCalculate}
-          className='flex-1 justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'
+          className='px-4 md:px-8 py-2 text-xs sm:text-sm bg-primary-color text-white lg:mr-6 rounded-[10px] md:rounded-[14px]   font-semibold duration-200 '
         >
           Calculate
         </button>

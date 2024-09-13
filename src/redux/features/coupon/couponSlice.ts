@@ -5,7 +5,9 @@ export const fetchCoupons = createAsyncThunk(
   'coupon/fetchCoupons',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:3000/api/coupons'); // Replace with your actual API endpoint
+      const response = await fetch(
+        'http://localhost:3000/api/coupons?isActive=true'
+      ); // Replace with your actual API endpoint
       const data = await response.json();
 
       console.log(data?.data);
@@ -23,7 +25,7 @@ export const fetchCoupons = createAsyncThunk(
 // Type for the coupon state
 type TInitialState = {
   couponCode: string | null;
-  discount: string | null;
+  discount: number | null;
   coupons: { couponCode: string; discount: string }[];
   loading: boolean;
   error: string | null;

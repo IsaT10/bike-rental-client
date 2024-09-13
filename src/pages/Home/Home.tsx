@@ -1,3 +1,4 @@
+import ContactUs from './sections/ContactUs';
 import Featured from './sections/Featured';
 import Hero from './sections/Hero/Hero';
 import SpinW from './sections/Spin-wheel/SpinW';
@@ -11,6 +12,7 @@ export default function Home() {
       <Featured />
       <WhyChooseUs />
       <SpinW />
+      <ContactUs />
       <Testimonial />
     </div>
   );

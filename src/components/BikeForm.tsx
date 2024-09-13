@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import React from 'react';
 import FormInputField from './FormInputField';
-import { TBike } from '@/types';
+import { TBike, TErrorResponse } from '@/types';
 import { Spinner } from './shared/Icons';
 import {
   useAddBikeMutation,
@@ -14,7 +14,6 @@ import {
 import { toast } from 'sonner';
 
 const bikeSchema = z.object({
-  name: z.string().min(1, 'Name is required!'),
   description: z.string().min(1, 'Desription is required!'),
   brand: z.string().min(1, 'Brand is required!'),
   pricePerHour: z.string().min(1, 'Price is required!'),
@@ -39,7 +38,6 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
   };
 
   const defaultValues = {
-    name: bikeDetails?.name || '',
     description: bikeDetails?.description || '',
     pricePerHour: bikeDetails?.pricePerHour || '',
     cc: bikeDetails?.cc || '',
@@ -76,21 +74,27 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
     try {
       if (isUpdate) {
         // const sonnerId = toast.loading('Updating...');
-        await updateBike({
+        const res = await updateBike({
           id: bike?._id,
           data,
         }).unwrap();
 
-        toast.success('Bike updated successfully', { id: sonnerId });
+        toast.success(res?.message, { id: sonnerId });
       } else {
-        await addBike(data).unwrap();
-        toast.success('Bike added successfully', { id: sonnerId });
+        const res = await addBike(data).unwrap();
+        toast.success(res?.message, { id: sonnerId });
       }
     } catch (error) {
-      console.error('Error processing bike:', error);
-      toast.error('Something went wrong!', { id: sonnerId });
+      const typedError = error as TErrorResponse;
+
+      console.log({ typedError });
+      if (typedError?.data?.message) {
+        toast.error(typedError.data.message, { id: sonnerId });
+      } else {
+        toast.error('Something went wrong!', { id: sonnerId });
+      }
     } finally {
-      setOpen(false); // Close the form dialog
+      // setOpen(false); // Close the form dialog
     }
   }
 
@@ -102,40 +106,19 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
             <div className='flex-1'>
               <FormInputField
                 // isUpdate={isUpdate}
-                label='Bike Name'
-                type='text'
-                placeholder={'Name'}
-                name={'name'}
-              />
-            </div>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
                 label='Brand'
                 type='text'
                 placeholder={'Brand'}
                 name={'brand'}
               />
             </div>
-          </div>
-
-          <div className='flex gap-6'>
             <div className='flex-1'>
               <FormInputField
                 // isUpdate={isUpdate}
-                label='Description'
+                label='Model'
                 type='text'
-                placeholder={'Description'}
-                name={'description'}
-              />
-            </div>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Price Per Hour'
-                type='text'
-                placeholder={'Price per Hour'}
-                name={'pricePerHour'}
+                placeholder={'Model'}
+                name={'model'}
               />
             </div>
           </div>
@@ -165,10 +148,10 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
             <div className='flex-1'>
               <FormInputField
                 // isUpdate={isUpdate}
-                label='Model'
+                label='Price Per Hour'
                 type='text'
-                placeholder={'Model'}
-                name={'model'}
+                placeholder={'Price per Hour'}
+                name={'pricePerHour'}
               />
             </div>
             <div className='flex-1'>
@@ -178,6 +161,18 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                 type='text'
                 placeholder={'Image URL'}
                 name={'image'}
+              />
+            </div>
+          </div>
+
+          <div className='flex gap-6'>
+            <div className='flex-1'>
+              <FormInputField
+                // isUpdate={isUpdate}
+                label='Description'
+                type='text'
+                placeholder={'Description'}
+                name={'description'}
               />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Container from '../Container';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { publicRoutes } from '@/routes/publicRoutes';
@@ -14,7 +14,6 @@ const Nav = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [navVisible, setNavVisible] = useState(true);
   const [nav, setNav] = useState(false);
-  const location = useLocation();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
@@ -48,7 +47,7 @@ const Nav = () => {
   };
   return (
     <nav
-      className={`transition-all duration-300  fixed left-0 bg-transparent bg- right-0 z-50 py-3 md:py-5 ${
+      className={`transition-all duration-300  fixed left-0  bg- right-0 z-50 py-3 md:py-5 ${
         scrollY >= scrollThreshold ? 'shadow-md bg-white' : ''
       } ${navVisible ? 'top-0' : '-top-full'}`}
       // className={`transition-all duration-300 ${
@@ -60,8 +59,17 @@ const Nav = () => {
       <Container>
         <div className='flex justify-between items-center'>
           <Link to='/' className='flex items-center gap-3'>
-            <h2 className='md:text-3xl text-xl font-bold text-primary-color'>
-              GearPro
+            <h2 className='md:text-3xl text-xl font-bold tracking-wider text-primary-color'>
+              X
+              <span
+                className={`${
+                  scrollY >= scrollThreshold
+                    ? ' text-secondary-color'
+                    : ' text-white'
+                }  `}
+              >
+                RIDES
+              </span>
             </h2>
           </Link>
           <ul className='hidden md:flex  gap-4 lg:gap-6'>
@@ -70,7 +78,7 @@ const Nav = () => {
                 key={item.key}
                 to={item.path}
                 className={({ isActive }) =>
-                  `py-2.5 font-medium rounded-md  hover:text-primary-color  cursor-pointer duration-150 ${
+                  `py-2.5 font-medium rounded-md 900:text-base text-sm  hover:text-primary-color  cursor-pointer duration-150 ${
                     isActive
                       ? 'text-primary-color'
                       : scrollY <= scrollThreshold
@@ -85,7 +93,7 @@ const Nav = () => {
             <NavLink
               to='/dashboard'
               className={({ isActive }) =>
-                `py-2.5 font-medium rounded-md  hover:text-primary-color  cursor-pointer duration-150 ${
+                `py-2.5 font-medium rounded-md 900:text-base text-sm hover:text-primary-color  cursor-pointer duration-150 ${
                   isActive
                     ? 'text-primary-color'
                     : scrollY <= scrollThreshold
@@ -99,14 +107,24 @@ const Nav = () => {
 
             {user ? (
               <button
-                className='px-8 py-2 sm:text-base text-sm  border mr-6 rounded-[14px]  text-white font-semibold duration-200 '
+                className={`px-8 py-2 sm:text-base text-sm ${
+                  scrollY <= scrollThreshold
+                    ? 'text-white '
+                    : 'text-black border-stone-600'
+                } border mr-6 rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
                 onClick={handleLogout}
               >
                 Logout
               </button>
             ) : (
               <Link to='/login'>
-                <button className='px-8 py-2 sm:text-base text-sm border mr-6 rounded-[17px]  text-white font-semibold duration-200 '>
+                <button
+                  className={`px-8 py-2 sm:text-base text-sm ${
+                    scrollY <= scrollThreshold
+                      ? 'text-white '
+                      : 'text-black border-stone-600'
+                  } border mr-6 rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
+                >
                   Login
                 </button>
               </Link>
@@ -119,14 +137,12 @@ const Nav = () => {
             className='block md:hidden z-50 cursor-pointer'
           >
             {nav ? (
-              <NavClose />
+              <div className='pr2'>
+                <NavClose />
+              </div>
             ) : (
               <NavOpen
-                fill={`${
-                  location.pathname === '/' && scrollY <= scrollThreshold
-                    ? '#fff'
-                    : '#000000'
-                }`}
+                fill={`${scrollY <= scrollThreshold ? '#fff' : '#000000'}`}
               />
             )}
           </div>
@@ -137,14 +153,22 @@ const Nav = () => {
               nav ? '-translate-x-0' : 'translate-x-full'
             }`}
           >
-            <div className='flex justify-between items-center p-[13px] lg:p-4'>
+            <div className='flex justify-between items-center py-3 px-5 '>
               <Link
                 to='/'
                 onClick={() => setNav(false)}
                 className='flex items-center gap-3'
               >
-                <h2 className='md:text-3xl text-xl font-bold text-brightOrange'>
-                  GearPro
+                <h2 className='md:text-3xl text-xl font-bold text-primary-color'>
+                  X
+                  <span
+                    className={`
+                         text-secondary-color
+                         
+                     `}
+                  >
+                    RIDES
+                  </span>
                 </h2>
               </Link>
               <div onClick={handleNav} className='cursor-pointer'>
@@ -159,14 +183,43 @@ const Nav = () => {
                   onClick={() => setNav(false)}
                   to={item.path}
                   className={({ isActive }) =>
-                    `px-4 py-3 text-stone-900 rounded-md cursor-pointer duration-300 leading-[18px] font-semibold ${
-                      isActive ? 'text-black' : 'text-[#698898]'
+                    `px-5 py-3  rounded-md cursor-pointer duration-300 leading-[18px] font-semibold ${
+                      isActive ? 'text-primary-color' : 'text-secondary-color'
                     } `
                   }
                 >
                   <li>{item.key}</li>
                 </NavLink>
               ))}
+
+              <NavLink
+                onClick={() => setNav(false)}
+                to='/dashboard'
+                className={({ isActive }) =>
+                  `px-5 py-3  rounded-md cursor-pointer duration-300 leading-[18px] font-semibold ${
+                    isActive ? 'text-primary-color' : 'text-secondary-color'
+                  } `
+                }
+              >
+                <li>Dashboard</li>
+              </NavLink>
+
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className={`px-4 py-1.5 text-white  rounded-md cursor-pointer duration-300 leading-[18px] font-semibold bg-primary-color ml-6 mt-2`}
+                >
+                  <li>Logout</li>
+                </button>
+              ) : (
+                <Link
+                  onClick={() => setNav(false)}
+                  to='/login'
+                  className='px-4 py-1.5 text-white  rounded-md cursor-pointer duration-300 leading-[18px] font-semibold bg-primary-color ml-5 mt-2'
+                >
+                  <li>Login</li>
+                </Link>
+              )}
             </ul>
           </div>
         </div>

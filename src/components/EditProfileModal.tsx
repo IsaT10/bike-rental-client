@@ -72,7 +72,7 @@ export default function EditProfileModal({
           <Edit />
         </button>
       </DialogTrigger>
-      <DialogContent className='md:max-w-[650px]'>
+      <DialogContent className='md:max-w-[650px] '>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
@@ -82,7 +82,7 @@ export default function EditProfileModal({
         <div className='grid gap-4 py-4'>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className=''>
-              <div className='grid grid-cols-2 gap-y-8 gap-x-6'>
+              <div className='grid sm:grid-cols-2 gap-y-4 md:gap-y-8 gap-x-6'>
                 <FormInputField name='name' type='text' label='Name' />
                 <FormInputField name='email' type='text' label='Email' />
                 <FormInputField name='phone' type='text' label='Phone' />

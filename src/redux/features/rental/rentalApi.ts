@@ -56,6 +56,15 @@ const rentalApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ['rent'],
     }),
+    changePaymentStatus: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/rentals/${id}`,
+          method: 'PATCH',
+        };
+      },
+      invalidatesTags: ['rent'],
+    }),
   }),
 });
 
@@ -64,4 +73,5 @@ export const {
   useGetAllUserRentalQuery,
   useReturnBikeMutation,
   useRentBikeMutation,
+  useChangePaymentStatusMutation,
 } = rentalApi;

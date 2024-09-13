@@ -1,7 +1,10 @@
 import React from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useAppSelector } from '@/redux/hooks';
-import { useRentBikeMutation } from '@/redux/features/rental/rentalApi';
+import {
+  useChangePaymentStatusMutation,
+  useRentBikeMutation,
+} from '@/redux/features/rental/rentalApi';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +13,7 @@ export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
   const [rentBike] = useRentBikeMutation();
+  const [changeStatus] = useChangePaymentStatusMutation();
 
   const { advancedPayment, bikeId, startTime } = useAppSelector(
     (state) => state.booking
@@ -64,8 +68,16 @@ export default function PaymentForm() {
       if (confirmError) {
         console.log('Payment failed:', confirmError.message);
       } else if (paymentIntent.status === 'succeeded') {
+        if (advancedPayment! > 100) {
+          await changeStatus(bikeId).unwrap();
+          toast.success('Payment success', { id: sonnerId });
+          navigate('/dashboard/my-rental');
+
+          return;
+        }
         try {
           await rentBike({ advancedPayment, bikeId, startTime }).unwrap();
+          toast.success('Payment success', { id: sonnerId });
           navigate(`/booking-complete`);
         } catch (error) {
           console.log(error);

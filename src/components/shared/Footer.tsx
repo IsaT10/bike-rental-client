@@ -10,8 +10,8 @@ export default function Footer() {
     '
     >
       <Container>
-        <h2 className='md:text-2xl md:text-left text-center text-xl lg:text-3xl font-bold text-primary-color mb-14'>
-          GearPro
+        <h2 className='md:text-2xl md:text-left tracking-wider text-center text-xl lg:text-3xl font-bold text-primary-color mb-14'>
+          X<span className='text-white'>RIDES</span>
         </h2>
 
         <div className='flex md:flex-row flex-col gap-8 sm:gap-16 md:gap-28'>
@@ -22,25 +22,25 @@ export default function Footer() {
               </p>
               <Link
                 to='/all-products'
-                className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'
+                className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'
               >
                 All Products
               </Link>
               <Link
                 to='/manage-products'
-                className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'
+                className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'
               >
                 Manage Products
               </Link>
               <Link
                 to='/cart'
-                className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'
+                className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'
               >
                 Cart
               </Link>
               <Link
                 to='/about'
-                className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'
+                className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'
               >
                 Contact Us
               </Link>
@@ -52,17 +52,17 @@ export default function Footer() {
                 Contact info
               </p>
 
-              <span className='mb-3 flex gap-3 items-center text-[#A4B5C1]'>
-                <p className=' '>contact@gearpro.com</p>
+              <span className='mb-3 flex gap-3 items-center text-stone-400'>
+                <p className=' '>contact@xrides.com</p>
               </span>
-              <span className='mb-3 flex gap-3 items-center text-[#A4B5C1]'>
+              <span className='mb-3 flex gap-3 items-center text-stone-400'>
                 <p className=''>8644 103rd Ave, Ozone Park, NY 11417</p>
               </span>
 
-              <p className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'>
+              <p className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'>
                 Privacy Policy
               </p>
-              <p className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'>
+              <p className='text-stone-400 cursor-pointer leading-[22.4px] mb-3'>
                 Terms of Service
               </p>
             </div>
@@ -89,8 +89,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className='text-[#A4B5C1] flex xs:flex-row flex-col gap-4 items-center justify-between mt-14 text-xs'>
-          <span>© {currentYear} GearPro, Inc. All rights reserved.</span>
+        <div className='text-stone-400 flex xs:flex-row flex-col gap-4 items-center justify-between mt-14 text-xs'>
+          <span>© {currentYear} XRiDES, Inc. All rights reserved.</span>
         </div>
       </Container>
     </div>

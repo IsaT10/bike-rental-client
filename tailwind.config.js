@@ -23,6 +23,7 @@ module.exports = {
       },
       screens: {
         xs: '500px',
+        900: '900px',
       },
       keyframes: {
         'accordion-down': {

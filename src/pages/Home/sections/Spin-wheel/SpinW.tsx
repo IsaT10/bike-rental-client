@@ -28,15 +28,47 @@ export default function SpinW() {
   const dispatch = useAppDispatch();
 
   const getSegmentColor = (discount: number) => {
-    if (discount <= 10) {
-      return '#0AB2DA'; // Assign red for 10% or lower
-    } else if (discount <= 20) {
-      return '#088484'; // Assign blue for 20% or lower
-    } else if (discount <= 30) {
-      return ' #F7AB3E'; // Assign green for 30% or lower
+    let color: string;
+
+    if (discount >= 10 && discount < 15) {
+      color = '#FF6F61'; // Coral
+    } else if (discount >= 15 && discount < 20) {
+      color = '#FFBF00'; // Amber
+    } else if (discount >= 20 && discount < 25) {
+      color = '#FF7F50'; // Coral Reef
+    } else if (discount >= 25 && discount < 30) {
+      color = '#32CD32'; // Lime Green
+    } else if (discount >= 30 && discount < 35) {
+      color = '#1E90FF'; // Dodger Blue
+    } else if (discount >= 35 && discount < 40) {
+      color = '#9370DB'; // Medium Purple
+    } else if (discount >= 40 && discount < 45) {
+      color = '#FF6347'; // Tomato
+    } else if (discount >= 45 && discount < 50) {
+      color = '#3CB371'; // Medium Sea Green
+    } else if (discount >= 50 && discount < 55) {
+      color = '#FFD700'; // Gold
+    } else if (discount >= 55 && discount < 60) {
+      color = '#FF1493'; // Deep Pink
+    } else if (discount >= 60 && discount < 65) {
+      color = '#00CED1'; // Dark Turquoise
+    } else if (discount >= 65 && discount < 70) {
+      color = '#8A2BE2'; // Blue Violet
+    } else if (discount >= 70 && discount < 75) {
+      color = '#FF4500'; // Orange Red
+    } else if (discount >= 75 && discount < 80) {
+      color = '#2E8B57'; // Sea Green
+    } else if (discount >= 80 && discount < 85) {
+      color = '#D2691E'; // Chocolate
+    } else if (discount >= 85 && discount < 90) {
+      color = '#A0522D'; // Sienna
+    } else if (discount >= 90 && discount <= 100) {
+      color = '#C71585'; // Medium Violet Red
     } else {
-      return '#B45BDC'; // Default color for other discounts
+      color = '#B0C4DE'; // Light Steel Blue (fallback color)
     }
+
+    return color;
   };
 
   const { coupons, loading, error } = useAppSelector((state) => state.coupon);
@@ -57,17 +89,20 @@ export default function SpinW() {
   const onCopyText = () => {
     setCopyStatus(true);
 
-    dispatch(setCoupon({ couponCode: textToCopy, discount }));
+    dispatch(setCoupon({ couponCode: textToCopy, discount: Number(discount) }));
     setTimeout(() => setCopyStatus(false), 2000); // Reset status after 2 seconds
   };
 
   const handleSpinFinish = (result: string) => {
     console.log({ result });
-    const discountValue = result?.slice(0, 3);
+    // const discountValue = result?.slice(0, 3);
+    const discountValue = result?.slice(0, 2);
+
+    console.log({ discountValue });
 
     console.log({ discountValue });
     const coupon = coupons?.find(
-      (coupon) => `${coupon.discount}%` === discountValue
+      (coupon) => `${coupon.discount}` === discountValue
     );
 
     console.log({ coupon });
@@ -100,7 +135,7 @@ export default function SpinW() {
     <div>
       <Container>
         <div className='flex md:flex-row flex-col-reverse lg:divide-x '>
-          <div className='md:w-1/2 flex flex-col justify-center items-center md:py-24'>
+          <div className='md:w-1/2 flex flex-col justify-center items-center py-16 md:py-24'>
             <SpinWheel {...spinWheelProps} />
           </div>
 

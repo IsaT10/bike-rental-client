@@ -1,11 +1,12 @@
 import AddBikeModal from '@/components/AddBikeModal';
 import BikeListItem from '@/components/BikeListItem';
 import FilterSelect from '@/components/FilterSelect';
-import { Spinner } from '@/components/shared/Icons';
+
 import useBrand from '@/hooks/useBrand';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import { TBike } from '@/types';
 import React from 'react';
+import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminBikeManagement() {
   const [availability, setAvailability] = React.useState<string>('');
@@ -26,8 +27,13 @@ export default function AdminBikeManagement() {
 
   if (isLoading)
     return (
-      <div className='h-[calc(100vh-150px)] flex justify-center items-center'>
-        <Spinner className='h-10 w-10' />
+      <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
+        <GridLoader
+          color='#97A253'
+          size={10}
+          aria-label='Loading Spinner'
+          data-testid='loader'
+        />
       </div>
     );
 
@@ -79,15 +85,14 @@ export default function AdminBikeManagement() {
         </div>
       ) : (
         <>
-          <div className='border border-stone-200 font-semibold rounded-b-none text-stone-800 text-sm rounded-lg py-4 px-6 md:px-10 flex justify-between items-center mt-10 bg-stone-100'>
-            <span className='flex-1 md:ml-6'>Name</span>
-            <span className='flex-1  text-center'>Brand</span>
+          <div className='border md:text-base text-sm border-stone-200 font-semibold rounded-b-none text-stone-800 max-w-5xl  rounded-lg py-3 md:py-4 px-5 md:px-10 flex justify-between items-center mt-10 bg-stone-100'>
+            <span className='flex-1  '>Brand</span>
             <span className='flex-1 text-center'>Availability</span>
             <span className='flex-1 text-center'>Price / Hour</span>
             <span className='flex-[.5] text-center'>Actions</span>
           </div>
 
-          <div className='rounded-lg border border-t-0 rounded-t-none border-stone-200 divide-y divide-stone-200 mb-10'>
+          <div className='rounded-lg border max-w-5xl  py-3 md:py-4 px-5 md:px-10  border-t-0 rounded-t-none border-stone-200 divide-y divide-stone-200 mb-10'>
             {bikeData?.data?.map((el: TBike, idx: number) => (
               <BikeListItem key={idx} bike={el} />
             ))}

@@ -1,9 +1,11 @@
 import { useGetAllRentalQuery } from '@/redux/features/rental/rentalApi';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Spinner } from '@/components/shared/Icons';
+
 import UnpaidRent from '@/components/UnpaidRent';
 import { TRental } from '@/types';
+import GridLoader from 'react-spinners/GridLoader';
+import PaidRent from '@/components/PaidRent';
 
 export default function MyRentals() {
   const { data, error, isLoading } = useGetAllRentalQuery([
@@ -12,8 +14,13 @@ export default function MyRentals() {
 
   if (isLoading)
     return (
-      <div className='h-screen flex justify-center items-center'>
-        <Spinner className='h-10 w-10' />
+      <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
+        <GridLoader
+          color='#97A253'
+          size={10}
+          aria-label='Loading Spinner'
+          data-testid='loader'
+        />
       </div>
     );
 
@@ -31,14 +38,14 @@ export default function MyRentals() {
   console.log(data.data);
 
   return (
-    <Tabs defaultValue='unpaid' className='min-w-[400px] max-w-[1000px]'>
+    <Tabs defaultValue='unpaid' className=' max-w-[1200px]'>
       <TabsList className='w-[400px] grid  grid-cols-2'>
         <TabsTrigger value='unpaid'>Unpaid</TabsTrigger>
         <TabsTrigger value='paid'>Paid</TabsTrigger>
       </TabsList>
       <TabsContent className='mt-0' value='unpaid'>
-        <div className='bg-stone-100 items-center px-6 py-2.5 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200'>
-          <p className='flex-[2]'>Bike Name</p>
+        <div className='bg-stone-100 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold text-stone-900 flex justify-between border-b border-b-stone-200'>
+          <p className='flex-[2]'>Brand</p>
           <p className='flex-[2]'>Start Time</p>
           <p className='flex-[2]'>Return Time</p>
           <p className='flex-1'>Total Cost</p>
@@ -49,14 +56,15 @@ export default function MyRentals() {
         ))}
       </TabsContent>
       <TabsContent className='mt-0' value='paid'>
-        <div className='bg-stone-100 items-center px-6 py-2.5 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200'>
-          <p className='flex-[2]'>Bike Name</p>
+        <div className='bg-stone-100 lg:text-base text-xs gap-4 items-center px-4 lg:px-6 py-2.5 font-semibold text-stone-900  flex justify-between border-b border-b-stone-200'>
+          <p className='flex-1'>Brand</p>
           <p className='flex-[2]'>Start Time</p>
           <p className='flex-[2]'>Return Time</p>
           <p className='flex-1'>Total Cost</p>
+          <p className='flex-1'>Return Amount</p>
         </div>
         {paidRent.map((item: TRental) => (
-          <UnpaidRent key={item._id} item={item} isPaid={true} />
+          <PaidRent key={item._id} item={item} isPaid={true} />
         ))}
       </TabsContent>
     </Tabs>
