@@ -4,6 +4,7 @@ import AdminUserManagement from '@/pages/admin/AdminUserManagement';
 import AdminRoute from './AdminRoute';
 import UserProfile from '@/pages/user/UserProfile';
 import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
+import CouponManage from '@/pages/admin/CouponManage';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
@@ -56,6 +57,16 @@ export const dashboardRoutes = [
     element: (
       <AdminRoute>
         <ReturnAndBilling />
+      </AdminRoute>
+    ),
+    roles: ['admin'],
+  },
+  {
+    name: 'Coupon Manage',
+    path: 'coupon-manage',
+    element: (
+      <AdminRoute>
+        <CouponManage />
       </AdminRoute>
     ),
     roles: ['admin'],

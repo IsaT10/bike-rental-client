@@ -23,7 +23,7 @@ export const publicRoutes = [
     element: <BikeListing />,
   },
   {
-    path: '/bikes/:id',
+    path: '/bike/:id',
     element: <BikeDetail />,
   },
   {

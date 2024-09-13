@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     <div
-      className=' py-10 sm:py-12 md:py-16 lg:py-20 bg-secondary-color
+      className='mt-14 md:mt-0 py-10 sm:py-12 md:py-16 lg:py-20 bg-secondary-color
     '
     >
       <Container>
@@ -39,10 +39,10 @@ export default function Footer() {
                 Cart
               </Link>
               <Link
-                to='/about-us'
+                to='/about'
                 className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'
               >
-                About Us
+                Contact Us
               </Link>
             </div>
           </div>
@@ -58,6 +58,13 @@ export default function Footer() {
               <span className='mb-3 flex gap-3 items-center text-[#A4B5C1]'>
                 <p className=''>8644 103rd Ave, Ozone Park, NY 11417</p>
               </span>
+
+              <p className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'>
+                Privacy Policy
+              </p>
+              <p className='text-[#A4B5C1] cursor-pointer leading-[22.4px] mb-3'>
+                Terms of Service
+              </p>
             </div>
 
             <div className=' flex flex-col items-center md:items-start'>

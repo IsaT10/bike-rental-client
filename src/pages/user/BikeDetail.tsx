@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import img from '../../assets/images/bike3.jpeg';
 import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import Container from '@/components/Container';
+import PageHeader from '@/components/PageHeader';
 
 export default function BikeDetail() {
   const { id } = useParams();
@@ -19,42 +20,36 @@ export default function BikeDetail() {
 
   return (
     <div>
-      <div className='flex'>
-        <div
-          className='bg-secondary-color flex-1 text-white flex flex-col justify-center md:px-10 lg:px-16'
-          style={{ aspectRatio: '5 / 3.5' }}
-        >
-          <h1 className='text-4xl lg:text-7xl font-semibold mb-5'>Bikes</h1>
-          <p className='xl:w-[80%] lg:text-lg'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia eum ex
-            repellendus
-          </p>
-        </div>
-        <div className='w-1/2 pb-20 lg:pb-24 xl:pb-28 2xl:pb-36'>
-          <img
-            className='w-full object-cover'
-            style={{ aspectRatio: '5 / 3.5' }}
-            src={img}
-            alt='Bike'
-          />
-        </div>
-      </div>
+      <PageHeader
+        heading='Single-Bike'
+        subHeading='Discover top performance and unmatched comfort with our premium selection of bikes, built for every adventure.'
+        img={img}
+      />
       <Container>
         <div className=''>
-          <div className='flex  divide-x divide-stone-300 '>
-            <img className='w-1/2 py-16 xl:py-20' src={img} alt='' />
+          <div className='flex md:flex-row flex-col  md:divide-x divide-stone-300 '>
+            <img
+              className='md:w-1/2 py-10 md:py-16 xl:py-20 object-contain'
+              src={img}
+              alt=''
+            />
 
-            <div className='w-1/2 text-lg py-16 xl:py-20 md:pl-10 lg:pl-16'>
-              <p className='text-5xl font-semibold mb-9'>{data.data.name}</p>
-
-              <hr />
-              <hr />
-
-              <p className='text-3xl font-semibold mt-8'>
-                ${data.data.pricePerHour} / HOUR
+            <div className='md:w-1/2 text-lg py-10 flex-col flex md:items-start items-center md:py-16 xl:py-20 md:pl-6 lg:pl-16'>
+              <p className='text-3xl md:text-4xl lg:text-5xl font-semibold mb-7 lg:mb-9'>
+                {data.data.brand}
               </p>
-              <p className='my-5'>{data.data.description}</p>
-              <div className='flex gap-16 mb-8 items-start font-medium text-base'>
+
+              <hr />
+              <hr />
+
+              <p className='text-2xl md:text-3xl font-bold md:mt-6 lg:mt-8 text-primary-color'>
+                ${data.data.pricePerHour}
+                <span className='text-lg font-semibold'> / HOURS</span>
+              </p>
+              <p className='my-5 md:text-base lg:text-lg text-sm'>
+                {data.data.description}
+              </p>
+              <div className='flex gap-16  items-start font-medium text-base'>
                 <p className=' flex flex-col gap-1'>
                   <span>Model </span>
                   <span className='text-stone-500'>{data.data.model}</span>
@@ -63,14 +58,20 @@ export default function BikeDetail() {
                   <span>Year </span>
                   <span className='text-stone-500'>{data.data.year}</span>
                 </p>
-                <p className=' flex flex-col gap-1'>
-                  <span>Brand </span>
-                  <span className='text-stone-500'>{data.data.brand}</span>
-                </p>
               </div>
+              {data.data.isAvailable ? (
+                <span className='text-green-500 font-bold text-sm mt-4 mb-8'>
+                  Available
+                </span>
+              ) : (
+                <span className='text-red-500 font-bold text-sm mt-4 mb-8'>
+                  Not-available
+                </span>
+              )}
               <button
                 onClick={handleBookNow}
-                className='px-6 py-2 bg-orange-500 text-white rounded-md'
+                disabled={!data.data.isAvailable}
+                className='px-8 hover:bg-secondary-color disabled:cursor-not-allowed disabled:opacity-55 hover:text-white duration-200 py-2.5 font-medium rounded-[17px] md:rounded-[20px] border md:text-base text-sm  border-stone-900'
               >
                 Book Now
               </button>

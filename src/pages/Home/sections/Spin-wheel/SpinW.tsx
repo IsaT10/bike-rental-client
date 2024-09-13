@@ -14,6 +14,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { Copy } from '@/components/shared/Icons';
 import { fetchCoupons, setCoupon } from '@/redux/features/coupon/couponSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import Container from '@/components/Container';
 
 export default function SpinW() {
   const [open, setOpen] = React.useState(false);
@@ -28,13 +29,13 @@ export default function SpinW() {
 
   const getSegmentColor = (discount: number) => {
     if (discount <= 10) {
-      return 'red'; // Assign red for 10% or lower
+      return '#0AB2DA'; // Assign red for 10% or lower
     } else if (discount <= 20) {
-      return 'blue'; // Assign blue for 20% or lower
+      return '#088484'; // Assign blue for 20% or lower
     } else if (discount <= 30) {
-      return 'green'; // Assign green for 30% or lower
+      return ' #F7AB3E'; // Assign green for 30% or lower
     } else {
-      return 'purple'; // Default color for other discounts
+      return '#B45BDC'; // Default color for other discounts
     }
   };
 
@@ -45,7 +46,7 @@ export default function SpinW() {
 
     const dynamicSegments = coupons?.map((coupon) => ({
       segmentText: `${coupon.discount}%`,
-      segColor: getSegmentColor(coupon.discount), // You can dynamically assign colors here if needed
+      segColor: getSegmentColor(Number(coupon.discount)), // You can dynamically assign colors here if needed
     }));
     setNewSegments(dynamicSegments);
   }, [dispatch]);
@@ -83,8 +84,8 @@ export default function SpinW() {
   const spinWheelProps: ISpinWheelProps = {
     segments: newSegments,
     onFinished: handleSpinFinish,
-    primaryColor: 'black',
-    contrastColor: 'white',
+    primaryColor: 'white',
+    contrastColor: '#202020',
     buttonText: 'Spin',
     isOnlyOnce: false,
     size: 200,
@@ -96,8 +97,26 @@ export default function SpinW() {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <SpinWheel {...spinWheelProps} />
+    <div>
+      <Container>
+        <div className='flex md:flex-row flex-col-reverse lg:divide-x '>
+          <div className='md:w-1/2 flex flex-col justify-center items-center md:py-24'>
+            <SpinWheel {...spinWheelProps} />
+          </div>
+
+          <div className='md:w-1/2 md:pl-10 xl:pl-20 border-b md:py-24'>
+            <h2 className='text-3xl md:text-left text-center sm:text-4xl md:text-[40px] lg:text-6xl font-semibold pt-10 md:pt-12 lg:pt-16 xl:pt-20 '>
+              Exclusive <br /> Coupons & Discounts
+            </h2>
+
+            <p className='text-[17px] lg:text-[18px] leading-[20px] md:text-left text-center lg:leading-[24px] tracking-tight text-stone-500 mt-4 md:mb-0 mb-10'>
+              Save more on your bike rentals with our latest promotions.
+              Discover active discount codes and simple steps to apply them at
+              checkout for instant savings on your next adventure.
+            </p>
+          </div>
+        </div>
+      </Container>
 
       {/* Dialog to show coupon code */}
       <Dialog open={open} onOpenChange={setOpen}>

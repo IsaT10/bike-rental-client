@@ -4,8 +4,7 @@ import Container from '../Container';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { publicRoutes } from '@/routes/publicRoutes';
 import { NavClose, NavOpen } from './Icons';
-import { Button } from '../ui/button';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logout } from '@/redux/features/auth/authSlice';
 
 const navItems = nav_sidebarGenerator(publicRoutes);
@@ -17,6 +16,7 @@ const Nav = () => {
   const [nav, setNav] = useState(false);
   const location = useLocation();
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -70,16 +70,13 @@ const Nav = () => {
                 key={item.key}
                 to={item.path}
                 className={({ isActive }) =>
-                  // `py-2.5 font-medium rounded-md text-sm 900:text-base hover:text-brightOrange  cursor-pointer duration-150 ${
-                  //   isActive
-                  //     ? 'text-brightOrange'
-                  //     : location.pathname === '/' && scrollY <= scrollThreshold
-                  //     ? ' text-white'
-                  //     : 'text-stone-900'
-                  // } hover:text-tertiaryColor`
-                  `py-2.5 font-medium rounded-md text-sm 900:text-base hover:text-orange-500  cursor-pointer duration-150 ${
-                    isActive ? 'text-orange-500' : 'text-stone-900'
-                  } hover:text-tertiaryColor`
+                  `py-2.5 font-medium rounded-md  hover:text-primary-color  cursor-pointer duration-150 ${
+                    isActive
+                      ? 'text-primary-color'
+                      : scrollY <= scrollThreshold
+                      ? 'text-white'
+                      : 'text-black'
+                  }`
                 }
               >
                 <li>{item.key}</li>
@@ -88,14 +85,32 @@ const Nav = () => {
             <NavLink
               to='/dashboard'
               className={({ isActive }) =>
-                `py-2.5 font-medium rounded-md text-sm 900:text-base hover:text-orange-500  cursor-pointer duration-150 ${
-                  isActive ? 'text-orange-500' : 'text-stone-900'
-                } hover:text-tertiaryColor`
+                `py-2.5 font-medium rounded-md  hover:text-primary-color  cursor-pointer duration-150 ${
+                  isActive
+                    ? 'text-primary-color'
+                    : scrollY <= scrollThreshold
+                    ? 'text-white'
+                    : 'text-black'
+                }`
               }
             >
               <li>Dashboard</li>
             </NavLink>
-            <Button onClick={handleLogout}>Logout</Button>
+
+            {user ? (
+              <button
+                className='px-8 py-2 sm:text-base text-sm  border mr-6 rounded-[14px]  text-white font-semibold duration-200 '
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to='/login'>
+                <button className='px-8 py-2 sm:text-base text-sm border mr-6 rounded-[17px]  text-white font-semibold duration-200 '>
+                  Login
+                </button>
+              </Link>
+            )}
           </ul>
 
           {/* Mobile Navigation Icon */}

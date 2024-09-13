@@ -21,6 +21,9 @@ module.exports = {
         'primary-color': '#97A253',
         'secondary-color': '#202020',
       },
+      screens: {
+        xs: '500px',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
