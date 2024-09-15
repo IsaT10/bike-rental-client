@@ -15,6 +15,7 @@ import { Copy } from '@/components/shared/Icons';
 import { fetchCoupons, setCoupon } from '@/redux/features/coupon/couponSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Container from '@/components/Container';
+import SectionHeader from '@/components/SectionHeader';
 
 export default function SpinW() {
   const [open, setOpen] = React.useState(false);
@@ -134,22 +135,18 @@ export default function SpinW() {
   return (
     <div>
       <Container>
-        <div className='flex md:flex-row flex-col-reverse lg:divide-x '>
+        <div className='flex md:flex-row flex-col-reverse lg:divide-x dark:divide-stone-700 '>
           <div className='md:w-1/2 flex flex-col justify-center items-center py-16 md:py-24'>
             <SpinWheel {...spinWheelProps} />
           </div>
 
-          <div className='md:w-1/2 md:pl-10 xl:pl-20 border-b md:py-24'>
-            <h2 className='text-3xl md:text-left text-center sm:text-4xl md:text-[40px] lg:text-6xl font-semibold pt-10 md:pt-12 lg:pt-16 xl:pt-20 '>
-              Exclusive <br /> Coupons & Discounts
-            </h2>
-
-            <p className='text-[17px] lg:text-[18px] leading-[20px] md:text-left text-center lg:leading-[24px] tracking-tight text-stone-500 mt-4 md:mb-0 mb-10'>
-              Save more on your bike rentals with our latest promotions.
+          <SectionHeader
+            className='md:w-1/2 md:pl-10 xl:pl-20  md:py-24'
+            title='Exclusive <br /> Coupons & Discounts'
+            subTitle='  Save more on your bike rentals with our latest promotions.
               Discover active discount codes and simple steps to apply them at
-              checkout for instant savings on your next adventure.
-            </p>
-          </div>
+              checkout for instant savings on your next adventure.'
+          />
         </div>
       </Container>
 
@@ -165,7 +162,7 @@ export default function SpinW() {
           </DialogHeader>
           <div className='relative mt-4'>
             <input
-              className='border-2 w-[400px] outline-none border-stone-200 px-3 py-1.5 bg-stone-50 rounded-lg'
+              className='border w-[400px] outline-none border-stone-200 px-3 py-1.5 bg-stone-50 rounded-lg'
               value={textToCopy}
               readOnly
             />

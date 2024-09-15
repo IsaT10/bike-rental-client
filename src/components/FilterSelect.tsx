@@ -23,8 +23,12 @@ export default function FilterSelect({
 }: TFilterSelectProps) {
   return (
     <Select value={value} onValueChange={(value) => setValue(value)}>
-      <SelectTrigger className='w-[180px]'>
-        <SelectValue placeholder={`Filter by ${label}`} />
+      <SelectTrigger className='max-w-[200px] dark:text-stone-400 dark:bg-secondary-color'>
+        <hr />
+        <SelectValue
+          className='dark:placeholder:text-stone-100'
+          placeholder={`Filter by ${label}`}
+        />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

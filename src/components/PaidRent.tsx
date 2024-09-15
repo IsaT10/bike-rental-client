@@ -17,7 +17,7 @@ export default function PaidRent({
 
   return (
     <div>
-      <div className='bg-stone-50 lg:text-base text-xs sm:text-sm hover:bg-stone-100 items-center px-4 lg:px-6 py-5 text-stone-600 rounded-b-lg flex gap-4 justify-between'>
+      <div className='bg-stone-50 dark:bg-stone-700 dark:text-stone-100 dark:border-stone-950 border-b hover:bg-stone-100 items-center px-6  py-5 text-stone-600 flex justify-between'>
         <p className='flex-1'>{data?.data?.brand}</p>
         <p className='flex-[2]'>{formateDate(item.startTime)}</p>
         <p className='flex-[2]'>{formateDate(item.returnTime)}</p>
@@ -46,7 +46,6 @@ export default function PaidRent({
           <button
             // to='/payment'
 
-            onClick={handelPayButton}
             className='flex-1 text-center justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'
           >
             Pay

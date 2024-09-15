@@ -15,3 +15,12 @@ export default function useDebounce(value: string, delay: number) {
 
   return debounceValue;
 }
+
+// var debounce = function(fn, t) {
+//   let timer;
+
+//   return function(...args) {
+//       clearTimeout(timer);
+//       timer = setTimeout(() => fn(...args), t);
+//   }
+// };

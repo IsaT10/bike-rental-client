@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
@@ -10,7 +9,7 @@ import { setUser } from '@/redux/features/auth/authSlice';
 import { decodedToken } from '@/utils/decodedToken';
 import { TUser } from '@/types';
 import { useAppDispatch } from '@/redux/hooks';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FormInputField from '@/components/FormInputField';
 
 const FormSchema = z.object({
@@ -23,6 +22,7 @@ const FormSchema = z.object({
 export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -51,7 +51,8 @@ export default function Login() {
       console.log(user);
       dispatch(setUser({ user, token }));
       toast.success('Logged in.', { id: sonnerId });
-      navigate(`/`);
+      const from = location.state?.from?.pathname || '/';
+      navigate(from);
     } catch (error) {
       console.log(error);
       toast.error('Something went wrong!', { id: sonnerId });
@@ -59,11 +60,11 @@ export default function Login() {
   }
 
   return (
-    <div className='h-screen flex flex-col justify-center items-center'>
+    <div className='h-screen flex flex-col justify-center items-center dark:bg-stone-950'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='mx-auto rounded-[30px] gap-10 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-primary-color py-20 px-12 w-[500px] flex flex-col '
+          className='mx-auto rounded-[30px] gap-10 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-primary-color py-6 md:py-20 px-6 sm:px-12 w-[90%] xs:w-[500px] flex flex-col  dark:bg-secondary-color'
         >
           <h2 className='text-center text-2xl font-bold mb- text-primary-color'>
             Login
@@ -81,37 +82,25 @@ export default function Login() {
             type='password'
             label='Password'
           />
-          {/* <FormField
-            control={form.control}
-            name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder='shadcn' {...field} />
-                </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-          {/* <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input type='password' placeholder='shadcn' {...field} />
-                </FormControl>
+          <div>
+            <p className='dark:text-stone-200 text-sm'>
+              Don't have any account?{' '}
+              <Link
+                to='/signup'
+                className='text-primary-color hover:underline duration-200'
+              >
+                Signup
+              </Link>
+            </p>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-          <Button className='self-center mt-4' type='submit'>
-            Submit
-          </Button>
+            <button
+              className='self-center mt-2 w-full px-8   disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-3 font-medium rounded-[17px]  bg-primary-color text-white md:text-base text-sm '
+              type='submit'
+            >
+              Login
+            </button>
+          </div>
         </form>
       </Form>
     </div>

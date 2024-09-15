@@ -18,7 +18,7 @@ export default function AddCouponModal() {
       <DialogTrigger asChild>
         <Button variant='outline'>Add New Coupon</Button>
       </DialogTrigger>
-      <DialogContent className='md:max-w-[450px]'>
+      <DialogContent className='max-w-[500px]'>
         <DialogHeader>
           <DialogTitle>Add Coupon</DialogTitle>
           <DialogDescription>

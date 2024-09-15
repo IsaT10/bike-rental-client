@@ -27,7 +27,7 @@ export default function BikeDetail() {
       />
       <Container>
         <div className=''>
-          <div className='flex md:flex-row flex-col  md:divide-x divide-stone-300 '>
+          <div className='flex md:flex-row flex-col  md:divide-x divide-stone-300 dark:divide-stone-700'>
             <img
               className='md:w-1/2 py-10 md:py-16 xl:py-20 object-contain'
               src={img}
@@ -35,7 +35,7 @@ export default function BikeDetail() {
             />
 
             <div className='md:w-1/2 text-lg py-10 flex-col flex md:items-start items-center md:py-16 xl:py-20 md:pl-6 lg:pl-16'>
-              <p className='text-3xl md:text-4xl lg:text-5xl font-semibold mb-7 lg:mb-9'>
+              <p className='text-3xl md:text-4xl dark:text-stone-200 lg:text-5xl font-semibold mb-7 lg:mb-9'>
                 {data.data.brand}
               </p>
 
@@ -46,17 +46,21 @@ export default function BikeDetail() {
                 ${data.data.pricePerHour}
                 <span className='text-lg font-semibold'> / HOURS</span>
               </p>
-              <p className='my-5 md:text-base lg:text-lg text-sm'>
+              <p className='my-5 md:text-base dark:text-stone-400 lg:text-lg text-sm'>
                 {data.data.description}
               </p>
               <div className='flex gap-16  items-start font-medium text-base'>
                 <p className=' flex flex-col gap-1'>
-                  <span>Model </span>
-                  <span className='text-stone-500'>{data.data.model}</span>
+                  <span className='dark:text-stone-200'>Model </span>
+                  <span className='text-stone-500  dark:text-stone-500'>
+                    {data.data.model}
+                  </span>
                 </p>
                 <p className=' flex flex-col gap-1'>
-                  <span>Year </span>
-                  <span className='text-stone-500'>{data.data.year}</span>
+                  <span className='dark:text-stone-200'>Year </span>
+                  <span className='text-stone-500 dark:text-stone-500'>
+                    {data.data.year}
+                  </span>
                 </p>
               </div>
               {data.data.isAvailable ? (
@@ -71,24 +75,10 @@ export default function BikeDetail() {
               <button
                 onClick={handleBookNow}
                 disabled={!data.data.isAvailable}
-                className='px-8 hover:bg-secondary-color disabled:cursor-not-allowed disabled:opacity-55 hover:text-white duration-200 py-2.5 font-medium rounded-[17px] md:rounded-[20px] border md:text-base text-sm  border-stone-900'
+                className='px-8  disabled:cursor-not-allowed disabled:opacity-55 hover:text-white duration-200 py-3 font-medium rounded-[17px] md:rounded-[22px] dark:text-stone-200 dark:border-stone-700 hover:bg-primary-color border md:text-base text-sm  border-stone-900'
               >
                 Book Now
               </button>
-
-              {/* <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                <DialogContent className='sm:max-w-[425px]'>
-                  <DialogHeader>
-                    <DialogTitle>Complete Your Booking</DialogTitle>
-                    <DialogDescription>
-                      Fill in the details to confirm your booking.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className='grid gap-4 py-4'>
-                  
-                  </div>
-                </DialogContent>
-              </Dialog> */}
             </div>
           </div>
         </div>

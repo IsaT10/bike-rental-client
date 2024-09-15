@@ -34,12 +34,4 @@ export const publicRoutes = [
       </PrivateRoute>
     ),
   },
-  {
-    path: '/payment',
-    element: (
-      <PrivateRoute>
-        <Payment />
-      </PrivateRoute>
-    ),
-  },
 ];

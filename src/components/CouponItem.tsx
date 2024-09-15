@@ -26,7 +26,7 @@ export default function CouponItem({ coupon }) {
     }
   };
   return (
-    <div className='py-5 px-4 md:px-6 lg:px-10 text-xs sm:text-sm flex gap-4 justify-between items-center'>
+    <div className='py-5 px-4 dark:bg-stone-700 dark:text-stone-100 md:px-6 lg:px-10 text-xs sm:text-sm flex gap-4 justify-between items-center'>
       <span className='flex-1 lg:ml-6'>{coupon.couponCode}</span>
       <span className='flex-1 text-center'>{coupon.discount}</span>
       <span className='flex-1 font-semibold  text-center'>
@@ -40,7 +40,7 @@ export default function CouponItem({ coupon }) {
       <span className='flex-1 text-center'>
         <button
           onClick={handleStatus}
-          className='px-5 lg:px-8 py-2 text-xs lg:text-sm bg-primary-color text-white lg:mr-6 rounded-[14px]   font-semibold duration-200 whitespace-nowrap '
+          className='flex-1 px-8 text-center justify-self-end bg-primary-color text-white  text-sm font-semibold py-2 rounded-lg'
         >
           Change Status
         </button>

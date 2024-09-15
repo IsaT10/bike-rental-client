@@ -7,7 +7,7 @@ type TFormField = {
   placeholder?: string;
   isUpdate?: boolean;
   type: string;
-  label: string;
+  label?: string;
 };
 
 export default function FormInputField({
@@ -24,10 +24,12 @@ export default function FormInputField({
         <FormItem>
           <FormControl>
             <div>
-              <Label htmlFor={name}>{label}</Label>
+              <Label className='dark:text-stone-200' htmlFor={name}>
+                {label}
+              </Label>
               <Input
                 type={type}
-                className='py-6 outline-none border-stone-300'
+                className='py-6 outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700 rounded-[18px]'
                 placeholder={placeholder}
                 {...field}
               />
@@ -42,7 +44,7 @@ export default function FormInputField({
             </div> */}
           </FormControl>
 
-          <FormMessage />
+          <FormMessage className='dark:text-red-500' />
         </FormItem>
       )}
     />

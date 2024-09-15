@@ -59,14 +59,14 @@ export default function BikeListing() {
       />
 
       <Container>
-        <div className='flex 900:flex-row flex-col items-center justify-between'>
-          <h2 className='900:text-left  900:w-1/2  text-3xl  text-center sm:text-4xl md:text-5xl lg:text-6xl font-semibold py-10 md:py-14 lg:py-16 xl:py-20 900:border-r'>
+        <div className='flex 900:flex-row flex-col items-center 900:items-end justify-between'>
+          <h2 className='900:text-left  900:w-1/2  text-3xl  text-center sm:text-4xl md:text-5xl lg:text-6xl font-semibold py-10 dark:text-stone-200 md:py-14 lg:py-16 xl:py-20 900:border-r dark:border-stone-700'>
             Start Your Biking <br /> Journey Now
           </h2>
-          <div className='900:w-1/2 900:pl-6 gap-4 grid grid-cols-2 sm:grid-cols-3 justify-stretch 900:grid-cols-2 lg:grid-cols-3 900:pb-0 md:pb-16 pb-12'>
+          <div className='900:w-1/2 900:pl-10 gap-4 grid grid-cols-2 sm:grid-cols-3 justify-stretch 900:grid-cols-2 lg:grid-cols-3 900:pb-0 md:mb-16 mb-12'>
             <div className='relative '>
               <Input
-                className='placeholder:text-stone-950 pl-10 '
+                className='placeholder:text-stone-950 pl-10 dark:bg-secondary-color dark:text-stone-200'
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder='Search brands'
               />
@@ -93,19 +93,15 @@ export default function BikeListing() {
         </div>
       </Container>
 
-      <hr />
-      <hr />
-
-      <Container>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-3 py-16 xl:py-20 '>
-          {bikeData?.data?.map((item: TBike) => (
-            <BikeCard key={item?._id} bike={item} />
-          ))}
-        </div>
-      </Container>
-
-      <hr />
-      <hr />
+      <div className='border-t border-b dark:border-stone-700'>
+        <Container>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-3 py-16 xl:py-20 '>
+            {bikeData?.data?.map((item: TBike) => (
+              <BikeCard key={item?._id} bike={item} />
+            ))}
+          </div>
+        </Container>
+      </div>
     </div>
   );
 }

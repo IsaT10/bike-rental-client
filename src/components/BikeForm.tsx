@@ -99,93 +99,98 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className='space-y-5 '>
-          <div className='flex gap-6'>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Brand'
-                type='text'
-                placeholder={'Brand'}
-                name={'brand'}
-              />
+    <div className='max-h-screen overflow-y-auto '>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col '>
+          <div className='space-y-3 md:space-y-5 '>
+            <div className='flex  gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Brand'
+                  type='text'
+                  placeholder={'Brand'}
+                  name={'brand'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Model'
+                  type='text'
+                  placeholder={'Model'}
+                  name={'model'}
+                />
+              </div>
             </div>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Model'
-                type='text'
-                placeholder={'Model'}
-                name={'model'}
-              />
+
+            <div className='flex   gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='CC '
+                  type='text'
+                  placeholder={'CC (Engine Capacity)'}
+                  name={'cc'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Year'
+                  type='text'
+                  placeholder={'Year'}
+                  name={'year'}
+                />
+              </div>
+            </div>
+
+            <div className='flex   gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Price Per Hour'
+                  type='text'
+                  placeholder={'Price per Hour'}
+                  name={'pricePerHour'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Image URL'
+                  type='text'
+                  placeholder={'Image URL'}
+                  name={'image'}
+                />
+              </div>
+            </div>
+
+            <div className='flex gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Description'
+                  type='text'
+                  placeholder={'Description'}
+                  name={'description'}
+                />
+              </div>
             </div>
           </div>
 
-          <div className='flex gap-6'>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='CC '
-                type='text'
-                placeholder={'CC (Engine Capacity)'}
-                name={'cc'}
-              />
-            </div>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Year'
-                type='text'
-                placeholder={'Year'}
-                name={'year'}
-              />
-            </div>
-          </div>
-
-          <div className='flex gap-6'>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Price Per Hour'
-                type='text'
-                placeholder={'Price per Hour'}
-                name={'pricePerHour'}
-              />
-            </div>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Image URL'
-                type='text'
-                placeholder={'Image URL'}
-                name={'image'}
-              />
-            </div>
-          </div>
-
-          <div className='flex gap-6'>
-            <div className='flex-1'>
-              <FormInputField
-                // isUpdate={isUpdate}
-                label='Description'
-                type='text'
-                placeholder={'Description'}
-                name={'description'}
-              />
-            </div>
-          </div>
-        </div>
-
-        <Button className='w-full bg-primary-color py-3 mt-8 text-white font-semibold rounded-lg'>
-          {isSubmitting ? (
-            <Spinner className='mr-2 h-4 w-4 animate-spin' />
-          ) : (
-            'Submit'
-          )}
-        </Button>
-      </form>
-    </Form>
+          <button
+            className='px-8   disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-3 font-medium rounded-[17px]  bg-primary-color text-white md:text-base text-sm mt-10'
+            type='submit'
+          >
+            {isSubmitting ? (
+              <Spinner className='mr-2 h-4 w-4 animate-spin' />
+            ) : (
+              'Submit'
+            )}
+          </button>
+        </form>
+      </Form>
+    </div>
   );
 }

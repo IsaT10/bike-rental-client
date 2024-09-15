@@ -38,9 +38,11 @@ export function ContactForm() {
   });
 
   function onSubmit() {
+    const sonnerId = toast.loading('Sending..');
+
     setTimeout(() => {
-      toast.success('Form submit succesfully');
-    }, 500);
+      toast.success('Form submit succesfully', { id: sonnerId });
+    }, 2000);
 
     form.reset();
   }
@@ -59,7 +61,7 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder='Message'
-                  className='resize-none'
+                  className='resize-none outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700 rounded-[18px]'
                   {...field}
                 />
               </FormControl>
@@ -68,12 +70,12 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button
+        <button
           type='submit'
-          className='bg-primary-color  hover:bg-primary-color/90'
+          className='px-10 py-3 sm:text-base bg-primary-color text-white text-sm border mr-6 rounded-[14px] font-semibold duration-200'
         >
           Submit
-        </Button>
+        </button>
       </form>
     </Form>
   );

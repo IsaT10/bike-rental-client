@@ -8,6 +8,9 @@ import { dashboardRoutes } from './dashboardRoutes';
 import Login from '@/pages/Public/Login';
 import { useAppSelector } from '@/redux/hooks'; // Import your custom hook
 import BookingSuccess from '@/pages/Public/BookingSuccess';
+import Signup from '@/pages/Public/Signup';
+import ErrorPage from '@/components/shared/ErrorPage';
+import Payment from '@/pages/payment/Payment/Payment';
 
 const CreateAppRouter = () => {
   const { user } = useAppSelector((state) => state.auth); // Get user from Redux store
@@ -15,13 +18,13 @@ const CreateAppRouter = () => {
   return createBrowserRouter([
     {
       path: '/',
-      errorElement: <>nai vai</>,
+      errorElement: <ErrorPage />,
       element: <MainLayout />,
       children: routesGenerator(publicRoutes),
     },
     {
       path: '/dashboard',
-      errorElement: <>nai vai</>,
+      errorElement: <ErrorPage />,
       element: (
         <PrivateRoute>
           <DashboardLayout />
@@ -42,6 +45,19 @@ const CreateAppRouter = () => {
     {
       path: '/login',
       element: <Login />,
+    },
+
+    {
+      path: '/payment',
+      element: (
+        <PrivateRoute>
+          <Payment />
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: '/signup',
+      element: <Signup />,
     },
 
     {

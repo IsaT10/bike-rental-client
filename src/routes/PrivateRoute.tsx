@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '@/redux/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import AuthorizationModal from '@/components/shared/AuthorizationModal';
 // import ExpiredSessionModal from '@/components/shared/ExpiredSessionModal';
 import { Close } from '@/components/shared/Icons';
@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button';
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { token, user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const currentTime = Math.floor(Date.now() / 1000);
   const isTokenExpired = currentTime > (user?.exp || 0);
@@ -54,7 +56,15 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
             <Close />
           </span>
           <div className='flex justify-center gap-4'>
-            <Button onClick={() => navigate('/login')}>Login</Button>
+            <Button
+              onClick={() =>
+                navigate('/login', {
+                  state: { from: location }, // save the current location
+                })
+              }
+            >
+              Login
+            </Button>
             <Button variant='outline' onClick={() => navigate('/signup')}>
               Sign Up
             </Button>
@@ -70,7 +80,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     return (
       <div className='fixed inset-0 bg-stone-900/50 flex items-center justify-center'>
         <div
-          className={`text-center space-y-5 bg-white w-[500px] p-5 sm:px-10 sm:py-10 relative rounded shadow-lg transition-transform duration-500 ease-out ${
+          className={`text-center space-y-5 bg-white max-w-[500px] p-5 sm:px-10 sm:py-10 relative rounded shadow-lg transition-transform duration-500 ease-out ${
             showExpiredModal ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
           }`}
         >
@@ -83,7 +93,15 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
             <Close />
           </span>
           <div className='flex justify-center gap-4'>
-            <Button onClick={() => navigate('/login')}>Login</Button>
+            <Button
+              onClick={() =>
+                navigate('/login', {
+                  state: { from: location }, // save the current location
+                })
+              }
+            >
+              Login
+            </Button>
             {/* <Button variant='outline' onClick={() => navigate('/signup')}>
               Sign Up
             </Button> */}

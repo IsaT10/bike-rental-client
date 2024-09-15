@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { Button } from './ui/button';
 import { useUpdateProfileMutation } from '@/redux/features/user/userApi';
 import {
   Dialog,
@@ -68,7 +67,7 @@ export default function EditProfileModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className='absolute top-5 right-5'>
+        <button className='absolute top-5 right-5 dark:text-white'>
           <Edit />
         </button>
       </DialogTrigger>
@@ -81,7 +80,10 @@ export default function EditProfileModal({
         </DialogHeader>
         <div className='grid gap-4 py-4'>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className=''>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className='flex flex-col'
+            >
               <div className='grid sm:grid-cols-2 gap-y-4 md:gap-y-8 gap-x-6'>
                 <FormInputField name='name' type='text' label='Name' />
                 <FormInputField name='email' type='text' label='Email' />
@@ -89,9 +91,12 @@ export default function EditProfileModal({
                 <FormInputField name='address' type='text' label='Address' />
               </div>
 
-              <Button className='self-center mt-10' type='submit'>
+              <button
+                className='px-8  disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-3 font-medium rounded-[17px] md:rounded-[20px] bg-primary-color text-stone-100 md:text-base text-sm mt-10'
+                type='submit'
+              >
                 Update
-              </Button>
+              </button>
             </form>
           </Form>
         </div>

@@ -90,19 +90,28 @@ export default function PaymentForm() {
   return (
     <div className='h-screen flex flex-col items-center justify-center '>
       <div
-        className='bg-stone-700 w-[600px]  mx-auto '
+        className='bg-white flex justify-between shadow-[0_10px_20px_rgba(0,0,0,0.2)] w-[800px] h-[300px] mx-auto divide-x'
         style={{
           padding: '3rem',
         }}
       >
-        <h4 className='text-stone-100 text-2xl font-semibold uppercase'></h4>
-        <p className='mb-10 text-white text-xl font-semibold'></p>
+        <div className='w-[45%]'>
+          <p>Rent Payment</p>
+          <h4 className=' t text-2xl font-semibold  uppercase'>
+            ${advancedPayment ? advancedPayment : 0}
+          </h4>
+
+          <p>Pay you rent now</p>
+        </div>
+
         <div
           style={{
+            width: '55%',
             maxWidth: '500px',
-            margin: '0 auto',
+            paddingLeft: '40px',
           }}
         >
+          <h4 className='text-lg font-semibold mb-6'>Payment with card</h4>
           {/* Single form here */}
           <form
             onSubmit={handleSubmit}

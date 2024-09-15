@@ -40,22 +40,22 @@ export default function UserProfile() {
         </p>
       </div>
       <div className=''>
-        <div className='relative p-5 md:p-7  xl:p-14 lg:p-10 rounded-2xl lg:rounded-3xl lg:w-[70%] xl:w-1/2 border border-stone-300 mt-10 grid xs:grid-cols-2 justify-between gap-y-8 xs:gap-y-14'>
+        <div className='relative p-5 md:p-7  xl:p-14 lg:p-10 rounded-2xl lg:rounded-3xl lg:w-[70%] xl:w-1/2 border border-stone-300 dark:border-stone-700 mt-10 grid xs:grid-cols-2 justify-between gap-y-8 xs:gap-y-14'>
           <div>
-            <p className='font-semibold'>Name</p>
-            <p className='text-stone-500'>{name}</p>
+            <p className='font-semibold dark:text-stone-200'>Name</p>
+            <p className='text-stone-500 dark:text-stone-400'>{name}</p>
           </div>
           <div>
-            <p className='font-semibold'>Email</p>
-            <p className='text-stone-500'>{email}</p>
+            <p className='font-semibold dark:text-stone-200'>Email</p>
+            <p className='text-stone-500 dark:text-stone-400'>{email}</p>
           </div>
           <div>
-            <p className='font-semibold'>Phone</p>
-            <p className='text-stone-500'>{phone}</p>
+            <p className='font-semibold dark:text-stone-200'>Phone</p>
+            <p className='text-stone-500 dark:text-stone-400'>{phone}</p>
           </div>
           <div>
-            <p className='font-semibold'>Address</p>
-            <p className='text-stone-500'>{address}</p>
+            <p className='font-semibold dark:text-stone-200'>Address</p>
+            <p className='text-stone-500 dark:text-stone-400'>{address}</p>
           </div>
 
           <EditProfileModal profileData={{ name, email, phone, address }} />

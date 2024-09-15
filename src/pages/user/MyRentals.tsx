@@ -1,16 +1,105 @@
+import React, { useState, useEffect } from 'react';
 import { useGetAllRentalQuery } from '@/redux/features/rental/rentalApi';
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 import UnpaidRent from '@/components/UnpaidRent';
 import { TRental } from '@/types';
 import GridLoader from 'react-spinners/GridLoader';
 import PaidRent from '@/components/PaidRent';
+import { Button } from '@/components/ui/button';
+import { Close } from '@/components/shared/Icons';
+
+import './MyRentals.css'; // Assuming you create this CSS file for fade animations
+import { useAppSelector } from '@/redux/hooks';
+import { toast } from 'sonner';
+
+function CouponPopup({ onClose, coupon, setCoupon, setFinalDiscount }) {
+  const { couponCode, discount } = useAppSelector((state) => state.coupon);
+
+  // const [couponCode, setCouponCode] = useState('');
+
+  const handleApplyCoupon = async () => {
+    const sonnerId = toast.loading('Applying...');
+    if (coupon.trim() === couponCode) {
+      setFinalDiscount(discount);
+
+      toast.success(`You get ${discount}% discount on next payment`, {
+        id: sonnerId,
+      });
+      return;
+    }
+    toast.error('Not a valid token!', { id: sonnerId });
+
+    // onClose();
+  };
+
+  return (
+    <div className='fixed bottom-24 right-10 flex items-center justify-center fade-in'>
+      <div className='bg-stone-100 w-[300px] relative p-6 rounded-md shadow-lg max-w-md '>
+        <h2 className='text-lg font-bold mb-4'>Have any Coupon Code?</h2>
+        <div className='mb-4'>
+          <input
+            type='text'
+            value={coupon}
+            onChange={(e) => setCoupon(e.target.value)}
+            className='border p-2 w-full '
+            placeholder='Enter your coupon code'
+          />
+        </div>
+        <div className='flex justify-start space-x-4'>
+          <Button onClick={handleApplyCoupon}>Apply</Button>
+        </div>
+
+        <button
+          onClick={onClose}
+          className='absolute top-4 right-4 text-stone-700'
+        >
+          <Close />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function MyRentals() {
+  const [coupon, setCoupon] = React.useState('');
+  const [finalDiscount, setFinalDiscount] = React.useState(0);
+
+  console.log({ finalDiscount });
+  const { couponCode, discount } = useAppSelector((state) => state.coupon);
+
   const { data, error, isLoading } = useGetAllRentalQuery([
     { name: 'isRental', value: 'false' },
   ]);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+
+  // Show popup after 5 seconds initially
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+      setShowButton(false); // hide button when popup shows
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Reshow popup 10 seconds after closing
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    setShowButton(true); // show button after closing popup
+    // const reshowTimer = setTimeout(() => {
+    //   setShowPopup(true);
+    //   setShowButton(false); // hide button when popup shows again
+    // }, 10000); // 10 seconds after closing
+
+    // return () => clearTimeout(reshowTimer);
+  };
+
+  const handleButtonClick = () => {
+    setShowPopup(true);
+    setShowButton(false); // hide button when popup is shown
+  };
 
   if (isLoading)
     return (
@@ -32,41 +121,103 @@ export default function MyRentals() {
       </div>
     );
 
-  const upaidRent = data.data.filter((item: TRental) => item.isPaid === false);
+  const unpaidRent = data.data.filter((item: TRental) => item.isPaid === false);
   const paidRent = data.data.filter((item: TRental) => item.isPaid === true);
 
-  console.log(data.data);
+  console.log(unpaidRent.length);
 
   return (
-    <Tabs defaultValue='unpaid' className=' max-w-[1200px]'>
-      <TabsList className='w-[400px] grid  grid-cols-2'>
-        <TabsTrigger value='unpaid'>Unpaid</TabsTrigger>
-        <TabsTrigger value='paid'>Paid</TabsTrigger>
-      </TabsList>
-      <TabsContent className='mt-0' value='unpaid'>
-        <div className='bg-stone-100 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold text-stone-900 flex justify-between border-b border-b-stone-200'>
-          <p className='flex-[2]'>Brand</p>
-          <p className='flex-[2]'>Start Time</p>
-          <p className='flex-[2]'>Return Time</p>
-          <p className='flex-1'>Total Cost</p>
-          <p className='flex-1 text-center'>Actions</p>
+    <div>
+      {/* {couponCode && discount && (
+        <h2 className='text-right '>Coupon Code: {couponCode}</h2>
+      )} */}
+      {!finalDiscount && couponCode && discount && (
+        <div className='bg-green-100 px-4 py-2 rounded mb-4 flex justify-between items-center'>
+          <p>
+            You have a coupon! Use code{' '}
+            <span className='font-bold '>{couponCode}</span> to get {discount}%
+            off your next payment!
+          </p>
+          {/* <Button onClick={applyCoupon}>Apply Now</Button> */}
         </div>
-        {upaidRent.map((item: TRental) => (
-          <UnpaidRent key={item._id} item={item} />
-        ))}
-      </TabsContent>
-      <TabsContent className='mt-0' value='paid'>
-        <div className='bg-stone-100 lg:text-base text-xs gap-4 items-center px-4 lg:px-6 py-2.5 font-semibold text-stone-900  flex justify-between border-b border-b-stone-200'>
-          <p className='flex-1'>Brand</p>
-          <p className='flex-[2]'>Start Time</p>
-          <p className='flex-[2]'>Return Time</p>
-          <p className='flex-1'>Total Cost</p>
-          <p className='flex-1'>Return Amount</p>
+      )}
+
+      <Tabs defaultValue='unpaid' className='max-w-[1200px]'>
+        <TabsList className='w-[400px] grid grid-cols-2 rounded-none rounded-t-lg'>
+          <TabsTrigger className='rounded-md' value='unpaid'>
+            Unpaid
+          </TabsTrigger>
+          <TabsTrigger className='rounded-md' value='paid'>
+            Paid
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent className='mt-0' value='unpaid'>
+          {unpaidRent.length ? (
+            <>
+              <div className='bg-stone-100 dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950 text-stone-900 flex justify-between border-b border-b-stone-200 rounded-tr-lg '>
+                <p className='flex-[2]'>Brand Name</p>
+                <p className='flex-[2]'>Start Time</p>
+                <p className='flex-[2]'>Return Time</p>
+                <p className='flex-1'>Total Cost</p>
+                <p className='flex-1 text-center'>Actions</p>
+              </div>
+              {unpaidRent.map((item: TRental) => (
+                <UnpaidRent
+                  key={item._id}
+                  item={item}
+                  finalDiscount={finalDiscount}
+                />
+              ))}
+            </>
+          ) : (
+            <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold'>
+              {`${
+                !data.data
+                  ? 'You have no rental history'
+                  : 'You all rental payment is complete'
+              }`}
+            </h3>
+          )}
+        </TabsContent>
+        <TabsContent className='mt-0' value='paid'>
+          <div className='bg-stone-100 dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950 text-stone-900 flex justify-between border-b border-b-stone-200 rounded-tr-lg'>
+            <p className='flex-1'>Brand Name</p>
+            <p className='flex-[2]'>Start Time</p>
+            <p className='flex-[2]'>Return Time</p>
+            <p className='flex-1'>Total Cost</p>
+            <p className='flex-1'>Return Amount</p>
+          </div>
+          {paidRent.map((item: TRental) => (
+            <PaidRent key={item._id} item={item} isPaid={true} />
+          ))}
+        </TabsContent>
+      </Tabs>
+
+      {/* Coupon Popup */}
+      {unpaidRent.length && !finalDiscount && showPopup ? (
+        <CouponPopup
+          onClose={handlePopupClose}
+          coupon={coupon}
+          setCoupon={setCoupon}
+          setFinalDiscount={setFinalDiscount}
+        />
+      ) : (
+        ''
+      )}
+
+      {/* Show Button when popup is closed */}
+      {unpaidRent.length && !finalDiscount && showButton ? (
+        <div className='fixed bottom-20 right-10 fade-in'>
+          <button
+            className='px-5 py-[21px]  rounded-full bg-primary-color font-bold text-white'
+            onClick={handleButtonClick}
+          >
+            Get
+          </button>
         </div>
-        {paidRent.map((item: TRental) => (
-          <PaidRent key={item._id} item={item} isPaid={true} />
-        ))}
-      </TabsContent>
-    </Tabs>
+      ) : (
+        ''
+      )}
+    </div>
   );
 }

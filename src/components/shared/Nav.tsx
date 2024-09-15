@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../Container';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
@@ -6,16 +6,24 @@ import { publicRoutes } from '@/routes/publicRoutes';
 import { NavClose, NavOpen } from './Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logout } from '@/redux/features/auth/authSlice';
+import React from 'react';
 
 const navItems = nav_sidebarGenerator(publicRoutes);
 
 const Nav = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [prevScrollY, setPrevScrollY] = useState(0);
-  const [navVisible, setNavVisible] = useState(true);
-  const [nav, setNav] = useState(false);
+  const [isDark, setIsDark] = React.useState(true);
+  const [scrollY, setScrollY] = React.useState(0);
+  const [prevScrollY, setPrevScrollY] = React.useState(0);
+  const [navVisible, setNavVisible] = React.useState(true);
+  const [nav, setNav] = React.useState(false);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+
+  const dark = (e: any) => {
+    e.preventDefault();
+    document.documentElement.classList.toggle('dark');
+    setIsDark(!isDark);
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -35,7 +43,7 @@ const Nav = () => {
     setPrevScrollY(currentScrollY);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -48,7 +56,9 @@ const Nav = () => {
   return (
     <nav
       className={`transition-all duration-300  fixed left-0  bg- right-0 z-50 py-3 md:py-5 ${
-        scrollY >= scrollThreshold ? 'shadow-md bg-white' : ''
+        scrollY >= scrollThreshold
+          ? 'shadow-md bg-white dark:bg-secondary-color'
+          : ''
       } ${navVisible ? 'top-0' : '-top-full'}`}
       // className={`transition-all duration-300 ${
       //   location.pathname === '/' ? 'bg-transparent' : 'bg-white shadow-md'
@@ -64,7 +74,7 @@ const Nav = () => {
               <span
                 className={`${
                   scrollY >= scrollThreshold
-                    ? ' text-secondary-color'
+                    ? ' text-secondary-color dark:text-white'
                     : ' text-white'
                 }  `}
               >
@@ -73,6 +83,27 @@ const Nav = () => {
             </h2>
           </Link>
           <ul className='hidden md:flex  gap-4 lg:gap-6'>
+            <button onClick={dark} className='h-10 w-10 mt-0.5 rounded-lg p-2'>
+              <svg
+                className='fill-primary-color block dark:hidden'
+                fill='currentColor'
+                viewBox='0 0 20 20'
+              >
+                <path d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z'></path>
+              </svg>
+              <svg
+                className='fill-yellow-500 hidden dark:block'
+                fill='currentColor'
+                viewBox='0 0 20 20'
+              >
+                <path
+                  d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z'
+                  fill-rule='evenodd'
+                  clip-rule='evenodd'
+                ></path>
+              </svg>
+            </button>
+
             {navItems.map((item) => (
               <NavLink
                 key={item.key}
@@ -83,7 +114,7 @@ const Nav = () => {
                       ? 'text-primary-color'
                       : scrollY <= scrollThreshold
                       ? 'text-white'
-                      : 'text-black'
+                      : 'text-black dark:text-white'
                   }`
                 }
               >
@@ -98,7 +129,7 @@ const Nav = () => {
                     ? 'text-primary-color'
                     : scrollY <= scrollThreshold
                     ? 'text-white'
-                    : 'text-black'
+                    : 'text-black dark:text-white'
                 }`
               }
             >
@@ -110,8 +141,8 @@ const Nav = () => {
                 className={`px-8 py-2 sm:text-base text-sm ${
                   scrollY <= scrollThreshold
                     ? 'text-white '
-                    : 'text-black border-stone-600'
-                } border mr-6 rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
+                    : 'text-black  border-stone-600'
+                } border rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
                 onClick={handleLogout}
               >
                 Logout
@@ -122,8 +153,8 @@ const Nav = () => {
                   className={`px-8 py-2 sm:text-base text-sm ${
                     scrollY <= scrollThreshold
                       ? 'text-white '
-                      : 'text-black border-stone-600'
-                  } border mr-6 rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
+                      : 'text-black dark:text-stone-50 border-stone-500'
+                  } border rounded-[14px] font-semibold duration-200 hover:text-primary-color dark:hover:text-primary-color hover:border-primary-color`}
                 >
                   Login
                 </button>

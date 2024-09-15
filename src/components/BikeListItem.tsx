@@ -18,12 +18,12 @@ export default function BikeListItem({ bike }: { bike: TBike }) {
   };
 
   return (
-    <div className='text-sm py-5  flex justify-between items-center'>
+    <div className='text-sm py-5  px-5 md:px-10 dark:bg-stone-700 dark:text-stone-200 border-b dark:border-stone-950 flex justify-between items-center'>
       <span className='flex-1 '>{bike.brand}</span>
-      <span className='flex-1 font-semibold text-stone-600 text-center'>
+      <span className='flex-1 font-semibold text-stone-600 dark:text-stone-200 text-center'>
         {bike.isAvailable ? 'Available' : 'Unavailable'}
       </span>
-      <span className='flex-1 font-semibold text-stone-600 text-center'>
+      <span className='flex-1 font-semibold text-stone-600 dark:text-stone-200 text-center'>
         $ {bike.pricePerHour}
       </span>
       <span className='flex-[.5] text-center'>

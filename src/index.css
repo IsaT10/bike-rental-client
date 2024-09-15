@@ -8,6 +8,7 @@
 }
 
 ::selection {
+  /* background-color: #7d8a29; */
   background-color: #97a253;
   color: #fff;
 }

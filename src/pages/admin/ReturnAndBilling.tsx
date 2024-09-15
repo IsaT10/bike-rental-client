@@ -36,7 +36,7 @@ export default function ReturnAndBilling() {
 
   return (
     <div className='max-w-[1000px]'>
-      <div className='bg-stone-200 items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200'>
+      <div className='bg-stone-200 items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
         <p className='flex-[2]'>Brand Name</p>
         <p className='flex-[2]'>Start Time</p>
         <p className='flex-[2]'>Return Time</p>
