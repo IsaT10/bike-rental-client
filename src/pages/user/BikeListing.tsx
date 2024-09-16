@@ -9,17 +9,24 @@ import React from 'react';
 import useBrand from '@/hooks/useBrand';
 import FilterSelect from '@/components/FilterSelect';
 import useDebounce from '@/hooks/useDebounce';
-import { Search } from '@/components/shared/Icons';
+import { Compare, Search } from '@/components/shared/Icons';
 import { Input } from '@/components/ui/input';
+import {
+  getCompareListFromLocalStorage,
+  saveCompareListToLocalStorage,
+} from '@/utils/localstorageCompare';
+import { Link } from 'react-router-dom';
 
 export default function BikeListing() {
   const [availability, setAvailability] = React.useState<string>('');
-  const [brand, setBrand] = React.useState<string>('');
   const [model, setModel] = React.useState<string>('');
   const [searchTerm, setSearchTerm] = React.useState<string>('');
   const value = useDebounce(searchTerm, 500);
+  const storedCompareList = getCompareListFromLocalStorage();
+  const [compareList, setCompareList] =
+    React.useState<TBike[]>(storedCompareList);
 
-  const { brandOptions, modelOptions } = useBrand();
+  const { modelOptions } = useBrand();
 
   const {
     data: bikeData,
@@ -30,6 +37,29 @@ export default function BikeListing() {
     { name: 'searchTerm', value },
     { name: 'model', value: model },
   ]);
+
+  // const [compareList, setCompareList] = React.useState<TBike[]>([]);
+
+  // const handleCompare = (bike: TBike) => {
+  //   if (compareList.length < 3 && !compareList.includes(bike)) {
+  //     setCompareList([...compareList, bike]);
+  //   }
+  // };
+
+  // const removeBikeFromCompare = (bikeId: string) => {
+  //   setCompareList(compareList.filter((bike) => bike._id !== bikeId));
+  // };
+
+  const handleCompare = (bike: TBike) => {
+    if (
+      compareList.length < 3 &&
+      !compareList.some((b) => b._id === bike._id)
+    ) {
+      const updatedList = [...compareList, bike];
+      setCompareList(updatedList);
+      saveCompareListToLocalStorage(updatedList); // Save to localStorage
+    }
+  };
 
   if (isLoading)
     return (
@@ -51,7 +81,7 @@ export default function BikeListing() {
       </div>
     );
   return (
-    <div>
+    <div className='relative'>
       <PageHeader
         heading='Find Perfect Bike'
         subHeading='"Discover our range of bikes tailored to your next adventure, from city cruising to off-road exploration'
@@ -97,10 +127,22 @@ export default function BikeListing() {
         <Container>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-3 py-16 xl:py-20 '>
             {bikeData?.data?.map((item: TBike) => (
-              <BikeCard key={item?._id} bike={item} />
+              <BikeCard key={item?._id} bike={item} onCompare={handleCompare} />
             ))}
           </div>
         </Container>
+      </div>
+
+      <div className='relative'>
+        <Link
+          to='/bikes/compare'
+          className=' bottom-14 fixed right-6 bg-secondary-color p-5 rounded-lg'
+        >
+          <Compare className={'size-9 '} color='white' />
+          <span className='absolute -top-2 -right-2 px-2 font-semibold rounded-full bg-primary-color text-white'>
+            {/* {compareList?.length} */}
+          </span>
+        </Link>
       </div>
     </div>
   );

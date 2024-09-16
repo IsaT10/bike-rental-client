@@ -4,7 +4,7 @@ import AboutUs from '@/pages/Public/AboutUs';
 import BikeDetail from '@/pages/user/BikeDetail';
 import BikeListing from '@/pages/user/BikeListing';
 import PrivateRoute from './PrivateRoute';
-import Payment from '@/pages/payment/Payment/Payment';
+import BikeComparison from '@/pages/user/BikeComparison';
 
 export const publicRoutes = [
   {
@@ -21,6 +21,10 @@ export const publicRoutes = [
     name: 'Bike listing',
     path: '/bikes',
     element: <BikeListing />,
+  },
+  {
+    path: '/bikes/compare',
+    element: <BikeComparison />,
   },
   {
     path: '/bike/:id',

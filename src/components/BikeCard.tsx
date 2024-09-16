@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import img2 from '../assets/images/bike3.jpeg';
 import { TBike } from '@/types';
+import { Button } from './ui/button';
+type TBikeCardPros = {
+  bike: TBike;
+  onCompare: (bike: TBike) => void;
+};
 
-export default function BikeCard({ bike }: { bike: TBike }) {
+export default function BikeCard({ bike, onCompare }) {
   return (
     <div className='justify-self-center flex flex-col  items-center'>
       <img className='mb-4' src={img2} alt='' />
@@ -15,6 +20,7 @@ export default function BikeCard({ bike }: { bike: TBike }) {
           Details
         </button>
       </Link>
+      <Button onClick={() => onCompare(bike)}>Compare</Button>
     </div>
   );
 }
