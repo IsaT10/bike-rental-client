@@ -2,10 +2,17 @@ import { TBike } from '@/types';
 
 const LOCAL_STORAGE_KEY = 'compareList';
 
-// Get comparison list from localStorage
 export const getCompareListFromLocalStorage = (): TBike[] => {
-  const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-  return data ? JSON.parse(data) : [];
+  const compareList = localStorage.getItem('compareList');
+  return compareList ? JSON.parse(compareList) : [];
+};
+
+export const setCompareListInLocalStorage = (newList: TBike[]) => {
+  localStorage.setItem('compareList', JSON.stringify(newList));
+
+  // Dispatch a custom event to notify about the update
+  const event = new Event('compareListUpdated');
+  window.dispatchEvent(event);
 };
 
 // Save comparison list to localStorage

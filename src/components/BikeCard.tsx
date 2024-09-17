@@ -1,15 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import img2 from '../assets/images/bike3.jpeg';
 import { TBike } from '@/types';
-import { Button } from './ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { Compare } from './shared/Icons';
+import {
+  getCompareListFromLocalStorage,
+  setCompareListInLocalStorage,
+} from '@/utils/localstorageCompare';
 type TBikeCardPros = {
   bike: TBike;
-  onCompare: (bike: TBike) => void;
+  onCompare?: (bike: TBike) => void;
 };
 
-export default function BikeCard({ bike, onCompare }) {
+export default function BikeCard({ bike, onCompare }: TBikeCardPros) {
+  const handleCompare = () => {
+    const currentCompareList = getCompareListFromLocalStorage();
+    const updatedCompareList = [...currentCompareList, bike];
+    setCompareListInLocalStorage(updatedCompareList);
+    if (onCompare) {
+      onCompare(bike); // Notify parent about the change
+    }
+  };
+  const location = useLocation();
   return (
-    <div className='justify-self-center flex flex-col  items-center'>
+    <div className='relative justify-self-center flex flex-col  items-center'>
       <img className='mb-4' src={img2} alt='' />
       <p className='text-2xl font-semibold dark:text-stone-100'>{bike.brand}</p>
       <p className='text-lg font-semibold text-primary-color mb-4'>
@@ -20,7 +39,26 @@ export default function BikeCard({ bike, onCompare }) {
           Details
         </button>
       </Link>
-      <Button onClick={() => onCompare(bike)}>Compare</Button>
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {location.pathname === '/bikes' ? (
+              <button
+                onClick={handleCompare}
+                className='absolute top-0 right-0 bg-primary-color p-1.5 rounded-full'
+              >
+                <Compare className='size-4' color='white' />
+              </button>
+            ) : (
+              ''
+            )}
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Add to compare</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   );
 }

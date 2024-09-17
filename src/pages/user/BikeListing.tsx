@@ -1,5 +1,5 @@
 import Container from '@/components/Container';
-import img from '../../assets/images/bike2.jpg';
+import img from '../../assets/images/arthur-edelmans-7Xsn4q8Sbr4-unsplash.jpg';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import BikeCard from '@/components/BikeCard';
 import { TBike } from '@/types';
@@ -9,13 +9,13 @@ import React from 'react';
 import useBrand from '@/hooks/useBrand';
 import FilterSelect from '@/components/FilterSelect';
 import useDebounce from '@/hooks/useDebounce';
-import { Compare, Search } from '@/components/shared/Icons';
+import { Search } from '@/components/shared/Icons';
 import { Input } from '@/components/ui/input';
 import {
   getCompareListFromLocalStorage,
   saveCompareListToLocalStorage,
 } from '@/utils/localstorageCompare';
-import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export default function BikeListing() {
   const [availability, setAvailability] = React.useState<string>('');
@@ -57,7 +57,9 @@ export default function BikeListing() {
     ) {
       const updatedList = [...compareList, bike];
       setCompareList(updatedList);
-      saveCompareListToLocalStorage(updatedList); // Save to localStorage
+      saveCompareListToLocalStorage(updatedList);
+
+      toast.success('Add to comparelist'); // Save to localStorage
     }
   };
 
@@ -131,18 +133,6 @@ export default function BikeListing() {
             ))}
           </div>
         </Container>
-      </div>
-
-      <div className='relative'>
-        <Link
-          to='/bikes/compare'
-          className=' bottom-14 fixed right-6 bg-secondary-color p-5 rounded-lg'
-        >
-          <Compare className={'size-9 '} color='white' />
-          <span className='absolute -top-2 -right-2 px-2 font-semibold rounded-full bg-primary-color text-white'>
-            {/* {compareList?.length} */}
-          </span>
-        </Link>
       </div>
     </div>
   );

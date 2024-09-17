@@ -12,13 +12,17 @@ export default function PageHeader({ heading, subHeading, img }) {
           {subHeading}
         </p>
       </div>
-      <div className='hidden sm:block w-1/2 pb-20 lg:pb-24 xl:pb-28 2xl:pb-36'>
+      <div className='hidden relative sm:block w-1/2 pb-20 lg:pb-24 xl:pb-28 2xl:pb-36'>
         <img
           className='w-full object-cover'
           style={{ aspectRatio: '5 / 4' }}
           src={img}
           alt='Bike'
         />
+        <div
+          style={{ aspectRatio: '5 / 4' }}
+          className='absolute  right-0 inset-0 bg-gradient-to-b from-[#000000fb] to-[#00000000]'
+        ></div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import img from '../../assets/images/bike3.jpeg';
+import img from '../../assets/images/pexels-giorgio-de-angelis-482403-1413412.jpg';
 import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import Container from '@/components/Container';
 import PageHeader from '@/components/PageHeader';
@@ -30,7 +30,7 @@ export default function BikeDetail() {
           <div className='flex md:flex-row flex-col  md:divide-x divide-stone-300 dark:divide-stone-700'>
             <img
               className='md:w-1/2 py-10 md:py-16 xl:py-20 object-contain'
-              src={img}
+              src={data.data.image}
               alt=''
             />
 

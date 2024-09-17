@@ -1,5 +1,6 @@
 import PageHeader from '@/components/PageHeader';
-import img from '../../assets/images/bike4.jpg';
+import img from '../../assets/images/about-us.jpg';
+import headerImg from '../../assets/images/pexels-thgusstavo-2607554.jpg';
 import Container from '@/components/Container';
 import png from '../../assets/images/group.png';
 import png2 from '../../assets/images/motorbike.png';
@@ -51,7 +52,7 @@ export default function AboutUs() {
       <PageHeader
         heading='Our Journey, Your Adventure'
         subHeading='Discover the story behind our passion for biking and our commitment to delivering top-quality rentals and services. '
-        img={img}
+        img={headerImg}
       />
 
       <div className=' border-t dark:border-stone-700'>
@@ -66,11 +67,14 @@ export default function AboutUs() {
                 eco-friendly lifestyle.'
             />
 
-            <img
-              className='md:inline hidden  lg:h-[600px] rounded-tr-[70px] xl:h-[650px] pl-10 xl:pl-20 -mt-10 lg:-mt-12 pb-10 xl:pb-20 w-1/2  object-cover'
-              src={img}
-              alt=''
-            />
+            <div className='relative md:inline hidden  lg:h-[600px] rounded-tr-[70px] xl:h-[650px] pl-10 xl:pl-20 -mt-10 lg:-mt-12 pb-10 xl:pb-20 w-1/2'>
+              <img
+                className='rounded-tr-[70px] w-full h-full  object-cover'
+                src={img}
+                alt=''
+              />
+              {/* <div className='absolute ml-10 xl:ml-20 -pt-10 lg:-pt-12 mb-10  xl:mb-20 rounded-tr-[70px] inset-0 bg-gradient-to-br from-[#000000c1] to-[#00000087]'></div> */}
+            </div>
           </div>
         </Container>
       </div>

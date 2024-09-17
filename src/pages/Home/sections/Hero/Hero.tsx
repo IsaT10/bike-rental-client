@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BlurImage from '@/components/BlurImage';
+import heroImg from '../../../../assets/images/florian-udrisard-DWYtaiWlsOU-unsplash.jpg';
 import Container from '@/components/Container';
 import SearchItemList from '@/components/SearchItemList';
 import { Search } from '@/components/shared/Icons';
@@ -21,11 +22,11 @@ export default function Hero() {
     <div className='items-center justify-end -pt-20 md:pb-24 lg:pb-40'>
       <div className='relative w-full h-[70vh] md:h-[90vh] lg:h-screen'>
         <BlurImage
-          src='https://i.ibb.co/pLZrRTk/banner2.jpg'
+          src={heroImg}
           blurHash={'OSMG@kNbkWRPNdxu%M00yDxuMxozj[of_N%MWVjZofWVf6'}
           className='w-full h-full object-cover'
         />
-        <div className='absolute inset-0 bg-gradient-to-br from-[#000000c1] to-[#00000087]'></div>
+        <div className='absolute inset-0 bg-gradient-to-r from-[#000000c1] to-[#00000049]'></div>
       </div>
 
       <Container>

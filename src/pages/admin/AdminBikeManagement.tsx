@@ -78,7 +78,7 @@ export default function AdminBikeManagement() {
 
       {!bikeData?.data?.length ? (
         <div className='h-[60vh] flex justify-center items-center '>
-          <p className='text-stone-700 text-xl font-semibold'>
+          <p className='text-stone-700 text-xl font-semibold dark:text-stone-200'>
             No results found for your search criteria.
           </p>
           {/* <p>Try adjusting your filters or search terms.</p> */}

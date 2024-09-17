@@ -17,12 +17,11 @@ export default function BikeComparisonTable({
       <table className='table-auto w-full text-left'>
         <thead>
           <tr>
-            <th>Feature</th>
+            <th></th>
             {bikes.map((bike) => (
-              <th key={bike._id}>
-                {bike.name}
+              <th key={bike._id} className='fl'>
                 <button
-                  className='cursor-pointer'
+                  className='cursor-pointer  '
                   onClick={() => onRemove(bike._id)}
                 >
                   <Trash />
@@ -33,27 +32,35 @@ export default function BikeComparisonTable({
         </thead>
         <tbody>
           <tr>
-            <td>Brand</td>
+            <td className='dark:text-stone-200'>Brand</td>
             {bikes.map((bike) => (
-              <td key={bike._id}>{bike.brand}</td>
+              <td key={bike._id} className='dark:text-stone-200'>
+                {bike.brand}
+              </td>
             ))}
           </tr>
           <tr>
-            <td>Price Per Hour</td>
+            <td className='dark:text-stone-200'>Price Per Hour</td>
             {bikes.map((bike) => (
-              <td key={bike._id}>{bike.pricePerHour} Tk</td>
+              <td key={bike._id} className='dark:text-stone-200'>
+                $ {bike.pricePerHour}{' '}
+              </td>
             ))}
           </tr>
           <tr>
-            <td>Model</td>
+            <td className='dark:text-stone-200'>Model</td>
             {bikes.map((bike) => (
-              <td key={bike._id}>{bike.model}</td>
+              <td key={bike._id} className='dark:text-stone-200'>
+                {bike.model}
+              </td>
             ))}
           </tr>
           <tr>
-            <td>Year</td>
+            <td className='dark:text-stone-200'>Year</td>
             {bikes.map((bike) => (
-              <td key={bike._id}>{bike.year}</td>
+              <td key={bike._id} className='dark:text-stone-200'>
+                {bike.year}
+              </td>
             ))}
           </tr>
           {/* Add more features as needed */}
