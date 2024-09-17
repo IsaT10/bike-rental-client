@@ -11,21 +11,27 @@ import { TErrorResponse } from '@/types';
 
 // Zod schema for validation
 const FormSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email('Provide a valid email.'),
+  name: z
+    .string({ required_error: 'Name is required' })
+    .min(2, { message: 'Name must be at least 2 characters.' }),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Provide a valid email.'),
   password: z
-    .string()
+    .string({ required_error: 'Password is required' })
     .min(8, 'Password must be at least 8 characters.')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter.')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter.')
-    .regex(/\d/, 'Password must contain at least one number.')
-    .regex(
-      /[@$!%*?&]/,
-      'Password must contain at least one special character.'
-    ),
-  phone: z.string().min(10, 'Phone must be at least 10 digits.'),
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter.'),
+  // .regex(/[a-z]/, 'Password must contain at least one lowercase letter.')
+  // .regex(/\d/, 'Password must contain at least one number.')
+  // .regex(
+  //   /[@$!%*?&]/,
+  //   'Password must contain at least one special character.'
+  // ),
+  phone: z
+    .string({ required_error: 'Phone number is required' })
+    .min(10, 'Phone must be at least 10 digits.'),
   address: z
-    .string()
+    .string({ required_error: 'Address is required' })
     .min(5, { message: 'Address must be at least 5 characters.' }),
 });
 
@@ -35,11 +41,11 @@ export default function Signup() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: 'User12',
-      email: 'userApolsdlo@gmail.com',
-      password: 'SecureP@ssw0rd',
-      phone: '12345678901',
-      address: '123 Main St, Anytown',
+      // name: 'User12',
+      // email: 'userApolsdlo@gmail.com',
+      // password: 'SecureP@ssw0rd',
+      // phone: '12345678901',
+      // address: '123 Main St, Anytown',
     },
   });
 

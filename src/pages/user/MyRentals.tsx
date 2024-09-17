@@ -87,6 +87,7 @@ export default function MyRentals() {
   const { data, error, isLoading } = useGetAllRentalQuery([
     { name: 'isRental', value: 'false' },
   ]);
+  console.log(error);
 
   const [showPopup, setShowPopup] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -146,7 +147,7 @@ export default function MyRentals() {
       {/* {couponCode && discount && (
         <h2 className='text-right '>Coupon Code: {couponCode}</h2>
       )} */}
-      {!finalDiscount && couponCode && discount && (
+      {!finalDiscount && couponCode && discount && data?.data.length ? (
         <div className='bg-green-100 px-4 py-2 rounded mb-4 flex justify-between items-center'>
           <p>
             You have a coupon! Use code{' '}
@@ -155,6 +156,8 @@ export default function MyRentals() {
           </p>
           {/* <Button onClick={applyCoupon}>Apply Now</Button> */}
         </div>
+      ) : (
+        ''
       )}
 
       <Tabs defaultValue='unpaid' className='max-w-[1200px]'>
@@ -187,7 +190,7 @@ export default function MyRentals() {
           ) : (
             <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold  dark:text-stone-100'>
               {`${
-                !data.data
+                !data.data.length
                   ? 'You have no rental history'
                   : 'Your all rental payment has been completed.'
               }`}

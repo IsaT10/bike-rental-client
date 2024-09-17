@@ -30,6 +30,9 @@ export default function BikeCard({ bike, onCompare }: TBikeCardPros) {
     <div className='relative justify-self-center flex flex-col  items-center'>
       <img className='mb-4 h-[250px]' src={bike.image} alt='' />
       <p className='text-2xl font-semibold dark:text-stone-100'>{bike.brand}</p>
+      <p className='text- font-semibold dark:text-stone-500  text-stone-500'>
+        Model : {bike.model}
+      </p>
       <p className='text-lg font-semibold text-primary-color mb-4'>
         $ {bike.pricePerHour} / Hours
       </p>

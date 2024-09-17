@@ -10,7 +10,7 @@ export default function BookingSuccess() {
             viewBox='0 0 24 24'
             fill='none'
             stroke='white'
-            stroke-width='2'
+            strokeWidth='2'
             className='size-8'
           >
             <path

@@ -63,4 +63,4 @@ The Bike Rental Booking System is a comprehensive web application built with Rea
 ```
 
 **Live Link**
-[GearPro](https://gearpro.netlify.app/ 'GearPro')
+[XRiDES](https://xrides.netlify.app/ 'XRiDES')

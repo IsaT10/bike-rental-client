@@ -54,8 +54,6 @@ export default function UnpaidRent({
       const discountAmount = (totalCost * finalDiscount) / 100;
       const discountedPrice = Number((totalCost - discountAmount).toFixed(2));
 
-      console.log({ discountedPrice });
-
       dispatch(
         setBooking({
           bikeId: item._id,

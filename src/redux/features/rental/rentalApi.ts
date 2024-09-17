@@ -44,7 +44,7 @@ const rentalApi = baseApi.injectEndpoints({
           method: 'PUT',
         };
       },
-      invalidatesTags: ['rent'],
+      invalidatesTags: ['rent', 'bike'],
     }),
     rentBike: builder.mutation({
       query: (data) => {

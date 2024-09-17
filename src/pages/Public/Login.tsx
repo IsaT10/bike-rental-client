@@ -13,8 +13,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FormInputField from '@/components/FormInputField';
 
 const FormSchema = z.object({
-  email: z.string().email('Provide a valid email.'),
-  password: z.string().min(2, {
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Provide a valid email.'),
+  password: z.string({ required_error: 'Password is required' }).min(8, {
     message: 'Password must be at least 8 characters.',
   }),
 });
@@ -31,8 +33,8 @@ export default function Login() {
       // password: '12345678',
       // email: '',
       // password: '',
-      email: 'john@example.com',
-      password: 'password123',
+      // email: 'john@example.com',
+      // password: 'password123',
     },
   });
 

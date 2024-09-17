@@ -67,6 +67,7 @@ export default function PaymentForm() {
 
       if (confirmError) {
         console.log('Payment failed:', confirmError.message);
+        toast.success('Payment denied', { id: sonnerId });
       } else if (paymentIntent.status === 'succeeded') {
         if (advancedPayment! > 100) {
           await changeStatus(bikeId).unwrap();
@@ -96,12 +97,18 @@ export default function PaymentForm() {
         }}
       >
         <div className='w-[45%]'>
-          <p>Rent Payment</p>
+          <p>
+            {advancedPayment && advancedPayment > 100 ? 'Rent' : 'Advanced'}{' '}
+            Payment
+          </p>
           <h4 className=' t text-2xl font-semibold  uppercase'>
             ${advancedPayment ? advancedPayment : 0}
           </h4>
 
-          <p>Pay you rent now</p>
+          <p>
+            Pay your{' '}
+            {advancedPayment && advancedPayment > 100 ? 'rent' : 'advanced'} now
+          </p>
         </div>
 
         <div
