@@ -1,3 +1,6 @@
+import BlurImage from './BlurImage';
+import img from '../assets/images/bike1.jpg';
+
 export default function PageHeader({ heading, subHeading, img }) {
   return (
     <div className='flex'>
@@ -19,6 +22,12 @@ export default function PageHeader({ heading, subHeading, img }) {
           src={img}
           alt='Bike'
         />
+
+        {/* <BlurImage
+          src={img}
+          blurHash={'OSMG@kNbkWRPNdxu%M00yDxuMxozj[of_N%MWVjZofWVf6'}
+          className='w-full object-cover'
+        /> */}
         <div
           style={{ aspectRatio: '5 / 4' }}
           className='absolute  right-0 inset-0 bg-gradient-to-b from-[#000000fb] to-[#00000000]'

@@ -11,23 +11,31 @@ import { Close } from '@/components/shared/Icons';
 import './MyRentals.css'; // Assuming you create this CSS file for fade animations
 import { useAppSelector } from '@/redux/hooks';
 import { toast } from 'sonner';
+import { useSingleCouponQuery } from '@/redux/features/coupon/couponApi';
 
 function CouponPopup({ onClose, coupon, setCoupon, setFinalDiscount }) {
+  const [triggerQuery, setTriggerQuery] = React.useState(false);
   const { couponCode, discount } = useAppSelector((state) => state.coupon);
 
   // const [couponCode, setCouponCode] = useState('');
 
   const handleApplyCoupon = async () => {
-    const sonnerId = toast.loading('Applying...');
     if (coupon.trim() === couponCode) {
-      setFinalDiscount(discount);
+      const response = await fetch(
+        `http://localhost:3000/api/coupons/${coupon}`
+      );
+      const data = await response.json();
 
-      toast.success(`You get ${discount}% discount on next payment`, {
-        id: sonnerId,
-      });
+      if (data?.data?.isActive === true) {
+        setFinalDiscount(discount);
+        toast.success(`You get ${discount}% discount on next payment`);
+      } else if (data?.data?.isActive === false) {
+        toast.error('Not a valid token!');
+      }
+
       return;
     }
-    toast.error('Not a valid token!', { id: sonnerId });
+    toast.error('Not a valid token!');
 
     // onClose();
   };
@@ -64,7 +72,6 @@ export default function MyRentals() {
   const [coupon, setCoupon] = React.useState('');
   const [finalDiscount, setFinalDiscount] = React.useState(0);
 
-  console.log({ finalDiscount });
   const { couponCode, discount } = useAppSelector((state) => state.coupon);
 
   const { data, error, isLoading } = useGetAllRentalQuery([
@@ -79,7 +86,7 @@ export default function MyRentals() {
     const timer = setTimeout(() => {
       setShowPopup(true);
       setShowButton(false); // hide button when popup shows
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -123,8 +130,6 @@ export default function MyRentals() {
 
   const unpaidRent = data.data.filter((item: TRental) => item.isPaid === false);
   const paidRent = data.data.filter((item: TRental) => item.isPaid === true);
-
-  console.log(unpaidRent.length);
 
   return (
     <div>

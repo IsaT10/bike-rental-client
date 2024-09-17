@@ -1,6 +1,6 @@
 import PageHeader from '@/components/PageHeader';
 import img from '../../assets/images/about-us.jpg';
-import headerImg from '../../assets/images/pexels-thgusstavo-2607554.jpg';
+import headerImg from '../../assets/images/about-us-1.jpg';
 import Container from '@/components/Container';
 import png from '../../assets/images/group.png';
 import png2 from '../../assets/images/motorbike.png';

@@ -10,8 +10,8 @@ const couponApi = baseApi.injectEndpoints({
       providesTags: ['coupon'],
     }),
     singleCoupon: builder.query({
-      query: (couponId) => ({
-        url: `/coupons/${couponId}`,
+      query: (code) => ({
+        url: `/coupons/${code}`,
         method: 'GET',
       }),
     }),

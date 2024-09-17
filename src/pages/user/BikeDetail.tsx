@@ -1,22 +1,41 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import img from '../../assets/images/pexels-giorgio-de-angelis-482403-1413412.jpg';
+import img from '../../assets/images/details.jpg';
 import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import Container from '@/components/Container';
 import PageHeader from '@/components/PageHeader';
+import GridLoader from 'react-spinners/GridLoader';
 
 export default function BikeDetail() {
   const { id } = useParams();
 
-  const { data, isFetching } = useSingleBikeQuery(id);
+  const { data, isLoading, error } = useSingleBikeQuery(id);
 
   const navigate = useNavigate();
-
-  if (isFetching) return <p>Loading</p>;
 
   const handleBookNow = () => {
     // Change route to bookings and open modal
     navigate(`/bookings/${id}`);
   };
+
+  if (isLoading)
+    return (
+      <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
+        <GridLoader
+          color='#97A253'
+          size={10}
+          aria-label='Loading Spinner'
+          data-testid='loader'
+        />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className='h-[calc(100vh-150px)] flex justify-center items-center text-red-600 font-semibold text-2xl'>
+        Unable to load data. Please check your internet connection and try
+        again.
+      </div>
+    );
 
   return (
     <div>

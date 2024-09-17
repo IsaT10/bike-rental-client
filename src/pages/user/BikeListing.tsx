@@ -1,5 +1,5 @@
 import Container from '@/components/Container';
-import img from '../../assets/images/arthur-edelmans-7Xsn4q8Sbr4-unsplash.jpg';
+import img from '../../assets/images/listing.jpg';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import BikeCard from '@/components/BikeCard';
 import { TBike } from '@/types';

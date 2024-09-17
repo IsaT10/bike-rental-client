@@ -29,7 +29,7 @@ const Nav = () => {
     dispatch(logout());
   };
 
-  const scrollThreshold = window.innerWidth < 768 ? 150 : 300;
+  const scrollThreshold = window.innerWidth < 768 ? 150 : 100;
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
     setScrollY(currentScrollY);

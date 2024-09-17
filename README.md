@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# Bike Rental Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Bike Rental Booking System is a comprehensive web application built with React and TypeScript, designed to facilitate bike rentals. This system integrates user authentication, bike management, booking processes, and advanced features like coupon functionality and bike comparison. It connects seamlessly with a backend API to manage data and ensure a smooth user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Dynamic Coupon System**:
+  - **Gamified Discounts**: Users can spin a wheel to win varying discount percentages (10%, 20%, or 30%). The coupon code is displayed in a modal, which can be copied and automatically applied to the rental.
+- **Advanced Bike Comparison Tool**:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - **Side-by-Side Comparison**: Allows users to compare multiple bikes by highlighting key features, helping them make informed decisions.
 
-- Configure the top-level `parserOptions` property like this:
+- **Profile Management**:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+  - **User Profile**: Users can view and update their profile information, ensuring their details are always current.
+  - **Admin Profile**: Admins have similar profile management capabilities with additional admin-specific features.
+
+- **Comprehensive Rental Management**:
+
+  - **Booking Process**: Users can book bikes through a streamlined form with an advanced payment of TK 100. Confirmation and bike availability updates are handled seamlessly.
+  - **My Rentals Page**: Users can view their rentals with tabs for Paid and Unpaid rentals. Unpaid rentals include a "Pay" button for easy transaction completion.
+
+- **Admin Bike and User Management**:
+
+  - **Bike Management**: Admins can add, update, and delete bike listings with ease. A user-friendly interface simplifies managing bike details.
+  - **User Management**: Admins can promote users to admin roles or delete user accounts as needed.
+
+- **Return and Cost Calculation**:
+
+  - **Return Process**: Admins can view rental details and calculate costs upon bike return. Successful returns update the rental status and notify the user.
+
+- **Dark Mode**:
+  - **Theme Switcher**: Users can toggle between light and dark modes for a customized viewing experience.
+
+## Technologies
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **State Management**: Redux Toolkit with RTK Query
+- **Backend**: Node.js, Express.js, MongoDB, TypeScript
+- **Payments**: Stripe
+- **CSS Framework**: Tailwind CSS
+
+## Setup
+
+1. **Clone the repository**
+
+```bash
+  git clone https://github.com/IsaT10/bike-rental-client
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Install Dependencies**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+  npm install
 ```
+
+3. **Run the development server**
+
+```bash
+  npm run dev
+```
+
+**Live Link**
+[GearPro](https://gearpro.netlify.app/ 'GearPro')
