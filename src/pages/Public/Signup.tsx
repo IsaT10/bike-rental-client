@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { Form } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { useSignupMutation } from '@/redux/features/auth/authApi'; // Adjust accordingly if you have a register API
-import { useAppDispatch } from '@/redux/hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import FormInputField from '@/components/FormInputField';
 import { TErrorResponse } from '@/types';

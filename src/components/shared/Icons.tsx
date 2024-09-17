@@ -412,7 +412,13 @@ export const Trash = () => (
     />
   </svg>
 );
-export const Compare = ({ className, color = 'black' }) => (
+export const Compare = ({
+  className,
+  color = 'black',
+}: {
+  className: string;
+  color: string;
+}) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'

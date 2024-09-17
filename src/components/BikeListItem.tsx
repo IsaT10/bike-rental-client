@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TBike } from '@/types';
 import ThreeDotButton from './ThreeDotButton';
 import { useDeleteBikeMutation } from '@/redux/features/bikes/bikesApi';

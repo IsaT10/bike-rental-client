@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import img2 from '../assets/images/bike3.jpeg';
 import { TBike } from '@/types';
 import {
   Tooltip,
@@ -29,7 +28,7 @@ export default function BikeCard({ bike, onCompare }: TBikeCardPros) {
   const location = useLocation();
   return (
     <div className='relative justify-self-center flex flex-col  items-center'>
-      <img className='mb-4' src={img2} alt='' />
+      <img className='mb-4 h-[250px]' src={bike.image} alt='' />
       <p className='text-2xl font-semibold dark:text-stone-100'>{bike.brand}</p>
       <p className='text-lg font-semibold text-primary-color mb-4'>
         $ {bike.pricePerHour} / Hours

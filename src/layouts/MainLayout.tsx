@@ -2,20 +2,12 @@ import Footer from '@/components/shared/Footer';
 import { Compare } from '@/components/shared/Icons';
 import Nav from '@/components/shared/Nav';
 import { TBike } from '@/types';
-import {
-  getCompareListFromLocalStorage,
-  setCompareListInLocalStorage,
-} from '@/utils/localstorageCompare';
+import { getCompareListFromLocalStorage } from '@/utils/localstorageCompare';
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 export default function MainLayout() {
   const [compareList, setCompareList] = React.useState<TBike[]>([]);
-
-  const updateCompareList = (newList: TBike[]) => {
-    setCompareListInLocalStorage(newList); // update localStorage
-    setCompareList(newList); // update state
-  };
 
   React.useEffect(() => {
     const storedCompareList = getCompareListFromLocalStorage();

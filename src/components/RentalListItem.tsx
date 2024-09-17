@@ -2,8 +2,9 @@ import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import moment from 'moment';
 import { useReturnBikeMutation } from '@/redux/features/rental/rentalApi';
 import { toast } from 'sonner';
+import { TRental } from '@/types';
 
-export default function RentalListItem({ item }) {
+export default function RentalListItem({ item }: { item: TRental }) {
   const { data } = useSingleBikeQuery(item.bikeId);
   const [calculateRent] = useReturnBikeMutation();
 

@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import React from 'react';
 import FormInputField from './FormInputField';
@@ -94,7 +93,7 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
         toast.error('Something went wrong!', { id: sonnerId });
       }
     } finally {
-      // setOpen(false); // Close the form dialog
+      setOpen(false); // Close the form dialog
     }
   }
 

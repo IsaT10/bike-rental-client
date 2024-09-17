@@ -1,5 +1,4 @@
 import Container from '@/components/Container';
-import img from '../../assets/images/listing.jpg';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import BikeCard from '@/components/BikeCard';
 import { TBike } from '@/types';
@@ -87,7 +86,7 @@ export default function BikeListing() {
       <PageHeader
         heading='Find Perfect Bike'
         subHeading='"Discover our range of bikes tailored to your next adventure, from city cruising to off-road exploration'
-        img={img}
+        img='https://i.ibb.co.com/YhzGnGB/listing.jpg'
       />
 
       <Container>

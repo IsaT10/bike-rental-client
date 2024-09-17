@@ -1,7 +1,14 @@
-import BlurImage from './BlurImage';
-import img from '../assets/images/bike1.jpg';
+type TPageHeaderProps = {
+  heading: string;
+  subHeading: string;
+  img: string;
+};
 
-export default function PageHeader({ heading, subHeading, img }) {
+export default function PageHeader({
+  heading,
+  subHeading,
+  img,
+}: TPageHeaderProps) {
   return (
     <div className='flex'>
       <div

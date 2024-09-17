@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect } from 'react';
 import tickingSound from '../assets/sdasd.mp3';
 import { ISpinWheelProps } from '@/types';
 
@@ -25,22 +27,17 @@ const SpinWheel: React.FC<ISpinWheelProps> = ({
     .map((segment) => segment.segColor)
     .filter(Boolean);
 
-  const [isStarted, setIsStarted] = useState<boolean>(false);
-  const [needleText, setNeedleText] = useState<string>('');
-
+  // Remove unused states
   let currentSegment = '';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let timerHandle: any = 0;
   const timerDelay = segmentTextArray.length;
   let angleCurrent = 0;
   let angleDelta = 0;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let canvasContext: any = null;
   let maxSpeed = Math.PI / segmentTextArray.length;
   const upTime = segmentTextArray.length * upDuration;
   const downTime = segmentTextArray.length * downDuration;
   let spinStart = 0;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let frames = 0;
   const centerX = size;
   const centerY = size;
@@ -79,7 +76,6 @@ const SpinWheel: React.FC<ISpinWheelProps> = ({
   };
 
   const spin = () => {
-    setIsStarted(true);
     if (timerHandle === 0) {
       spinStart = new Date().getTime();
       maxSpeed = Math.PI / segmentTextArray.length;
@@ -214,7 +210,6 @@ const SpinWheel: React.FC<ISpinWheelProps> = ({
     ctx.fillStyle = primaryColor;
     ctx.font = 'bold 1.5em ' + fontFamily;
     currentSegment = segmentTextArray[i];
-    setNeedleText(segmentTextArray[i]);
   };
 
   const clear = () => {

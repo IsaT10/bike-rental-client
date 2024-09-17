@@ -1,5 +1,6 @@
 import RentalListItem from '@/components/RentalListItem';
 import { useGetAllUserRentalQuery } from '@/redux/features/rental/rentalApi';
+import { TRental } from '@/types';
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function ReturnAndBilling() {
@@ -44,7 +45,7 @@ export default function ReturnAndBilling() {
       </div>
 
       <div className=' flex flex-col '>
-        {rentalData?.data?.map((item) => (
+        {rentalData?.data?.map((item: TRental) => (
           <RentalListItem key={item._id} item={item} />
         ))}
       </div>

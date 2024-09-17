@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // Define the async thunk for fetching coupons
@@ -6,7 +7,8 @@ export const fetchCoupons = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/coupons?isActive=true'
+        // 'http://localhost:3000/api/coupons?isActive=true'
+        'https://bike-rental-pied.vercel.app/api/coupons?isActive=true'
       ); // Replace with your actual API endpoint
       const data = await response.json();
 
@@ -16,7 +18,7 @@ export const fetchCoupons = createAsyncThunk(
       }
 
       return data?.data; // Return the fetched coupon data
-    } catch (error) {
+    } catch (error: any) {
       return rejectWithValue(error.message);
     }
   }

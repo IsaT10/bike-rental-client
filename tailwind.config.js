@@ -21,6 +21,10 @@ module.exports = {
         'primary-color': '#97A253',
         'secondary-color': '#202020',
       },
+
+      fontFamily: {
+        manrope: ['Manrope', 'san-serif'],
+      },
       screens: {
         xs: '500px',
         900: '900px',
@@ -43,5 +47,3 @@ module.exports = {
   },
   plugins: [require('tailwindcss-animate')],
 };
-
-// #DE453E #1B3E41

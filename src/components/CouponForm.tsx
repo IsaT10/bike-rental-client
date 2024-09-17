@@ -14,7 +14,11 @@ const CouponFormSchema = z.object({
   discount: z.string().min(1, 'Discount must be at least 10.'),
 });
 
-export default function CouponForm({ setOpen }) {
+export default function CouponForm({
+  setOpen,
+}: {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const form = useForm<z.infer<typeof CouponFormSchema>>({
     resolver: zodResolver(CouponFormSchema),
     defaultValues: {

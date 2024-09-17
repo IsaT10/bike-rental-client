@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BlurImage from '@/components/BlurImage';
-import heroImg from '../../../../assets/images/florian-udrisard-DWYtaiWlsOU-unsplash.jpg';
 import Container from '@/components/Container';
 import SearchItemList from '@/components/SearchItemList';
 import { Search } from '@/components/shared/Icons';
@@ -22,7 +21,7 @@ export default function Hero() {
     <div className='items-center justify-end -pt-20 md:pb-24 lg:pb-40'>
       <div className='relative w-full h-[70vh] md:h-[90vh] lg:h-screen'>
         <BlurImage
-          src={heroImg}
+          src='https://i.ibb.co.com/LghhkvJ/florian-udrisard-DWYtai-Wls-OU-unsplash-1.jpg'
           blurHash={'OSMG@kNbkWRPNdxu%M00yDxuMxozj[of_N%MWVjZofWVf6'}
           className='w-full h-full object-cover'
         />
@@ -59,7 +58,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Show bike list if search value exists */}
             {value.length >= 1 && bikeData?.data?.length >= 1 && (
               <div className='absolute opacity-0 animate-fadeIn  rounded-b-[22px] pt-5 text-white bg-stone-900 -mt-5 w-[254px] md:w-[300px] shadow-lg z-10 max-h-[200px] overflow-y-auto no-scrollbar'>
                 {isFetching ? (

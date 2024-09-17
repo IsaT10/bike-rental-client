@@ -7,7 +7,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { BikeForm } from './BikeForm';
-import { Button } from './ui/button';
 import React from 'react';
 
 export default function AddBikeModal() {

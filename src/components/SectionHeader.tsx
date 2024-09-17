@@ -1,4 +1,14 @@
-export default function SectionHeader({ className, title, subTitle }) {
+type TSectionHeaderProps = {
+  className: string;
+  title: string;
+  subTitle: string;
+};
+
+export default function SectionHeader({
+  className,
+  title,
+  subTitle,
+}: TSectionHeaderProps) {
   return (
     <div className={`${className}`}>
       <h2

@@ -7,7 +7,6 @@ type TBlurImageProps = {
   className: string;
   blureClassName?: string;
   radius?: string;
-  aspectRatio?: string;
 };
 
 export default function BlurImage({
@@ -16,7 +15,6 @@ export default function BlurImage({
   className,
   blureClassName,
   radius,
-  aspectRatio,
 }: TBlurImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -54,7 +52,6 @@ export default function BlurImage({
         className={className}
         style={{
           display: imageLoaded ? 'inline' : 'none',
-          aspectRatio: aspectRatio ? '5 / 4' : '',
         }}
         src={src}
         alt=''

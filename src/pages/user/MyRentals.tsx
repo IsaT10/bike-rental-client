@@ -11,18 +11,28 @@ import { Close } from '@/components/shared/Icons';
 import './MyRentals.css'; // Assuming you create this CSS file for fade animations
 import { useAppSelector } from '@/redux/hooks';
 import { toast } from 'sonner';
-import { useSingleCouponQuery } from '@/redux/features/coupon/couponApi';
+type TCouponPopupProps = {
+  onClose: () => void;
+  coupon: string;
+  setCoupon: React.Dispatch<React.SetStateAction<string>>;
+  setFinalDiscount: React.Dispatch<React.SetStateAction<number>>;
+};
 
-function CouponPopup({ onClose, coupon, setCoupon, setFinalDiscount }) {
-  const [triggerQuery, setTriggerQuery] = React.useState(false);
+function CouponPopup({
+  onClose,
+  coupon,
+  setCoupon,
+  setFinalDiscount,
+}: TCouponPopupProps) {
   const { couponCode, discount } = useAppSelector((state) => state.coupon);
 
   // const [couponCode, setCouponCode] = useState('');
 
   const handleApplyCoupon = async () => {
-    if (coupon.trim() === couponCode) {
+    if (coupon.trim() === couponCode && discount) {
       const response = await fetch(
-        `http://localhost:3000/api/coupons/${coupon}`
+        // `http://localhost:3000/api/coupons/${coupon}`
+        `https://bike-rental-pied.vercel.app/api/coupons/${coupon}`
       );
       const data = await response.json();
 

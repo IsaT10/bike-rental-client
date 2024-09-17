@@ -1,8 +1,8 @@
 import { useUpdateCouponMutation } from '@/redux/features/coupon/couponApi';
-import { TErrorResponse } from '@/types';
+import { TCouponData, TErrorResponse } from '@/types';
 import { toast } from 'sonner';
 
-export default function CouponItem({ coupon }) {
+export default function CouponItem({ coupon }: { coupon: TCouponData }) {
   const [updateStatus] = useUpdateCouponMutation();
 
   const handleStatus = async () => {

@@ -2,7 +2,6 @@ import BikeCard from '@/components/BikeCard';
 import Container from '@/components/Container';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import { TBike } from '@/types';
-import img from '../../../assets/images/bike4.jpg';
 import { Tick } from '@/components/shared/Icons';
 import SectionHeader from '@/components/SectionHeader';
 
@@ -18,7 +17,7 @@ export default function Featured() {
         <div className='flex divide-x dark:divide-stone-700'>
           <img
             className='md:inline hidden  lg:h-[600px] rounded-tl-[70px] xl:h-[650px] pr-10 xl:pr-20 -mt-14 lg:-mt-20 pb-10 xl:pb-20 w-1/2  object-cover'
-            src={img}
+            src='https://i.ibb.co.com/qnh2CMg/bike4.jpg'
             alt=''
           />
 

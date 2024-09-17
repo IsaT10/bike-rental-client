@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import img from '../../assets/images/details.jpg';
 import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import Container from '@/components/Container';
 import PageHeader from '@/components/PageHeader';
@@ -42,7 +41,7 @@ export default function BikeDetail() {
       <PageHeader
         heading='Single-Bike'
         subHeading='Discover top performance and unmatched comfort with our premium selection of bikes, built for every adventure.'
-        img={img}
+        img='https://i.ibb.co.com/xMN97VC/details.jpg'
       />
       <Container>
         <div className=''>
@@ -79,6 +78,12 @@ export default function BikeDetail() {
                   <span className='dark:text-stone-200'>Year </span>
                   <span className='text-stone-500 dark:text-stone-500'>
                     {data.data.year}
+                  </span>
+                </p>
+                <p className=' flex flex-col gap-1'>
+                  <span className='dark:text-stone-200'>CC </span>
+                  <span className='text-stone-500 dark:text-stone-500'>
+                    {data.data.cc}
                   </span>
                 </p>
               </div>

@@ -1,6 +1,7 @@
 import AddCouponModal from '@/components/AddCouponModal';
 import CouponItem from '@/components/CouponItem';
 import { useGetAllCouponsQuery } from '@/redux/features/coupon/couponApi';
+import { TCouponData } from '@/types';
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function CouponManage() {
@@ -42,7 +43,7 @@ export default function CouponManage() {
       </div>
 
       <div className='rounded-lg border border-t-0 rounded-t-none dark:border-stone-700 border-stone-200 divide-y dark:divide-stone-950 divide-stone-200 mb-10'>
-        {couponData?.data?.map((item) => (
+        {couponData?.data?.map((item: TCouponData) => (
           <CouponItem key={item._id} coupon={item} />
         ))}
       </div>

@@ -9,7 +9,7 @@ export default function PaidRent({
   item: TRental;
   isPaid?: boolean;
 }) {
-  const { data, isFetching } = useSingleBikeQuery(item.bikeId);
+  const { data } = useSingleBikeQuery(item.bikeId);
 
   function formateDate(date: Date) {
     return moment(date).format('MMM Do YY, h:mm A');

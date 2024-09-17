@@ -69,6 +69,12 @@ export type TErrorData = {
   statusCode?: number;
   stack?: string;
 };
+export type TCouponData = {
+  _id: string;
+  couponCode: string;
+  discount: number;
+  isActive: boolean;
+};
 
 export type TErrorResponse = {
   status: number;
