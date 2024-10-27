@@ -57,6 +57,7 @@ export type TUserProfile = {
   _id: string;
   name: string;
   password: string;
+  image: string;
   email: string;
   phone: string;
   address: string;

@@ -9,15 +9,14 @@ export const fetchCoupons = createAsyncThunk(
       const response = await fetch(
         // 'http://localhost:3000/api/coupons?isActive=true'
         'https://bike-rental-pied.vercel.app/api/coupons?isActive=true'
-      ); // Replace with your actual API endpoint
+      );
       const data = await response.json();
 
-      console.log(data?.data);
       if (!response.ok) {
         throw new Error(data.message || 'Failed to fetch coupons');
       }
 
-      return data?.data; // Return the fetched coupon data
+      return data?.data;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

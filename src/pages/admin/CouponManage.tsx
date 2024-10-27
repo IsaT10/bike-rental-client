@@ -31,7 +31,6 @@ export default function CouponManage() {
       </div>
     );
 
-  console.log(couponData?.data);
   return (
     <div>
       <AddCouponModal />

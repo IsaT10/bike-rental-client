@@ -86,7 +86,6 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
     } catch (error) {
       const typedError = error as TErrorResponse;
 
-      console.log({ typedError });
       if (typedError?.data?.message) {
         toast.error(typedError.data.message, { id: sonnerId });
       } else {

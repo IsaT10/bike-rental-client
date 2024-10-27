@@ -46,8 +46,6 @@ export default function BookingDialog() {
       advancedPayment: 100,
     };
 
-    console.log({ bookingData });
-
     dispatch(setBooking(bookingData));
 
     navigate('/payment');

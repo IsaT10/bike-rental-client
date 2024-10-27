@@ -28,7 +28,6 @@ export default function UnpaidRent({
 
   // const handleCheckCouponCode = () => {
   //   if (addCouponCode === couponCode && discount) {
-  //     console.log('oi gece');
   //     const discountAmount =
   //       ((item.totalCost - item.advancedPayment) * discount) / 100;
   //     const discountedPrice =
@@ -44,7 +43,6 @@ export default function UnpaidRent({
   //     navigate('/payment');
   //     return;
   //   }
-  //   console.log('bal diso');
   //   setErr('D hon dddddddddddiso vaiya');
   //   dispatch(removeCoupon());
   // };

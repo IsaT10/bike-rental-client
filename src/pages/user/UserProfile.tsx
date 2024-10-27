@@ -1,6 +1,7 @@
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import EditProfileModal from '@/components/EditProfileModal';
 import GridLoader from 'react-spinners/GridLoader';
+import avatar from '@/assets/images/avatar.png';
 
 export default function UserProfile() {
   const { data, error, isLoading } = useGetProfileQuery(undefined);
@@ -25,22 +26,28 @@ export default function UserProfile() {
       </div>
     );
 
-  const { role, name, email, phone, address } = data.data;
+  const { name, email, phone, address, image } = data.data;
 
+  console.log(image);
   return (
     <div>
-      <div className='p-5 md:p-7 lg:p-10 xl:p-14 bg-[#97A253] rounded-2xl lg:rounded-3xl shadow-lg'>
-        <h1 className='text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-bold text-white'>
+      <div className='p-5 md:p-7 h-64 lg:p-10 xl:p-14 bg-[#97A253] rounded-xl shadow-lg relative'>
+        {/* <h1 className='text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-bold text-white'>
           Welcome , {name}!
         </h1>
         <p className='text-sm md:text-base xl:text-lg font- text-white mt-4 xl:mt-8 lg:w-[80%]  '>
           {role === 'admin'
             ? "Let's manage the platform and ensure everything runs smoothly."
             : 'Update your profile and preferences to make your upcoming rental experience smoother and more personalized. Let’s get you on the road!'}
-        </p>
+        </p> */}
+        <img
+          src={image || avatar}
+          alt=''
+          className='absolute bg-stone-200 -bottom-16 size-[110px] object-cover left-8 border-[6px]  rounded-sm border-white'
+        />
       </div>
-      <div className=''>
-        <div className='relative p-5 md:p-7  xl:p-14 lg:p-10 rounded-2xl lg:rounded-3xl lg:w-[70%] xl:w-1/2 border border-stone-300 dark:border-stone-700 mt-10 grid xs:grid-cols-2 justify-between gap-y-8 xs:gap-y-14'>
+      <div className='pt-10'>
+        <div className='relative p-5 md:p-7  xl:p-14 lg:p-10 rounded-2xl lg:rounded-3xl   border-stone-300 dark:border-stone-700 mt-10 grid xs:grid-cols-2 justify-between gap-y-8 xs:gap-y-14'>
           <div>
             <p className='font-semibold dark:text-stone-200'>Name</p>
             <p className='text-stone-500 dark:text-stone-400'>{name}</p>
@@ -58,7 +65,9 @@ export default function UserProfile() {
             <p className='text-stone-500 dark:text-stone-400'>{address}</p>
           </div>
 
-          <EditProfileModal profileData={{ name, email, phone, address }} />
+          <EditProfileModal
+            profileData={{ name, email, phone, address, image }}
+          />
         </div>
       </div>
     </div>

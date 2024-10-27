@@ -19,7 +19,7 @@ export default function Hero() {
 
   return (
     <div className='items-center justify-end -pt-20 md:pb-24 lg:pb-40'>
-      <div className='relative w-full h-[70vh] md:h-[90vh] lg:h-screen'>
+      <div className='relative w-full h-[70vh] md:h-[85vh]'>
         <BlurImage
           src='https://i.ibb.co.com/LghhkvJ/florian-udrisard-DWYtai-Wls-OU-unsplash-1.jpg'
           blurHash={'OSMG@kNbkWRPNdxu%M00yDxuMxozj[of_N%MWVjZofWVf6'}
@@ -29,7 +29,7 @@ export default function Hero() {
       </div>
 
       <Container>
-        <div className='absolute top-[38%] sm:top-[40%] md:top-[50%] -translate-y-1/2 lg:-translate-y-[60%] xl:-translate-y-[75%] lg:mt-[5%] text-white'>
+        <div className='absolute top-[38%] sm:top-[40%] md:top-[45%] -translate-y-1/2 lg:-translate-y-[60%] xl:-translate-y-[75%] lg:mt-[5%] text-white'>
           <h1 className='text-[26px] leading-[30px] sm:eading-9 sm:text-3xl md:text-4xl 900:text-5xl lg:text-6xl font-bold md:leading-[45px] 900:leading-[55px] lg:leading-[70px] w-[65%] sm:w-[55%] md:w-[45%] 900:w-[60%] tracking-tight mb-4 xs:mb-4'>
             Explore, <br /> Ride, Repeat
           </h1>

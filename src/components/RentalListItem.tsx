@@ -2,7 +2,7 @@ import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import moment from 'moment';
 import { useReturnBikeMutation } from '@/redux/features/rental/rentalApi';
 import { toast } from 'sonner';
-import { TRental } from '@/types';
+import { TErrorResponse, TRental } from '@/types';
 
 export default function RentalListItem({ item }: { item: TRental }) {
   const { data } = useSingleBikeQuery(item.bikeId);
@@ -15,12 +15,17 @@ export default function RentalListItem({ item }: { item: TRental }) {
   const handleCalculate = async () => {
     const sonnerId = toast.loading('Calculating...');
     try {
-      await calculateRent(item._id).unwrap();
+      const res = await calculateRent(item._id).unwrap();
 
-      toast.success('Bike returned successfully.', { id: sonnerId });
+      toast.success(res?.message, { id: sonnerId });
     } catch (error) {
-      console.log(error);
-      toast.error('Something went wrong!', { id: sonnerId });
+      const typedError = error as TErrorResponse;
+
+      if (typedError?.data?.message) {
+        toast.error(typedError.data.message, { id: sonnerId });
+      } else {
+        toast.error('Something went wrong!', { id: sonnerId });
+      }
     }
   };
 

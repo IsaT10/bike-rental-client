@@ -19,8 +19,6 @@ export default function PaymentForm() {
     (state) => state.booking
   );
 
-  console.log({ advancedPayment });
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -40,11 +38,11 @@ export default function PaymentForm() {
     if (error) {
       toast.error('Something went wrong. Please try again!', { id: sonnerId });
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      // console.log('[PaymentMethod]', paymentMethod);
 
       // Proceed with payment confirmation
       const response = await fetch(
-        'http://localhost:3000/create-payment-intent',
+        'https://bike-rental-pied.vercel.app/create-payment-intent',
         {
           method: 'POST',
           headers: {
@@ -55,8 +53,6 @@ export default function PaymentForm() {
           }),
         }
       );
-
-      console.log(response);
 
       const { clientSecret } = await response.json();
 
@@ -71,14 +67,14 @@ export default function PaymentForm() {
       } else if (paymentIntent.status === 'succeeded') {
         if (advancedPayment! > 100) {
           await changeStatus(bikeId).unwrap();
-          toast.success('Payment success', { id: sonnerId });
+          toast.success('Payment complete', { id: sonnerId });
           navigate('/dashboard/my-rental');
 
           return;
         }
         try {
           await rentBike({ advancedPayment, bikeId, startTime }).unwrap();
-          toast.success('Payment success', { id: sonnerId });
+          toast.success('Payment complete', { id: sonnerId });
           navigate(`/booking-complete`);
         } catch (error) {
           console.log(error);

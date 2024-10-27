@@ -7,10 +7,12 @@ import { toast } from 'sonner';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
 import { setUser } from '@/redux/features/auth/authSlice';
 import { decodedToken } from '@/utils/decodedToken';
-import { TUser } from '@/types';
+import { TErrorResponse, TUser } from '@/types';
 import { useAppDispatch } from '@/redux/hooks';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FormInputField from '@/components/FormInputField';
+import { Google, LeftArrow } from '@/components/shared/Icons';
+import { useGoogleLogin } from '@/hooks/useGoogleLogin';
 
 const FormSchema = z.object({
   email: z
@@ -21,10 +23,17 @@ const FormSchema = z.object({
   }),
 });
 
+const USER_CREDENTIALS = { email: 'user@gmail.com', password: '1234user' };
+const ADMIN_CREDENTIALS = {
+  email: 'admin@gmail.com',
+  password: '1234admin',
+};
+
 export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { loginWithGoogle } = useGoogleLogin();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -44,33 +53,66 @@ export default function Login() {
     const sonnerId = toast.loading('Loging in...');
     try {
       const res = await login(data).unwrap();
-      console.log(res);
-      const token = res.token;
-      console.log(typeof token);
-      console.log(token);
+      const token = res.data.accessToken;
       const user = decodedToken(token) as TUser;
-
-      console.log(user);
       dispatch(setUser({ user, token }));
       toast.success('Logged in.', { id: sonnerId });
       const from = location.state?.from?.pathname || '/';
       navigate(from);
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong!', { id: sonnerId });
+      const typedError = error as TErrorResponse;
+
+      if (typedError?.data?.message) {
+        toast.error(typedError.data.message, { id: sonnerId });
+      } else {
+        toast.error('Something went wrong!', { id: sonnerId });
+      }
     }
   }
 
+  const setDemoCredentials = (credentials: {
+    email: string;
+    password: string;
+  }) => {
+    form.setValue('email', credentials.email);
+    form.setValue('password', credentials.password);
+  };
+
   return (
-    <div className='h-screen flex flex-col justify-center items-center dark:bg-stone-950'>
+    <div className='min-h-screen  relative flex flex-col justify-center items-center dark:bg-stone-950'>
+      <Link to='/' className='absolute top-10 left-10 flex gap-2 items-center'>
+        <LeftArrow />{' '}
+        <span className='font-medium text-primary-color'>Return home</span>
+      </Link>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='mx-auto rounded-[30px] gap-10 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-primary-color py-6 md:py-20 px-6 sm:px-12 w-[90%] xs:w-[500px] flex flex-col  dark:bg-secondary-color'
+          className='mx-auto rounded-[30px] gap-6 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-primary-color py-10 md:py-16 px-6 sm:px-12 w-[90%] xs:w-[500px] flex flex-col  dark:bg-secondary-color'
         >
           <h2 className='text-center text-2xl font-bold mb- text-primary-color'>
             Login
           </h2>
+
+          <div className='flex flex-col items-center'>
+            <p className='font-medium text-lg mb-3'>Demo credentials</p>
+            <div>
+              <button
+                className='bg-primary-color py-1 mr-4 rounded-full text-sm px-4 font-medium text-white'
+                onClick={() => setDemoCredentials(USER_CREDENTIALS)}
+                type='button'
+              >
+                User Credential
+              </button>
+              <button
+                className='bg-primary-color py-1  rounded-full text-sm px-4 font-medium text-white'
+                onClick={() => setDemoCredentials(ADMIN_CREDENTIALS)}
+                type='button'
+              >
+                Admin Credential
+              </button>
+            </div>
+          </div>
 
           <FormInputField
             name='email'
@@ -90,7 +132,7 @@ export default function Login() {
               Don't have any account?{' '}
               <Link
                 to='/signup'
-                className='text-primary-color hover:underline duration-200'
+                className='text-primary-color hover:underline font-semibold duration-200'
               >
                 Signup
               </Link>
@@ -101,6 +143,12 @@ export default function Login() {
               type='submit'
             >
               Login
+            </button>
+          </div>
+          <div className='flex flex-col items-center gap-3'>
+            <p>Or login with</p>
+            <button type='button' onClick={loginWithGoogle}>
+              <Google />
             </button>
           </div>
         </form>

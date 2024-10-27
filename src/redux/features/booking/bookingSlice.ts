@@ -19,7 +19,6 @@ const bookingSlice = createSlice({
     setBooking: (state, action) => {
       const { bikeId, startTime, advancedPayment } = action.payload;
 
-      console.log(bikeId, startTime, advancedPayment);
       state.bikeId = bikeId;
       state.startTime = startTime;
       state.advancedPayment = advancedPayment;

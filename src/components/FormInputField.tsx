@@ -29,7 +29,7 @@ export default function FormInputField({
               </Label>
               <Input
                 type={type}
-                className='py-6 outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700 rounded-[18px]'
+                className=' outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700 rounded-[18px]'
                 placeholder={placeholder}
                 {...field}
               />

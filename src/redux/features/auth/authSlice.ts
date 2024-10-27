@@ -21,7 +21,6 @@ const authSlice = createSlice({
       state.token = token;
     },
     logout: function (state) {
-      console.log(state);
       state.user = null;
       state.token = null;
     },

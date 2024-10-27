@@ -121,20 +121,24 @@ const Nav = () => {
                 <li>{item.key}</li>
               </NavLink>
             ))}
-            <NavLink
-              to='/dashboard'
-              className={({ isActive }) =>
-                `py-2.5 font-medium rounded-md 900:text-base text-sm hover:text-primary-color  cursor-pointer duration-150 ${
-                  isActive
-                    ? 'text-primary-color'
-                    : scrollY <= scrollThreshold
-                    ? 'text-white'
-                    : 'text-black dark:text-white'
-                }`
-              }
-            >
-              <li>Dashboard</li>
-            </NavLink>
+            {user ? (
+              <NavLink
+                to='/dashboard'
+                className={({ isActive }) =>
+                  `py-2.5 font-medium rounded-md 900:text-base text-sm hover:text-primary-color  cursor-pointer duration-150 ${
+                    isActive
+                      ? 'text-primary-color'
+                      : scrollY <= scrollThreshold
+                      ? 'text-white'
+                      : 'text-black dark:text-white'
+                  }`
+                }
+              >
+                <li>Dashboard</li>
+              </NavLink>
+            ) : (
+              ''
+            )}
 
             {user ? (
               <button

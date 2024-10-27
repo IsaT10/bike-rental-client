@@ -17,7 +17,6 @@ export default function CouponItem({ coupon }: { coupon: TCouponData }) {
     } catch (error) {
       const typedError = error as TErrorResponse;
 
-      console.log({ typedError });
       if (typedError?.data?.message) {
         toast.error(typedError.data.message, { id: sonnerId });
       } else {

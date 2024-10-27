@@ -3,9 +3,7 @@ import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const AdminRoute = ({ children }: { children: ReactNode }) => {
-  const { token, user } = useAppSelector((state) => state.auth);
-
-  console.log(token);
+  const { user } = useAppSelector((state) => state.auth);
 
   if (user?.role !== 'admin') {
     // Redirect non-admin users to unauthorized page

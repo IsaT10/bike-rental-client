@@ -5,7 +5,6 @@ import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminUserManagement() {
   const { data: userData, error, isLoading } = useGetAllUserQuery(undefined);
-  console.log(userData);
 
   if (isLoading)
     return (

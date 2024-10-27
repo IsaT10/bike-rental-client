@@ -95,21 +95,15 @@ export default function SpinW() {
   };
 
   const handleSpinFinish = (result: string) => {
-    console.log({ result });
     // const discountValue = result?.slice(0, 3);
     const discountValue = result?.slice(0, 2);
 
-    console.log({ discountValue });
-
-    console.log({ discountValue });
     const coupon = coupons?.find(
       (coupon) => `${coupon.discount}` === discountValue
     );
 
-    console.log({ coupon });
     const couponCode = coupon?.couponCode || ''; // Get the corresponding coupon code
 
-    console.log({ couponCode });
     setDiscount(discountValue);
     setTextToCopy(couponCode); // Set coupon code for copying
     setTimeout(() => {

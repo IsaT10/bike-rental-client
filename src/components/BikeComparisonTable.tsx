@@ -11,7 +11,6 @@ export default function BikeComparisonTable({
   bikes,
   onRemove,
 }: BikeComparisonProps) {
-  console.log({ bikes });
   return (
     <div className='comparison-table'>
       <table className='table-auto w-full text-left'>

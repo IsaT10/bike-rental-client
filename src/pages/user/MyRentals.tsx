@@ -87,7 +87,6 @@ export default function MyRentals() {
   const { data, error, isLoading } = useGetAllRentalQuery([
     { name: 'isRental', value: 'false' },
   ]);
-  console.log(error);
 
   const [showPopup, setShowPopup] = useState(false);
   const [showButton, setShowButton] = useState(true);

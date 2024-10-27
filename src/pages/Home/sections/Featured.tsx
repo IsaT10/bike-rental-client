@@ -10,7 +10,6 @@ export default function Featured() {
     { name: 'isAvailable', value: 'true' },
   ]);
 
-  console.log(bikeData?.data);
   return (
     <div className=' border-t dark:border-stone-700'>
       <Container>

@@ -43,12 +43,10 @@ export default function CouponForm({
     try {
       const res = await addCoupon(submitData).unwrap();
 
-      console.log({ res });
       toast.success(res?.message, { id: sonnerId });
     } catch (error) {
       const typedError = error as TErrorResponse;
 
-      console.log({ typedError });
       if (typedError?.data?.message) {
         toast.error(typedError.data.message, { id: sonnerId });
       } else {
