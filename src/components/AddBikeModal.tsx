@@ -15,7 +15,7 @@ export default function AddBikeModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className='px-8 disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-2.5 font-medium rounded-md  border border-stone-300 dark:border-stone-700 dark:text-stone-200 md:text-base text-sm whitespace-nowrap'>
+        <button className='px-8 disabled:cursor-not-allowed disabled:opacity-55 duration-200 py-2.5 font- rounded-md  border border-stone-800 dark:border-stone-700 dark:text-stone-200 md:text-base text-sm whitespace-nowrap'>
           Add New Bike
         </button>
       </DialogTrigger>

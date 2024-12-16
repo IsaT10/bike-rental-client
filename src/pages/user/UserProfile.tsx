@@ -10,7 +10,7 @@ export default function UserProfile() {
     return (
       <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
         <GridLoader
-          color='#97A253'
+          color='#2A9D90'
           size={10}
           aria-label='Loading Spinner'
           data-testid='loader'
@@ -31,7 +31,7 @@ export default function UserProfile() {
   console.log(image);
   return (
     <div>
-      <div className='p-5 md:p-7 h-64 lg:p-10 xl:p-14 bg-[#97A253] rounded-xl shadow-lg relative'>
+      <div className='p-5 md:p-7 h-64 lg:p-10 xl:p-14 bg-[#2A9D90] rounded-xl shadow-lg relative'>
         {/* <h1 className='text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-bold text-white'>
           Welcome , {name}!
         </h1>

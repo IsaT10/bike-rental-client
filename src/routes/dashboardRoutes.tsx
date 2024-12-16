@@ -5,9 +5,21 @@ import AdminRoute from './AdminRoute';
 import UserProfile from '@/pages/user/UserProfile';
 import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
 import CouponManage from '@/pages/admin/CouponManage';
+import AdminOverview from '@/pages/admin/AdminOverview';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
+
+  {
+    name: 'Dashboard',
+    path: 'overview',
+    element: (
+      <AdminRoute>
+        <AdminOverview />
+      </AdminRoute>
+    ),
+    roles: ['admin'],
+  },
   {
     name: 'Profile',
     path: 'profile',
@@ -30,6 +42,7 @@ export const dashboardRoutes = [
   },
 
   // Routes only for admins
+
   {
     name: 'Bike Manage',
     path: 'bike-management',

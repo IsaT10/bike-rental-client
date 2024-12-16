@@ -66,7 +66,7 @@ export default function BikeListing() {
     return (
       <div className='h-screen flex flex-col items-center justify-center'>
         <GridLoader
-          color='#97A253'
+          color='#2A9D90'
           size={10}
           aria-label='Loading Spinner'
           data-testid='loader'

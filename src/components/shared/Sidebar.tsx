@@ -2,17 +2,17 @@
 import { useAppSelector } from '@/redux/hooks';
 import { dashboardRoutes } from '@/routes/dashboardRoutes';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
-import { MenuIcon } from 'lucide-react';
+import { LucideLogOut, MenuIcon } from 'lucide-react';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 export default function Sidebar() {
-  const [isDark, setIsDark] = React.useState(true);
-  const dark = (e: any) => {
-    e.preventDefault();
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
-  };
+  // const [isDark, setIsDark] = React.useState(true);
+  // const dark = (e: any) => {
+  //   e.preventDefault();
+  //   document.documentElement.classList.toggle('dark');
+  //   setIsDark(!isDark);
+  // };
 
   // const SidebarLinkItems = nav_sidebarGenerator(dashboardRoutes);
   const { user } = useAppSelector((state) => state.auth);
@@ -41,7 +41,7 @@ export default function Sidebar() {
 
       {/* Sidebar - Hidden on small screens, visible on larger screens */}
       <div
-        className={`fixed top-0 left-0 h-screen 900:w-56 lg:w-64 shadow-2xl dark:bg-secondary-color bg-white py-9 px-4  z-40 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-screen 900:w-56 lg:w-64 border-r border-stone-200 dark:bg-secondary-color bg-white py-9 px-4  z-40 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } 900:translate-x-0 900:w-56 lg:w-64 flex flex-col gap-4`}
       >
@@ -54,26 +54,6 @@ export default function Sidebar() {
               </span>
             </h2>
           </Link>
-          <button onClick={dark} className='h-10 w-10 mt-0.5 rounded-lg p-2'>
-            <svg
-              className='fill-primary-color block dark:hidden'
-              fill='currentColor'
-              viewBox='0 0 20 20'
-            >
-              <path d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z'></path>
-            </svg>
-            <svg
-              className='fill-yellow-500 hidden dark:block'
-              fill='currentColor'
-              viewBox='0 0 20 20'
-            >
-              <path
-                d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z'
-                fillRule='evenodd'
-                clipRule='evenodd'
-              ></path>
-            </svg>
-          </button>
         </div>
         {SidebarLinkItems.map((item) => (
           <NavLink
@@ -91,6 +71,9 @@ export default function Sidebar() {
             <span>{item.key}</span>
           </NavLink>
         ))}
+        <button className='mt-auto flex gap-5 ml-5 font-semibold text-sm items-center'>
+          Logout <LucideLogOut size={15} strokeWidth={3} color='#2A9D90' />
+        </button>
       </div>
 
       {isOpen && (

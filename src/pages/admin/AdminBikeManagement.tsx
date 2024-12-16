@@ -29,7 +29,7 @@ export default function AdminBikeManagement() {
     return (
       <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
         <GridLoader
-          color='#97A253'
+          color='#2A9D90'
           size={10}
           aria-label='Loading Spinner'
           data-testid='loader'
@@ -45,7 +45,7 @@ export default function AdminBikeManagement() {
       </div>
     );
   return (
-    <div className=''>
+    <>
       <div className='flex justify-between gap-10'>
         <div className='flex flex-col gap-5'>
           <AddBikeModal />
@@ -85,14 +85,14 @@ export default function AdminBikeManagement() {
         </div>
       ) : (
         <>
-          <div className='border md:text-base text-sm border-stone-200 font-semibold rounded-b-none text-stone-800 max-w-5xl  rounded-lg py-3  px-5 md:px-10 flex justify-between items-center mt-10 bg-stone-100 dark:bg-stone-800 dark:border-stone-700 dark:text-stone-200'>
+          <div className='border md:text-base text-sm border-stone-200 font-semibold rounded-b-none text-white   rounded-lg py-3  px-5 md:px-10 flex justify-between items-center mt-10 bg-primary-color dark:bg-stone-800 dark:border-stone-700 dark:text-stone-200'>
             <span className='flex-1  '>Brand</span>
             <span className='flex-1 text-center'>Availability</span>
             <span className='flex-1 text-center'>Price / Hour</span>
-            <span className='flex-[.5] text-center'>Actions</span>
+            <span className='flex-1 text-center'>Actions</span>
           </div>
 
-          <div className='rounded-lg border max-w-5xl  border-t-0 rounded-t-none dark:border-stone-700 border-stone-200   mb-10'>
+          <div className='rounded-lg border border-t-0 rounded-t-none dark:border-stone-700 border-stone-200 bg-white  mb-10'>
             {bikeData?.data?.map((el: TBike, idx: number) => (
               <BikeListItem key={idx} bike={el} />
             ))}
@@ -107,6 +107,6 @@ export default function AdminBikeManagement() {
           setCurrentPage={setCurrentPage}
         />
       )} */}
-    </div>
+    </>
   );
 }

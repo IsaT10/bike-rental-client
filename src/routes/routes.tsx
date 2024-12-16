@@ -33,7 +33,7 @@ const CreateAppRouter = () => {
       children: [
         {
           path: '',
-          element: <Navigate to='profile' replace />,
+          element: <Navigate to='overview' replace />,
         },
         ...routesGenerator(
           dashboardRoutes.filter((route) =>

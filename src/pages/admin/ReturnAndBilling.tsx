@@ -1,6 +1,7 @@
 import RentalListItem from '@/components/RentalListItem';
 import { useGetAllUserRentalQuery } from '@/redux/features/rental/rentalApi';
 import { TRental } from '@/types';
+
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function ReturnAndBilling() {
@@ -10,14 +11,14 @@ export default function ReturnAndBilling() {
     isLoading,
   } = useGetAllUserRentalQuery([
     // { name: 'isReturned', value: 'false' },
-    { name: 'sort', value: 'returnTime' },
+    { name: 'sort', value: '-startTime' },
   ]);
 
   if (isLoading)
     return (
       <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
         <GridLoader
-          color='#97A253'
+          color='#2A9D90'
           size={10}
           aria-label='Loading Spinner'
           data-testid='loader'
@@ -34,8 +35,8 @@ export default function ReturnAndBilling() {
     );
 
   return (
-    <div className='max-w-[1000px]'>
-      <div className='bg-stone-200 items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold text-stone-900 rounded-t-lg flex justify-between border-b border-b-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
+    <>
+      <div className='bg-primary-color text-white items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold  rounded-t-lg flex justify-between border-b border-b-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
         <p className='flex-[2]'>Brand Name</p>
         <p className='flex-[2]'>Start Time</p>
         <p className='flex-[2]'>Return Time</p>
@@ -47,6 +48,6 @@ export default function ReturnAndBilling() {
           <RentalListItem key={item._id} item={item} />
         ))}
       </div>
-    </div>
+    </>
   );
 }

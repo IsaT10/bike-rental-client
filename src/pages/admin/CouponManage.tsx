@@ -15,7 +15,7 @@ export default function CouponManage() {
     return (
       <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
         <GridLoader
-          color='#97A253'
+          color='#2A9D90'
           size={10}
           aria-label='Loading Spinner'
           data-testid='loader'
@@ -34,14 +34,14 @@ export default function CouponManage() {
   return (
     <div>
       <AddCouponModal />
-      <div className='border border-stone-200 text-xs sm:text-sm font-semibold rounded-b-none text-stone-800 rounded-lg py-4 px-4 md:px-6 lg:px-10 flex justify-between items-center mt-10 bg-stone-100 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-700'>
+      <div className='border border-stone-200 text-xs sm:text-sm font-semibold rounded-b-none rounded-lg py-4 px-4 md:px-6 lg:px-10 flex justify-between items-center mt-10 bg-primary-color text-white dark:bg-stone-800 dark:text-stone-200 dark:border-stone-700'>
         <span className='flex-1 lg:ml-6'>Coupon Code</span>
         <span className='flex-1  text-center'>Discount</span>
         <span className='flex-1 text-center'>Status</span>
         <span className='flex-1 text-center'>Actions</span>
       </div>
 
-      <div className='rounded-lg border border-t-0 rounded-t-none dark:border-stone-700 border-stone-200 divide-y dark:divide-stone-950 divide-stone-200 mb-10'>
+      <div className='rounded-lg border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
         {couponData?.data?.map((item: TCouponData) => (
           <CouponItem key={item._id} coupon={item} />
         ))}

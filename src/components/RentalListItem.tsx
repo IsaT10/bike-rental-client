@@ -30,7 +30,7 @@ export default function RentalListItem({ item }: { item: TRental }) {
   };
 
   return (
-    <div className='bg-stone-50 duration-150 text-xs sm:text-sm lg:text-base border-b border-b-stone-200 dark:border-stone-950 hover:bg-stone-100 items-center px-6 lg:px-10 py-8 gap-4 text-stone-600  flex justify-between dark:bg-stone-700 dark:text-stone-200'>
+    <div className='bg-white duration-150 text-xs sm:text-sm lg:text-base border-b  border-stone-300 dark:border-stone-950 hover:bg-stone-50 items-center px-6 lg:px-10 py-8 gap-4 text-stone-600  flex justify-between dark:bg-stone-700 dark:text-stone-200'>
       <p className='flex-[2]'>{data?.data?.brand}</p>
       <p className='flex-[2]'>{formateDate(item.startTime)}</p>
 
