@@ -13,6 +13,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FormInputField from '@/components/FormInputField';
 import { Google, LeftArrow } from '@/components/shared/Icons';
 import { useGoogleLogin } from '@/hooks/useGoogleLogin';
+import { Helmet } from 'react-helmet-async';
 
 const FormSchema = z.object({
   email: z
@@ -81,6 +82,9 @@ export default function Login() {
 
   return (
     <div className='min-h-screen  relative flex flex-col justify-center items-center dark:bg-stone-950'>
+      <Helmet>
+        <title>Login | XRIDES</title>
+      </Helmet>
       <Link to='/' className='absolute top-10 left-10 flex gap-2 items-center'>
         <LeftArrow />{' '}
         <span className='font-medium text-primary-color'>Return home</span>

@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useAppSelector } from '@/redux/hooks';
+import { logout } from '@/redux/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { dashboardRoutes } from '@/routes/dashboardRoutes';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { LucideLogOut, MenuIcon } from 'lucide-react';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export default function Sidebar() {
   // const [isDark, setIsDark] = React.useState(true);
@@ -15,6 +17,8 @@ export default function Sidebar() {
   // };
 
   // const SidebarLinkItems = nav_sidebarGenerator(dashboardRoutes);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
   const SidebarLinkItems = nav_sidebarGenerator(
     dashboardRoutes.filter((route) =>
@@ -27,6 +31,12 @@ export default function Sidebar() {
   // Toggle the sidebar visibility
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+    toast.success('Logged out.');
   };
 
   return (
@@ -71,8 +81,17 @@ export default function Sidebar() {
             <span>{item.key}</span>
           </NavLink>
         ))}
-        <button className='mt-auto flex gap-5 ml-5 font-semibold text-sm items-center'>
-          Logout <LucideLogOut size={15} strokeWidth={3} color='#2A9D90' />
+        <button
+          onClick={handleLogout}
+          className='mt-auto flex gap-5 group items-center py-2.5 font-medium rounded-md text-sm px-6 hover:bg-primary-color hover:text-white cursor-pointer duration-150'
+        >
+          Logout{' '}
+          <LucideLogOut
+            size={15}
+            strokeWidth={3}
+            // color='#2A9D90'
+            className='text-primary-color group-hover:text-white'
+          />
         </button>
       </div>
 

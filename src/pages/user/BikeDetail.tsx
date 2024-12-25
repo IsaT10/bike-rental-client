@@ -64,9 +64,11 @@ export default function BikeDetail() {
                 ${data.data.pricePerHour}
                 <span className='text-lg font-semibold'> / HOURS</span>
               </p>
-              <p className='my-5 md:text-base dark:text-stone-400 lg:text-lg text-sm'>
-                {data.data.description}
-              </p>
+
+              <div
+                className='my-5 md:text-base dark:text-stone-400 lg:text-lg text-sm'
+                dangerouslySetInnerHTML={{ __html: data.data.description }}
+              />
               <div className='flex gap-16  items-start font-medium text-base'>
                 <p className=' flex flex-col gap-1'>
                   <span className='dark:text-stone-200'>Model </span>

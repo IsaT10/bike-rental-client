@@ -25,7 +25,7 @@ export default function CouponItem({ coupon }: { coupon: TCouponData }) {
     }
   };
   return (
-    <div className='py-5 px-4 dark:bg-stone-700 dark:text-stone-100 md:px-6 lg:px-10 text-xs sm:text-sm flex gap-4 justify-between items-center'>
+    <div className='py-5 px-4 hover:bg-stone-50 dark:bg-stone-700 dark:text-stone-100 md:px-6 lg:px-10 text-xs sm:text-sm flex gap-4 justify-between items-center'>
       <span className='flex-1 lg:ml-6'>{coupon.couponCode}</span>
       <span className='flex-1 text-center'>{coupon.discount}</span>
       <span className='flex-1 font-semibold  text-center'>

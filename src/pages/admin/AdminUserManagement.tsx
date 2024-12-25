@@ -34,7 +34,7 @@ export default function AdminUserManagement() {
         <span className='flex-[.5] text-center'>Actions</span>
       </div>
 
-      <div className='rounded-lg border border-t-0 dark:border-stone-700 rounded-t-none border-stone-200 divide-y bg-white divide-stone-300 dark:divide-stone-950 mb-10'>
+      <div className='rounded-lg border border-t-0 dark:border-stone-700 rounded-t-none border-stone-300 divide-y bg-white divide-stone-300 dark:divide-stone-950 mb-10'>
         {userData?.data?.map((el: TUserProfile, idx: number) => (
           <UserListItem key={idx} user={el} />
         ))}

@@ -19,7 +19,7 @@ export default function Hero() {
 
   return (
     <div className='items-center justify-end -pt-20 md:pb-24 lg:pb-40'>
-      <div className='relative w-full h-[70vh] md:h-[85vh]'>
+      <div className='relative w-full h-[70vh] md:h-[86vh]'>
         <BlurImage
           src='https://i.ibb.co.com/LghhkvJ/florian-udrisard-DWYtai-Wls-OU-unsplash-1.jpg'
           blurHash={'OSMG@kNbkWRPNdxu%M00yDxuMxozj[of_N%MWVjZofWVf6'}

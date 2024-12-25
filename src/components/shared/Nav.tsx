@@ -4,30 +4,39 @@ import Container from '../Container';
 import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { publicRoutes } from '@/routes/publicRoutes';
 import { NavClose, NavOpen } from './Icons';
+import avatar from '@/assets/images/avatar.png';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logout } from '@/redux/features/auth/authSlice';
 import React from 'react';
+import { toast } from 'sonner';
+
+import { useGetProfileQuery } from '@/redux/features/user/userApi';
+import { LogOutIcon } from 'lucide-react';
 
 const navItems = nav_sidebarGenerator(publicRoutes);
 
 const Nav = () => {
-  const [isDark, setIsDark] = React.useState(true);
+  // const [isDark, setIsDark] = React.useState(true);
   const [scrollY, setScrollY] = React.useState(0);
+  const [showDropdown, setShowDropdown] = React.useState(false);
   const [prevScrollY, setPrevScrollY] = React.useState(0);
   const [navVisible, setNavVisible] = React.useState(true);
   const [nav, setNav] = React.useState(false);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const { data } = useGetProfileQuery(undefined);
 
-  const dark = (e: any) => {
-    e.preventDefault();
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
-  };
+  // const dark = (e: any) => {
+  //   e.preventDefault();
+  //   document.documentElement.classList.toggle('dark');
+  //   setIsDark(!isDark);
+  // };
 
   const handleLogout = () => {
     dispatch(logout());
+    toast.success('Logged out.');
   };
+  const { image } = data?.data || {};
 
   const scrollThreshold = window.innerWidth < 768 ? 150 : 100;
   const handleScroll = () => {
@@ -55,7 +64,7 @@ const Nav = () => {
   };
   return (
     <nav
-      className={`transition-all duration-300  fixed left-0  bg- right-0 z-50 py-3 md:py-5 ${
+      className={`transition-all duration-300  fixed left-0  right-0 z-50 py-3 md:py-4 ${
         scrollY >= scrollThreshold
           ? 'shadow-md bg-white dark:bg-secondary-color'
           : ''
@@ -67,7 +76,7 @@ const Nav = () => {
       // } ${navVisible ? 'top-0' : '-top-full'}`}
     >
       <Container>
-        <div className='flex justify-between items-center'>
+        <div className='relative flex justify-between items-center'>
           <Link to='/' className='flex items-center gap-3'>
             <h2 className='md:text-3xl text-xl font-bold tracking-wider text-primary-color'>
               X
@@ -83,7 +92,7 @@ const Nav = () => {
             </h2>
           </Link>
           <ul className='hidden md:flex  gap-4 lg:gap-6'>
-            <button onClick={dark} className='h-10 w-10 mt-0.5 rounded-lg p-2'>
+            {/* <button onClick={dark} className='h-10 w-10 mt-0.5 rounded-lg p-2'>
               <svg
                 className='fill-primary-color block dark:hidden'
                 fill='currentColor'
@@ -102,7 +111,7 @@ const Nav = () => {
                   clipRule='evenodd'
                 ></path>
               </svg>
-            </button>
+            </button> */}
 
             {navItems.map((item) => (
               <NavLink
@@ -121,36 +130,40 @@ const Nav = () => {
                 <li>{item.key}</li>
               </NavLink>
             ))}
-            {user ? (
-              <NavLink
-                to='/dashboard'
-                className={({ isActive }) =>
-                  `py-2.5 font-medium rounded-md 900:text-base text-sm hover:text-primary-color  cursor-pointer duration-150 ${
-                    isActive
-                      ? 'text-primary-color'
-                      : scrollY <= scrollThreshold
-                      ? 'text-white'
-                      : 'text-black dark:text-white'
-                  }`
-                }
-              >
-                <li>Dashboard</li>
-              </NavLink>
-            ) : (
-              ''
-            )}
 
             {user ? (
-              <button
-                className={`px-8 py-2 sm:text-base text-sm ${
-                  scrollY <= scrollThreshold
-                    ? 'text-white '
-                    : 'text-black  border-stone-600'
-                } border rounded-[14px] font-semibold duration-200 hover:text-primary-color hover:border-primary-color`}
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              <>
+                <img
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  src={image || avatar}
+                  className='size-10 border-4 cursor-pointer border-primary-color rounded-full'
+                  alt=''
+                />
+                {showDropdown ? (
+                  <div className='bg-white rounded-lg w-[170px] border divide-y divide-stone-300 border-stone-300  flex flex-col absolute right-0 top-14'>
+                    <Link
+                      to='/dashboard'
+                      className='px-5 py-3 text-sm font-medium hover:bg-stone-200 duration-150 rounded-t-lg '
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      to='/dashboard/profile'
+                      className='px-5 py-3 text-sm font-medium hover:bg-stone-200 duration-150 '
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className='px-5 py-3 w-full hover:bg-stone-200 duration-150 rounded-b-lg text-sm font-medium flex items-center justify-between gap-3'
+                    >
+                      Logout <LogOutIcon size={15} strokeWidth={2.5} />
+                    </button>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </>
             ) : (
               <Link to='/login'>
                 <button

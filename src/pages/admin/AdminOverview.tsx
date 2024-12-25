@@ -2,10 +2,13 @@ import { MonthlyActivity } from '@/components/MonthlyActivity';
 import { MonthlyEarning } from '@/components/MonthlyEarning';
 import RentalListItem from '@/components/RentalListItem';
 import { useGetAllUserRentalQuery } from '@/redux/features/rental/rentalApi';
+import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import { TRental } from '@/types';
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminOverview() {
+  const { data } = useGetProfileQuery(undefined);
+  const { name } = data?.data || {};
   const {
     data: rentalData,
     error,
@@ -41,7 +44,7 @@ export default function AdminOverview() {
         <div className='bg-[#64d1c454] h-full flex flex-col items-center justify-center p-5 rounded-lg'>
           <p className='text-[#2A9D90] font-bold text-4xl  text-center'>
             <span className=''>Welcome Back !</span>{' '}
-            <span className='block mt-6 '>Rakib</span>
+            <span className='block mt-6 '>{name}</span>
           </p>
         </div>
       </div>
@@ -56,12 +59,12 @@ export default function AdminOverview() {
           <span className='text-2xl font-bold'>3</span>
         </div>
         <div className='p-5 rounded-lg bg-white '>
-          <p className='text-stone-600 mb-2 font-semibold'>Revenue</p>
-          <span className='text-2xl font-bold'>$2500</span>
+          <p className='text-stone-600 mb-2 font-semibold'>Total Revenue</p>
+          <span className='text-2xl font-bold'>$12,400</span>
         </div>
         <div className='p-5 rounded-lg bg-white '>
           <p className='text-stone-600 mb-2 font-semibold'>Today's Revenue</p>
-          <span className='text-2xl font-bold'>$2500</span>
+          <span className='text-2xl font-bold'>$500</span>
         </div>
         <div className='p-5 rounded-lg bg-white '>
           <p className='text-stone-600 mb-2 font-semibold'>Users</p>
@@ -83,8 +86,10 @@ export default function AdminOverview() {
         <p className='text-stone-700 pt-4'>This Month</p>
         <div className='flex items-center '>
           <div className='w-[150px]'>
-            <p>$20,000</p>
-            <p>asdasd das dsad sadsa dasdas dasdas</p>
+            <p className='text-2xl font-semibold mb-2'>$16,400</p>
+            <p>
+              <span className='text-red-600'>-46.69% </span>from previous month
+            </p>
           </div>
           <div>
             <MonthlyEarning />

@@ -92,7 +92,7 @@ export default function AdminBikeManagement() {
             <span className='flex-1 text-center'>Actions</span>
           </div>
 
-          <div className='rounded-lg border border-t-0 rounded-t-none dark:border-stone-700 border-stone-200 bg-white  mb-10'>
+          <div className='rounded-lg border border-t-0 rounded-t-none dark:border-stone-700 border-stone-300 bg-white  mb-10'>
             {bikeData?.data?.map((el: TBike, idx: number) => (
               <BikeListItem key={idx} bike={el} />
             ))}

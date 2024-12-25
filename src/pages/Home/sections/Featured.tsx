@@ -47,8 +47,8 @@ export default function Featured() {
       </Container>
       <div className='border-t dark:border-stone-700'>
         <Container>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-3 py-16 xl:py-20 '>
-            {bikeData?.data?.slice(0, 3).map((item: TBike) => (
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-16 xl:py-20 '>
+            {bikeData?.data?.slice(0, 4).map((item: TBike) => (
               <BikeCard key={item?._id} bike={item} />
             ))}
           </div>

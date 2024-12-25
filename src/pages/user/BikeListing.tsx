@@ -15,6 +15,7 @@ import {
   saveCompareListToLocalStorage,
 } from '@/utils/localstorageCompare';
 import { toast } from 'sonner';
+import { Helmet } from 'react-helmet-async';
 
 export default function BikeListing() {
   const [availability, setAvailability] = React.useState<string>('');
@@ -83,6 +84,9 @@ export default function BikeListing() {
     );
   return (
     <div className='relative'>
+      <Helmet>
+        <title>Bikes | XRIDES</title>
+      </Helmet>
       <PageHeader
         heading='Find Perfect Bike'
         subHeading='"Discover our range of bikes tailored to your next adventure, from city cruising to off-road exploration'

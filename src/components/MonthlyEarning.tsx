@@ -33,7 +33,7 @@ export function MonthlyEarning() {
           <RadialBarChart
             data={chartData}
             startAngle={90}
-            endAngle={270}
+            endAngle={250}
             innerRadius={50}
             outerRadius={70}
           >
@@ -58,16 +58,9 @@ export function MonthlyEarning() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className='fill-foreground text-2xl font-bold'
+                          className='fill-foreground text-base'
                         >
-                          {chartData[0].visitors.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className='fill-muted-foreground'
-                        >
-                          Visitors
+                          -46.69%
                         </tspan>
                       </text>
                     );

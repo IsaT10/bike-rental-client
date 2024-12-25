@@ -15,6 +15,7 @@ import { useGoogleLogin } from '@/hooks/useGoogleLogin';
 import { decodedToken } from '@/utils/decodedToken';
 import { useAppDispatch } from '@/redux/hooks';
 import { setUser } from '@/redux/features/auth/authSlice';
+import { Helmet } from 'react-helmet-async';
 
 // Zod schema for validation
 const signupSchema = z.object({
@@ -99,6 +100,9 @@ export default function Signup() {
 
   return (
     <div className='min-h-screen flex flex-col justify-center items-center dark:bg-stone-950'>
+      <Helmet>
+        <title>Signup | XRIDES</title>
+      </Helmet>
       <Link to='/' className='absolute top-10 left-10 flex gap-2 items-center'>
         <LeftArrow />{' '}
         <span className='font-medium text-primary-color'>Return home</span>

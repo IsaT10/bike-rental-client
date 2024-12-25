@@ -28,7 +28,6 @@ export default function UserProfile() {
 
   const { name, email, phone, address, image } = data.data;
 
-  console.log(image);
   return (
     <div>
       <div className='p-5 md:p-7 h-64 lg:p-10 xl:p-14 bg-[#2A9D90] rounded-xl shadow-lg relative'>

@@ -16,6 +16,7 @@ import {
   WhatsApp,
 } from '@/components/shared/Icons';
 import SectionHeader from '@/components/SectionHeader';
+import { Helmet } from 'react-helmet-async';
 
 const teamMembers = [
   {
@@ -47,6 +48,9 @@ const teamMembers = [
 export default function AboutUs() {
   return (
     <div>
+      <Helmet>
+        <title>About Us | XRIDES</title>
+      </Helmet>
       <PageHeader
         heading='Our Journey, Your Adventure'
         subHeading='Discover the story behind our passion for biking and our commitment to delivering top-quality rentals and services. '

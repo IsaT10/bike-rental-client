@@ -42,7 +42,7 @@ export const LeftArrow = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='2'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='size-5'
   >
     <path
@@ -58,14 +58,14 @@ export const Google = () => (
     width='28'
     height='28'
     viewBox='0 0 488 512'
-    fill='#97A253'
+    fill='#2A9D90'
     className='size-5 cursor-pointer'
   >
     <path d='M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z' />
   </svg>
 );
 
-export const Facebook = ({ bg = '#97A253', fill = 'white' }) => (
+export const Facebook = ({ bg = '#2A9D90', fill = 'white' }) => (
   <svg
     width='28'
     height='28'
@@ -83,7 +83,7 @@ export const Facebook = ({ bg = '#97A253', fill = 'white' }) => (
   </svg>
 );
 
-export const WhatsApp = ({ bg = '#97A253', fill = 'white' }) => (
+export const WhatsApp = ({ bg = '#2A9D90', fill = 'white' }) => (
   <svg
     width='28'
     height='28'
@@ -99,7 +99,7 @@ export const WhatsApp = ({ bg = '#97A253', fill = 'white' }) => (
   </svg>
 );
 
-export const Instagram = ({ bg = '#97A253', fill = 'white' }) => (
+export const Instagram = ({ bg = '#2A9D90', fill = 'white' }) => (
   <svg
     width='28'
     height='28'
@@ -130,7 +130,7 @@ export const Instagram = ({ bg = '#97A253', fill = 'white' }) => (
   </svg>
 );
 
-export const LinkedIn = ({ bg = '#97A253', fill = 'white' }) => (
+export const LinkedIn = ({ bg = '#2A9D90', fill = 'white' }) => (
   <svg
     width='28'
     height='28'
@@ -346,7 +346,7 @@ export const Message = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='2'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='size-5'
   >
     <path
@@ -362,7 +362,7 @@ export const Phone = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='2'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='size-5'
   >
     <path
@@ -378,7 +378,7 @@ export const Location = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='2'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='w-[22px] h-[22px]'
   >
     <path
@@ -472,7 +472,7 @@ export const Tick = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='4'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='size-6'
   >
     <path
@@ -488,7 +488,7 @@ export const Search = () => (
     fill='none'
     viewBox='0 0 24 24'
     strokeWidth='3'
-    stroke='#97A253'
+    stroke='#2A9D90'
     className='size-5'
   >
     <path

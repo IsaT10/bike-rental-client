@@ -9,9 +9,22 @@
   scrollbar-width: none;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+body,
+html {
+  overflow: visible; /* Ensures global visibility */
+}
+
+body,
+html {
+  overflow: visible; /* Ensures global visibility */
+}
+
 ::selection {
   /* background-color: #7d8a29; */
-  background-color: #97a253;
+  background-color: #2a9d90;
   color: #fff;
 }
 

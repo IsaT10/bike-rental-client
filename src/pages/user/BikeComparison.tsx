@@ -9,6 +9,7 @@ import React from 'react';
 import img from '../../assets/images/bike2.jpg';
 import PageHeader from '@/components/PageHeader';
 import Container from '@/components/Container';
+import { Helmet } from 'react-helmet-async';
 
 export default function BikeComparison() {
   const [compareList, setCompareList] = React.useState<TBike[]>([]);
@@ -26,6 +27,9 @@ export default function BikeComparison() {
   };
   return (
     <div>
+      <Helmet>
+        <title>Compare Bike | XRIDES</title>
+      </Helmet>
       <PageHeader
         heading='Bike Comparison'
         subHeading='Find and select bikes to see the differences and similarities between them'

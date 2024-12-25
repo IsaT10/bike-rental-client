@@ -41,7 +41,7 @@ export default function CouponManage() {
         <span className='flex-1 text-center'>Actions</span>
       </div>
 
-      <div className='rounded-lg border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
+      <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
         {couponData?.data?.map((item: TCouponData) => (
           <CouponItem key={item._id} coupon={item} />
         ))}

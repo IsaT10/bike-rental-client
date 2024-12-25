@@ -6,6 +6,7 @@ import UserProfile from '@/pages/user/UserProfile';
 import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
 import CouponManage from '@/pages/admin/CouponManage';
 import AdminOverview from '@/pages/admin/AdminOverview';
+import UserOverview from '@/pages/user/UserOverview';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
@@ -19,6 +20,12 @@ export const dashboardRoutes = [
       </AdminRoute>
     ),
     roles: ['admin'],
+  },
+  {
+    name: 'Dashboard',
+    path: 'overview',
+    element: <UserOverview />,
+    roles: ['user'],
   },
   {
     name: 'Profile',

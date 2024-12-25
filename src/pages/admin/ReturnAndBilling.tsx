@@ -36,14 +36,14 @@ export default function ReturnAndBilling() {
 
   return (
     <>
-      <div className='bg-primary-color text-white items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold  rounded-t-lg flex justify-between border-b border-b-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
+      <div className='bg-primary-color text-white items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold border-stone-300 rounded-t-lg flex justify-between  dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
         <p className='flex-[2]'>Brand Name</p>
         <p className='flex-[2]'>Start Time</p>
         <p className='flex-[2]'>Return Time</p>
         <p className='flex-1'>Action</p>
       </div>
 
-      <div className=' flex flex-col '>
+      <div className=' flex flex-col border border-stone-300'>
         {rentalData?.data?.map((item: TRental) => (
           <RentalListItem key={item._id} item={item} />
         ))}

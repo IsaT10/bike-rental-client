@@ -8,23 +8,23 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 const chartData = [
-  { month: 'January', desktop: 60 },
-  { month: 'February', desktop: 25 },
-  { month: 'March', desktop: 59 },
-  { month: 'April', desktop: 90 },
-  { month: 'May', desktop: 44 },
-  { month: 'June', desktop: 24 },
-  { month: 'July', desktop: 99 },
-  { month: 'August', desktop: 33 },
-  { month: 'September', desktop: 44 },
-  { month: 'October', desktop: 69 },
-  { month: 'November', desktop: 14 },
-  { month: 'December', desktop: 50 },
+  { month: 'January', rent: 20 },
+  { month: 'February', rent: 5 },
+  { month: 'March', rent: 9 },
+  { month: 'April', rent: 17 },
+  { month: 'May', rent: 30 },
+  { month: 'June', rent: 22 },
+  { month: 'July', rent: 13 },
+  { month: 'August', rent: 26 },
+  { month: 'September', rent: 10 },
+  { month: 'October', rent: 19 },
+  { month: 'November', rent: 14 },
+  { month: 'December', rent: 30 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: 'Desktop',
+  rent: {
+    label: 'Rent',
     color: 'hsl(var(--chart-1))',
   },
 } satisfies ChartConfig;
@@ -50,7 +50,7 @@ export function MonthlyActivity() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey='desktop' fill='var(--color-desktop)' />
+            <Bar dataKey='rent' fill='var(--color-rent)' />
           </BarChart>
         </ChartContainer>
       </CardContent>

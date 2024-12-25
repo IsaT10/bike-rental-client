@@ -32,7 +32,7 @@ export default function UserListItem({ user }: { user: TUserProfile }) {
   };
 
   return (
-    <div className='text-xs  md:text-sm py-5 px-6 md:px-10 dark:text-stone-100 dark:bg-stone-700  flex gap-4 justify-between items-center'>
+    <div className='text-xs hover:bg-stone-50 md:text-sm py-5 px-6 md:px-10 dark:text-stone-100 dark:bg-stone-700  flex gap-4 justify-between items-center'>
       <span className='flex-1 md:ml-6'>{user.name}</span>
       <span className='flex-1 text-center'>{user.email}</span>
       <span
