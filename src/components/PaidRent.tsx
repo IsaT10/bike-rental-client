@@ -16,42 +16,40 @@ export default function PaidRent({
   }
 
   return (
-    <div>
-      <div className='bg-stone-50 dark:bg-stone-700 dark:text-stone-100 dark:border-stone-950 border-b hover:bg-stone-100 items-center px-6  py-5 text-stone-600 flex justify-between'>
-        <p className='flex-1'>{data?.data?.brand}</p>
-        <p className='flex-[2]'>{formateDate(item.startTime)}</p>
-        <p className='flex-[2]'>{formateDate(item.returnTime)}</p>
+    <div className='bg-white dark:bg-stone-700 dark:text-stone-100 dark:border-stone-950   hover:bg-stone-50 items-center px-6  py-5 text-stone-600 flex justify-between'>
+      <p className='flex-1'>{data?.data?.brand}</p>
+      <p className='flex-[2]'>{formateDate(item.startTime)}</p>
+      <p className='flex-[2]'>{formateDate(item.returnTime)}</p>
 
-        {item.totalCost < 100 ? (
-          <p className='flex-1'>$ {`${item.totalCost}`}</p>
-        ) : (
-          <p className='flex-1'>
-            $ {`${(item.totalCost - item.advancedPayment).toFixed(2)}`}
-          </p>
-        )}
-        {item.totalCost < 100 ? (
-          <p className='flex-1'>
-            ${' '}
-            {`${
-              item.totalCost < 100
-                ? (item.advancedPayment - item.totalCost).toFixed(2)
-                : ''
-            }`}
-          </p>
-        ) : (
-          <div className='flex-1'>N/A</div>
-        )}
+      {item.totalCost < 100 ? (
+        <p className='flex-1'>$ {`${item.totalCost}`}</p>
+      ) : (
+        <p className='flex-1'>
+          $ {`${(item.totalCost - item.advancedPayment).toFixed(2)}`}
+        </p>
+      )}
+      {item.totalCost < 100 ? (
+        <p className='flex-1'>
+          ${' '}
+          {`${
+            item.totalCost < 100
+              ? (item.advancedPayment - item.totalCost).toFixed(2)
+              : ''
+          }`}
+        </p>
+      ) : (
+        <div className='flex-1'>N/A</div>
+      )}
 
-        {!isPaid && (
-          <button
-            // to='/payment'
+      {!isPaid && (
+        <button
+          // to='/payment'
 
-            className='flex-1 text-center justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'
-          >
-            Pay
-          </button>
-        )}
-      </div>
+          className='flex-1 text-center justify-self-end bg-secondary-color text-white  text-sm font-semibold py-2 rounded-lg'
+        >
+          Pay
+        </button>
+      )}
     </div>
   );
 }

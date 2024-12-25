@@ -171,20 +171,22 @@ export default function MyRentals() {
         <TabsContent className='mt-0' value='unpaid'>
           {unpaidRent.length ? (
             <>
-              <div className='bg-stone-100 dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950 text-stone-900 flex justify-between border-b border-b-stone-200 rounded-tr-lg '>
+              <div className='bg-primary-color text-white dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950  flex justify-between border-b border-b-stone-200 rounded-t-lg '>
                 <p className='flex-[2]'>Brand Name</p>
                 <p className='flex-[2]'>Start Time</p>
                 <p className='flex-[2]'>Return Time</p>
                 <p className='flex-1'>Total Cost</p>
                 <p className='flex-1 text-center'>Actions</p>
               </div>
-              {unpaidRent.map((item: TRental) => (
-                <UnpaidRent
-                  key={item._id}
-                  item={item}
-                  finalDiscount={finalDiscount}
-                />
-              ))}
+              <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
+                {unpaidRent.map((item: TRental) => (
+                  <UnpaidRent
+                    key={item._id}
+                    item={item}
+                    finalDiscount={finalDiscount}
+                  />
+                ))}
+              </div>
             </>
           ) : (
             <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold  dark:text-stone-100'>
@@ -199,16 +201,18 @@ export default function MyRentals() {
         <TabsContent className='mt-0' value='paid'>
           {paidRent.length ? (
             <>
-              <div className='bg-stone-100 dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950 text-stone-900 flex justify-between border-b border-b-stone-200 rounded-tr-lg'>
+              <div className='bg-primary-color text-white dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950 flex justify-between border-b border-b-stone-200 rounded-t-lg'>
                 <p className='flex-1'>Brand Name</p>
                 <p className='flex-[2]'>Start Time</p>
                 <p className='flex-[2]'>Return Time</p>
                 <p className='flex-1'>Total Cost</p>
                 <p className='flex-1'>Return Amount</p>
               </div>
-              {paidRent.map((item: TRental) => (
-                <PaidRent key={item._id} item={item} isPaid={true} />
-              ))}
+              <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
+                {paidRent.map((item: TRental) => (
+                  <PaidRent key={item._id} item={item} isPaid={true} />
+                ))}
+              </div>
             </>
           ) : (
             <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold dark:text-stone-100'>

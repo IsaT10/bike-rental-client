@@ -1,16 +1,28 @@
+import UserLatestRentals from '@/components/UserLatestRentals';
+import { useGetAllRentalQuery } from '@/redux/features/rental/rentalApi';
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 
 export default function UserOverview() {
   const { data } = useGetProfileQuery(undefined);
   const { name } = data?.data || {};
+
+  // const { data, error, isLoading } = useGetAllRentalQuery([
+  //   { name: 'isPaid', value: true },
+  // ]);
   return (
     <div className='grid grid-cols-12 gap-6 '>
-      <div className='col-span-4'>
-        <div className='bg-[#64d1c454] h-full flex flex-col items-center justify-center p-5 rounded-lg'>
+      <div className='col-span-12'>
+        <div className='bg-[#64d1c454] h-full flex  items-center justify-between py-14 px-20 rounded-lg'>
           <p className='text-[#2A9D90] font-bold text-4xl  text-center'>
             <span className=''>Welcome Back !</span>{' '}
             <span className='block mt-6 '>{name}</span>
           </p>
+
+          <button className='relative text-lg p-16 rounded-full bg-white text-black font-semibold'>
+            <span className='absolute inset-0 flex items-center justify-center'>
+              Book Now
+            </span>
+          </button>
         </div>
       </div>
 
@@ -41,11 +53,23 @@ export default function UserOverview() {
           <p className='text-stone-600 mb-2 font-semibold'>Total Bike Rent</p>
           <span className='text-2xl font-bold'>4</span>
         </div>
-
         <div className='p-5 rounded-lg bg-white '>
           <p className='text-stone-600 mb-2 font-semibold'>Coupons</p>
           <span className='text-2xl font-bold'>4</span>
         </div>
+      </div>
+
+      <div className='col-span-4 p-5 rounded-lg bg-white'>
+        <p className='text-center font-semibold text-xl'>Top Picks for You</p>
+        <img
+          className='w-[60%] mx-auto mt-3'
+          src='https://i.ibb.co.com/G9f7DVN/bike-4.png'
+          alt=''
+        />
+      </div>
+
+      <div className='col-span-12'>
+        <UserLatestRentals />
       </div>
     </div>
   );
