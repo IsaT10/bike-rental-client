@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Form } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { useSignupMutation } from '@/redux/features/auth/authApi'; // Adjust accordingly if you have a register API
@@ -10,7 +9,7 @@ import FormInputField from '@/components/FormInputField';
 import { TErrorResponse, TUser } from '@/types';
 import React from 'react';
 import { Label } from '@/components/ui/label';
-import { Google, LeftArrow } from '@/components/shared/Icons';
+import { Google } from '@/components/shared/Icons';
 import { useGoogleLogin } from '@/hooks/useGoogleLogin';
 import { decodedToken } from '@/utils/decodedToken';
 import { useAppDispatch } from '@/redux/hooks';
@@ -103,57 +102,58 @@ export default function Signup() {
       <Helmet>
         <title>Signup | XRIDES</title>
       </Helmet>
-      <Link to='/' className='absolute top-10 left-10 flex gap-2 items-center'>
+      {/* <Link to='/' className='absolute top-10 left-10 flex gap-2 items-center'>
         <LeftArrow />{' '}
         <span className='font-medium text-primary-color'>Return home</span>
-      </Link>
+      </Link> */}
 
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='mx-auto rounded-[30px] gap-4 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-primary-color py-6 lg:py-10 px-6 sm:px-12 w-[90%] xs:w-[500px] flex flex-col dark:bg-secondary-color'
-        >
-          <h2 className='text-center text-2xl font-bold mb-4 text-primary-color'>
-            Signup
-          </h2>
+      <div className='flex justify-between  w-full'>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='mx-auto rounded-[30px] self-center gap-6  border-primary-color py-10  pb-10  px-6 md:px-8 lg:px-12 w-[92%] sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[37%] flex flex-col h-max dark:bg-secondary-color '
+          >
+            <h2 className='text-3xl lg:text-4xl leading-none font-bold mb-2 lg:mb-4 '>
+              Sign up
+            </h2>
 
-          <FormInputField
-            name='name'
-            placeholder='Your Name'
-            type='text'
-            label='Name'
-          />
-          <FormInputField
-            name='email'
-            placeholder='example@gmail.com'
-            type='text'
-            label='Email'
-          />
-          <FormInputField
-            name='password'
-            placeholder='password'
-            type='password'
-            label='Password'
-          />
-
-          <div>
-            <Label className='dark:text-stone-200'>Profile Image</Label>
-            <label
-              className='flex rounded-[18px] text-sm w-full cursor-pointer py-3 pl-5 text-stone-500  border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400'
-              htmlFor='image'
-            >
-              {imageFile?.name ? imageFile?.name : 'Upload Image'}
-            </label>
-            <input
-              multiple
-              className='hidden'
-              type='file'
-              id='image'
-              name='image'
-              onChange={(e) => setImageFile(e.target.files![0])}
+            <FormInputField
+              name='name'
+              placeholder='Your Name'
+              type='text'
+              label='Name'
             />
-          </div>
-          {/* <FormInputField
+            <FormInputField
+              name='email'
+              placeholder='example@gmail.com'
+              type='text'
+              label='Email'
+            />
+            <FormInputField
+              name='password'
+              placeholder='password'
+              type='password'
+              label='Password'
+            />
+
+            <div>
+              <Label className='dark:text-stone-200'>Profile Image</Label>
+              <label
+                className='flex rounded-[18px] text-sm w-full cursor-pointer py-3 pl-5 text-stone-500  border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400'
+                htmlFor='image'
+              >
+                {imageFile?.name ? imageFile?.name : 'Upload Image'}
+              </label>
+              <input
+                multiple
+                className='hidden'
+                type='file'
+                id='image'
+                name='image'
+                onChange={(e) => setImageFile(e.target.files![0])}
+              />
+            </div>
+            {/* <FormInputField
             name='phone'
             placeholder='12345678901'
             type='text'
@@ -166,32 +166,59 @@ export default function Signup() {
             label='Address'
           /> */}
 
-          <div>
-            <p className='dark:text-stone-200 text-sm'>
-              Already have an account?{' '}
-              <Link
-                to='/login'
-                className='text-primary-color hover:underline duration-200'
-              >
-                Login
-              </Link>
-            </p>
-
             <button
-              className='self-center mt-2 w-full px-8 disabled:cursor-not-allowed disabled:opacity-55 duration-200 py-3 font-medium rounded-[17px] bg-primary-color text-white md:text-base text-sm'
+              className='self-center mt-2 w-full px-8 disabled:cursor-not-allowed disabled:opacity-55 duration-200 py-2.5 lg:py-3 font-medium rounded-lg bg-primary-color text-white md:text-base text-sm'
               type='submit'
             >
-              Register
+              Sign up
             </button>
-          </div>
-          <div className='flex flex-col items-center gap-3'>
-            <p>Or login with</p>
-            <button type='button' onClick={loginWithGoogle}>
+            <div className='flex flex-col items-center gap-3'>
+              <p className='flex items-center gap-3'>
+                <span className='p-[.5px] bg-stone-200 w-20'></span>
+                <span className='font-medium text-stone-400 leading-none'>
+                  or
+                </span>
+                <span className='p-[.5px] bg-stone-200 w-20'></span>
+              </p>
+            </div>
+            <button
+              onClick={loginWithGoogle}
+              className='w-full flex items-center justify-center gap-5 py-2.5  border-2 border-primary-color rounded-lg font-medium text-stone-800'
+            >
               <Google />
+              <span>Continue with Google</span>
             </button>
+          </form>
+        </Form>
+        <div className='relative min-h-screen w-[50%] hidden md:block ban '>
+          <div className='bg-black/50 p-8 rounded-2xl h-[90%] lg:h-[85%] w-[90%]  lg:w-[80%] mx-auto absolute inset-0 m-auto  backdrop-blur-md flex flex-col justify-between text-white'>
+            <div>
+              <Link
+                to='/'
+                className='flex items-center w-max px-4 py-1.5 gap-3 bg-white/10 rounded-md backdrop-blur-md'
+              >
+                <h2 className=' text-xl font-bold tracking-wider text-primary-color'>
+                  X<span className='text-white'>RIDES</span>
+                </h2>
+              </Link>
+              <div className='bg-primary-color py-[1px] w-16 my-8'></div>
+              <p className='text-sm lg:text-base'>Hello Friend! </p>
+              <p className='lg:text-3xl text-2xl leading-6 lg:leading-normal xl:text-4xl lg:w-[90%] xl:w-[80%] my-2'>
+                Join the Ride! Start your journey with us today.
+              </p>
+              <p className='text-sm mt-3'>
+                Access your account to rent bikes, track bookings, and more.
+              </p>
+            </div>
+            <div>
+              <p className='text-lg'>Already have an account?</p>
+              <Link to='/login' className='text-lg font-semibold'>
+                Sign in
+              </Link>
+            </div>
           </div>
-        </form>
-      </Form>
+        </div>
+      </div>
     </div>
   );
 }

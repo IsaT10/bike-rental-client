@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import img from '@/assets/images/login.jpg';
 import { Form } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
@@ -93,7 +92,7 @@ export default function Login() {
         <span className='font-medium text-primary-color'>Return home</span>
       </Link> */}
       <div className='flex justify-between  w-full'>
-        <div className='relative w-[50%] hidden md:block'>
+        {/* <div className='relative w-[50%] hidden md:block'>
           <img className='h-screen w-full object-cover' src={img} alt='' />
 
           <div className='bg-black/50 p-8 rounded-2xl h-[90%] lg:h-[80%] w-[90%]  lg:w-[80%] mx-auto absolute inset-0 m-auto  backdrop-blur-md flex flex-col justify-between text-white'>
@@ -116,7 +115,35 @@ export default function Login() {
               </p>
             </div>
             <div>
-              <p className='text-lg'>Already have an account?</p>
+              <p className='text-lg'>Don't have any account?</p>
+              <Link to='/signup' className='text-lg font-semibold'>
+                Sign up
+              </Link>
+            </div>
+          </div>
+        </div> */}
+        <div className='relative min-h-screen w-[50%] hidden md:block ban '>
+          <div className='bg-black/50 p-8 rounded-2xl h-[90%] lg:h-[85%] w-[90%]  lg:w-[80%] mx-auto absolute inset-0 m-auto  backdrop-blur-md flex flex-col justify-between text-white'>
+            <div>
+              <Link
+                to='/'
+                className='flex items-center w-max px-4 py-1.5 gap-3 bg-white/10 rounded-md backdrop-blur-md'
+              >
+                <h2 className=' text-xl font-bold tracking-wider text-primary-color'>
+                  X<span className='text-white'>RIDES</span>
+                </h2>
+              </Link>
+              <div className='bg-primary-color py-[1px] w-16 my-8'></div>
+              <p className='text-sm lg:text-base'>Welcome Back! </p>
+              <p className='lg:text-3xl text-2xl leading-6 lg:leading-normal xl:text-4xl lg:w-[90%] xl:w-[80%] my-2'>
+                Your next adventure is just a login away.
+              </p>
+              <p className='text-sm mt-3'>
+                Access your account to rent bikes, track bookings, and more.
+              </p>
+            </div>
+            <div>
+              <p className='text-lg'>Don't have any account?</p>
               <Link to='/signup' className='text-lg font-semibold'>
                 Sign up
               </Link>

@@ -52,3 +52,10 @@ html {
     --chart-5: 27 87% 67%;
   }
 }
+
+.ban {
+  background-image: url('./assets/images/login.jpg');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center; /* Centers the image */
+}

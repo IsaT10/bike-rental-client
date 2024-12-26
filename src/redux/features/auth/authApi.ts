@@ -23,6 +23,7 @@ const authApi = baseApi.injectEndpoints({
         method: 'POST',
         body: userInfo,
       }),
+      invalidatesTags: ['profile'],
     }),
   }),
 });
