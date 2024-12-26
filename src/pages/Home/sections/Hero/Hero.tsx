@@ -40,7 +40,7 @@ export default function Hero() {
           </p>
 
           <Link to='/bikes'>
-            <button className='px-10 py-3 dark:border-stone-400 md:py-3.5 sm:text-base text-sm s text md:text-lg border mr-6 rounded-[17px] md:rounded-[22px] text-stone-200 font-semibold duration-200 pt-3    before:absolute before:block before:inset-0 before:-z-10 before:bg-transparent overflow-hidden after:block hover:after:w-full after:w-0 after:hover:left-0 after:right-0 after:top-0 after:h-full after:-z-10 after:duration-300 after:bg-primary-color after:absolute relative inline-block'>
+            <button className='px-6 md:px-10 py-2 dark:border-stone-400 sm:py-3.5 sm:text-base text-sm s text md:text-lg  mr-6 rounded-xl text-stone-100 font-semibold duration-200   before:absolute before:block before:inset-0 before:-z-10 before:bg-transparent overflow-hidden after:block hover:after:w-full after:w-0 after:hover:left-0 after:right-0 after:top-0 after:h-full after:-z-10 after:duration-300 after:bg-primary-color bg-primary-color after:absolute relative inline-block'>
               Book Now
             </button>
           </Link>
@@ -48,7 +48,7 @@ export default function Hero() {
           <div className='md:inline-block '>
             <div className='relative mt-4 z-20'>
               <input
-                className='pl-12 z-20 dark:border-stone-400  pr-6 outline-none  py-3 md:py-4 rounded-[17px] md:rounded-[22px] bg-black border text-white md:w-[300px] mt-3 md:mt-0'
+                className='pl-12 z-20 dark:border-stone-400  pr-6 outline-none  py-3 md:py-4 rounded-xl bg-black border text-white md:w-[300px] mt-3 md:mt-0'
                 type='text'
                 placeholder='Search bike'
                 onChange={(e) => setSearchTerm(e.target.value)}

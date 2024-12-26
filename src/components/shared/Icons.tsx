@@ -206,12 +206,12 @@ export const Email = () => (
       width='16'
       height='12'
       rx='2.8'
-      stroke='#A4B5C1'
+      stroke='#2A9D90'
       strokeWidth='1.5'
     />
     <path
       d='M8 10L11.4 12.55C11.7556 12.8167 12.2444 12.8167 12.6 12.55L16 10'
-      stroke='#A4B5C1'
+      stroke='#2A9D90'
       strokeWidth='1.5'
       strokeLinecap='round'
     />

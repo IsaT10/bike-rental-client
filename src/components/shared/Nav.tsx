@@ -170,8 +170,8 @@ const Nav = () => {
                   className={`px-8 py-2 sm:text-base text-sm ${
                     scrollY <= scrollThreshold
                       ? 'text-white '
-                      : 'text-black dark:text-stone-50 border-stone-500'
-                  } border rounded-[14px] font-semibold duration-200 hover:text-primary-color dark:hover:text-primary-color hover:border-primary-color`}
+                      : 'text-white dark:text-stone-50  border-stone-500'
+                  } bg-primary-color rounded-xl font-semibold duration-200  dark:hover:text-primary-color `}
                 >
                   Login
                 </button>

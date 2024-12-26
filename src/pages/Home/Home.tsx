@@ -1,11 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import ContactUs from './sections/ContactUs';
+// import ContactUs from './sections/ContactUs';
 import Featured from './sections/Featured';
 import Hero from './sections/Hero/Hero';
 import SpinW from './sections/Spin-wheel/SpinW';
 import Testimonial from './sections/Testimonial';
 import WhyChooseUs from './sections/WhyChooseUs';
 import PricingInclude from './sections/PricingInclude';
+import FAQ from './sections/FAQ';
 // import { useEffect, useState } from 'react';
 // import img from '../../assets/images/discount-banner.webp';
 
@@ -47,7 +48,8 @@ export default function Home() {
       <WhyChooseUs />
       <PricingInclude />
       <SpinW />
-      <ContactUs />
+      <FAQ />
+      {/* <ContactUs /> */}
       <Testimonial />
     </div>
   );

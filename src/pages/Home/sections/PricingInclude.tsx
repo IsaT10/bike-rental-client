@@ -15,7 +15,7 @@ const data = [
 export default function PricingInclude() {
   return (
     <div
-      className='relative md:h-[450px] w-full'
+      className='relative md:h-[550px] w-full'
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -26,7 +26,7 @@ export default function PricingInclude() {
       <div className='absolute inset-0 bg-black/70'></div>
 
       {/* Content */}
-      <div className='relative z-10 py-10 flex flex-col items-center  text-white h-full'>
+      <div className='relative z-10 py-10 flex flex-col items-center justify-center text-white h-full'>
         <h1 className='text-3xl lg:text-4xl font-medium mb-4'>
           Our Pricing Includes
         </h1>
