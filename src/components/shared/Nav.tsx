@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import { LogOutIcon } from 'lucide-react';
+import FromTop from '../animation/from-top';
 
 const navItems = nav_sidebarGenerator(publicRoutes);
 
@@ -76,7 +77,7 @@ const Nav = () => {
       // } ${navVisible ? 'top-0' : '-top-full'}`}
     >
       <Container>
-        <div className='relative flex justify-between items-center'>
+        <FromTop className='relative flex justify-between items-center'>
           <Link to='/' className='flex items-center gap-3'>
             <h2 className='md:text-3xl text-xl font-bold tracking-wider text-primary-color'>
               X
@@ -270,7 +271,7 @@ const Nav = () => {
               )}
             </ul>
           </div>
-        </div>
+        </FromTop>
       </Container>
     </nav>
   );

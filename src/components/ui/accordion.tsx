@@ -33,8 +33,8 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        'flex flex-1 text-left items-center justify-between py-2 lg:py-4 font-medium duration-500 transition-all',
-        'text-[18px] lg:text-[20px]  font-gelasio leading-[20px] md:leading-[32px] tracking-[-0.22px]',
+        'flex flex-1 text-left items-center justify-between py-2 lg:py-4 font-semibold duration-500 transition-all',
+        ' md:text-[18px] lg:text-[20px]  font-gelasio leading-[20px] md:leading-[32px] tracking-[-0.22px]',
         '[&[data-state=open]]:text-white',
         '[&[data-state=open]>svg]:rotate-180', // Rotate the icon when active
         className

@@ -1,13 +1,19 @@
-/* eslint-disable react/prop-types */
 import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
-export default function FromTop({ children, className }) {
+export default function FromTop({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className: string;
+}) {
   return (
     <motion.div
       className={className}
       initial={{ y: -50 }}
       whileInView={{ y: 0 }}
-      viewport={{ once: true }}
+      // viewport={{ once: true }}
       transition={{
         y: { type: 'spring', stiffness: 60 },
         ease: 'easeIn',

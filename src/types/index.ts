@@ -35,6 +35,13 @@ export type TRental = {
   advancedPayment: number;
 };
 
+export type TReview = {
+  review: string;
+  userId: TUser;
+  bikeId: TBike;
+  rating: number;
+};
+
 export type TBike = {
   _id: string;
   name: string;
@@ -42,10 +49,12 @@ export type TBike = {
   pricePerHour: number;
   isAvailable: boolean;
   cc: number;
+  reviews: TReview;
   image: string;
   year: number;
   model: string;
   brand: string;
+  tag?: string;
 };
 
 export type TQueryParam = {

@@ -47,7 +47,7 @@ export default function FAQ() {
   return (
     <div className='border-t border-stone-200'>
       <Container>
-        <div className='flex justify-between justify-items-center gap-5 lg:gap-0 py-14 '>
+        <div className='flex justify-between justify-items-center gap-5 lg:gap-0 py-10 sm:py-14 '>
           {/* Left Side - Contact Info */}
           <FromLeft className='md:w-[50%] hidden md:flex flex-col justify-between '>
             <div>
@@ -85,7 +85,7 @@ export default function FAQ() {
 
           {/* Right Side - FAQ List */}
           <FromRight className='space-y-[10px] w-full md:w-[50%]'>
-            <h2 className='text-3xl md:hidden text-center mb-8 sm:mb-10 font-medium lg:text-4xl'>
+            <h2 className='text-2xl sm:text-3xl md:text-4xl md:hidden text-center font-semibold mb-5 sm:mb-8'>
               Frequently asked <br /> questions
             </h2>
 

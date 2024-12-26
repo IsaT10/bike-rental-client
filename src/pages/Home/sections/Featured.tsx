@@ -4,6 +4,9 @@ import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import { TBike } from '@/types';
 import { Tick } from '@/components/shared/Icons';
 import SectionHeader from '@/components/SectionHeader';
+import { motion } from 'framer-motion';
+import FromRight from '@/components/animation/from-right';
+import FromBottom from '@/components/animation/from-bottom';
 
 export default function Featured() {
   const { data: bikeData } = useGetAllBikesQuery([
@@ -13,14 +16,23 @@ export default function Featured() {
   return (
     <div className=' border-t dark:border-stone-700'>
       <Container>
-        <div className='flex divide-x dark:divide-stone-700'>
-          <img
-            className='md:inline hidden  lg:h-[600px] rounded-tl-[70px] xl:h-[650px] pr-10 xl:pr-14 -mt-14 lg:-mt-20 pb-10 xl:pb-14 w-1/2  object-cover'
+        <div className='flex md:divide-x dark:divide-stone-700'>
+          <motion.img
+            className='md:inline hidden  lg:h-[600px] rounded-tl-[70px] xl:h-[650px] pr-10 xl:pr-14 -mt-14 lg:-mt-20 pb-10 xl:pb-14 w-1/2 object-cover'
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              delay: 0.2,
+              x: { type: 'spring', stiffness: 60 },
+              opacity: { duration: 0.6 },
+              ease: 'easeIn',
+              duration: 1,
+            }}
             src='https://i.ibb.co.com/qnh2CMg/bike4.jpg'
             alt=''
           />
 
-          <div className='md:w-1/2 md:pl-10 xl:pl-14'>
+          <FromRight className='md:w-1/2 md:pl-10 xl:pl-14'>
             <SectionHeader
               className=''
               title='Best bikes <br /> available here'
@@ -42,10 +54,10 @@ export default function Featured() {
                 <Tick /> Adventure-ready, reliable bikes.
               </span>
             </div>
-          </div>
+          </FromRight>
         </div>
       </Container>
-      <div className='border-t bg-stone-100 dark:border-stone-700'>
+      <FromBottom className='border-t bg-stone-50 dark:border-stone-700'>
         <Container>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-14  '>
             {bikeData?.data?.slice(0, 4).map((item: TBike) => (
@@ -53,7 +65,7 @@ export default function Featured() {
             ))}
           </div>
         </Container>
-      </div>
+      </FromBottom>
     </div>
   );
 }

@@ -1,13 +1,19 @@
-/* eslint-disable react/prop-types */
 import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
-export default function FromLeft({ children, className }) {
+export default function FromLeft({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <motion.div
       className={className}
       initial={{ x: -100, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
+      // viewport={{ once: true }}
       transition={{
         delay: 0.2,
         x: { type: 'spring', stiffness: 60 },

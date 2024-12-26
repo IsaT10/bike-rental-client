@@ -130,7 +130,7 @@ export default function BikeListing() {
 
       <div className='border-t border-b dark:border-stone-700'>
         <Container>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-3 py-16 xl:py-20 '>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-16 xl:py-20 '>
             {bikeData?.data?.map((item: TBike) => (
               <BikeCard key={item?._id} bike={item} onCompare={handleCompare} />
             ))}

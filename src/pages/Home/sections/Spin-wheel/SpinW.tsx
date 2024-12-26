@@ -16,6 +16,8 @@ import { fetchCoupons, setCoupon } from '@/redux/features/coupon/couponSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Container from '@/components/Container';
 import SectionHeader from '@/components/SectionHeader';
+import FromLeft from '@/components/animation/from-left';
+import FromRight from '@/components/animation/from-right';
 
 export default function SpinW() {
   const [open, setOpen] = React.useState(false);
@@ -130,17 +132,19 @@ export default function SpinW() {
     <div>
       <Container>
         <div className='flex md:flex-row flex-col-reverse lg:divide-x dark:divide-stone-700 '>
-          <div className='md:w-1/2 flex flex-col justify-center items-center py-14 '>
+          <FromLeft className='md:w-1/2 flex flex-col justify-center items-center py-14 '>
             <SpinWheel {...spinWheelProps} />
-          </div>
+          </FromLeft>
 
-          <SectionHeader
-            className='md:w-1/2 md:pl-10 xl:pl-20  md:py-24'
-            title='Exclusive <br /> Coupons & Discounts'
-            subTitle='  Save more on your bike rentals with our latest promotions.
+          <FromRight className='md:w-1/2'>
+            <SectionHeader
+              className=' md:pl-10 xl:pl-20  md:py-24'
+              title='Exclusive <br /> Coupons & Discounts'
+              subTitle='  Save more on your bike rentals with our latest promotions.
               Discover active discount codes and simple steps to apply them at
               checkout for instant savings on your next adventure.'
-          />
+            />
+          </FromRight>
         </div>
       </Container>
 

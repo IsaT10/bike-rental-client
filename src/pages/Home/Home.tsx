@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Featured from './sections/Featured';
 import Hero from './sections/Hero/Hero';
 import SpinW from './sections/Spin-wheel/SpinW';
-import Testimonial from './sections/Testimonial';
+// import Testimonial from './sections/Testimonial';
 import WhyChooseUs from './sections/WhyChooseUs';
 import PricingInclude from './sections/PricingInclude';
 import FAQ from './sections/FAQ';
@@ -22,7 +22,7 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className=''>
+    <div className='overflow-x-hidden'>
       {/* {showBanner ? (
         <div className='fixed inset-0 flex justify-center items-center z-50 bg-black/90 '>
           <button
@@ -50,7 +50,7 @@ export default function Home() {
       <SpinW />
       <FAQ />
       {/* <ContactUs /> */}
-      <Testimonial />
+      {/* <Testimonial /> */}
     </div>
   );
 }

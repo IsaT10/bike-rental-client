@@ -516,7 +516,7 @@ export const Helmet = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
-    className='size-14'
+    className='size-10 md:size-12'
   >
     <path
       fill='currentColor'
@@ -528,7 +528,7 @@ export const Discount = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
-    className='size-14'
+    className='size-10 md:size-12'
   >
     <path
       fill='currentColor'
@@ -540,7 +540,7 @@ export const Cross = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 32 32'
-    className='size-9'
+    className='size-6 md:size-9'
   >
     <path
       fill='currentColor'
@@ -553,7 +553,7 @@ export const Cross = () => (
 export const Support = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    className='size-11'
+    className='size-7 md:size-11'
     viewBox='0 0 14 14'
   >
     <path

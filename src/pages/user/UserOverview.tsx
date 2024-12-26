@@ -1,5 +1,4 @@
 import UserLatestRentals from '@/components/UserLatestRentals';
-import { useGetAllRentalQuery } from '@/redux/features/rental/rentalApi';
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 
 export default function UserOverview() {
