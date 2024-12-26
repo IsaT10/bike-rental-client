@@ -15,12 +15,12 @@ export default function Featured() {
       <Container>
         <div className='flex divide-x dark:divide-stone-700'>
           <img
-            className='md:inline hidden  lg:h-[600px] rounded-tl-[70px] xl:h-[650px] pr-10 xl:pr-20 -mt-14 lg:-mt-20 pb-10 xl:pb-20 w-1/2  object-cover'
+            className='md:inline hidden  lg:h-[600px] rounded-tl-[70px] xl:h-[650px] pr-10 xl:pr-14 -mt-14 lg:-mt-20 pb-10 xl:pb-14 w-1/2  object-cover'
             src='https://i.ibb.co.com/qnh2CMg/bike4.jpg'
             alt=''
           />
 
-          <div className='md:w-1/2 md:pl-10 xl:pl-20'>
+          <div className='md:w-1/2 md:pl-10 xl:pl-14'>
             <SectionHeader
               className=''
               title='Best bikes <br /> available here'
@@ -47,7 +47,7 @@ export default function Featured() {
       </Container>
       <div className='border-t dark:border-stone-700'>
         <Container>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-16 xl:py-20 '>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-14  '>
             {bikeData?.data?.slice(0, 4).map((item: TBike) => (
               <BikeCard key={item?._id} bike={item} />
             ))}

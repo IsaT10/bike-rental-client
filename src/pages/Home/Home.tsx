@@ -5,6 +5,7 @@ import Hero from './sections/Hero/Hero';
 import SpinW from './sections/Spin-wheel/SpinW';
 import Testimonial from './sections/Testimonial';
 import WhyChooseUs from './sections/WhyChooseUs';
+import PricingInclude from './sections/PricingInclude';
 // import { useEffect, useState } from 'react';
 // import img from '../../assets/images/discount-banner.webp';
 
@@ -44,6 +45,7 @@ export default function Home() {
       <Hero />
       <Featured />
       <WhyChooseUs />
+      <PricingInclude />
       <SpinW />
       <ContactUs />
       <Testimonial />

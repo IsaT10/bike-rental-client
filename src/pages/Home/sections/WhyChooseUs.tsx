@@ -18,14 +18,14 @@ export default function WhyChooseUs() {
       <Container>
         <div className='flex md:flex-row flex-col divide-x dark:divide-stone-700'>
           <SectionHeader
-            className='md:w-1/2 md:pr-10 xl:pr-20 '
+            className='md:w-1/2 md:pr-10 xl:pr-14 '
             title='Why<br />Choose Us'
             subTitle=' Experience unmatched quality, reliability, and customer service.
               Our dedication to excellence ensures that you get the best bikes
               for every adventure, backed by a team that truly cares.'
           />
 
-          <div className='md:w-1/2 grid grid-cols-2   py-10 md:py-12 gap-y-20 lg:py-16 xl:py-20 '>
+          <div className='md:w-1/2 grid grid-cols-2   py-10 md:py-12 gap-y-20 lg:py-14  '>
             {data.map((el, idx) => (
               <div key={idx} className='flex flex-col items-center'>
                 <img className='w-16 h-16 mb-2' src={el.img} alt='' />

@@ -130,7 +130,7 @@ export default function SpinW() {
     <div>
       <Container>
         <div className='flex md:flex-row flex-col-reverse lg:divide-x dark:divide-stone-700 '>
-          <div className='md:w-1/2 flex flex-col justify-center items-center py-16 md:py-24'>
+          <div className='md:w-1/2 flex flex-col justify-center items-center py-14 '>
             <SpinWheel {...spinWheelProps} />
           </div>
 
