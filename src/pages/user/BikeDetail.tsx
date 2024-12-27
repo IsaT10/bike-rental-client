@@ -12,10 +12,7 @@ import doubleHelmet from '@/assets/images/extra_helmet.png';
 import gloves from '@/assets/images/gloves.png';
 import {
   Gear,
-  Glove,
-  Helmet2,
   Horse,
-  Lock,
   Motorcycle,
   SpeedMeter,
   Weight,

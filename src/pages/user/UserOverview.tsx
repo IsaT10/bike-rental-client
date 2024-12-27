@@ -53,8 +53,8 @@ export default function UserOverview() {
           <span className='text-2xl font-bold'>4</span>
         </div>
         <div className='p-5 rounded-lg bg-white '>
-          <p className='text-stone-600 mb-2 font-semibold'>Coupons</p>
-          <span className='text-2xl font-bold'>4</span>
+          <p className='text-stone-600 mb-2 font-semibold'>Reviews</p>
+          <span className='text-2xl font-bold'>2</span>
         </div>
       </div>
 

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logout } from '@/redux/features/auth/authSlice';
 import React from 'react';
 import { toast } from 'sonner';
-
+import logo from '@/assets/images/logo.png';
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import { LogOutIcon } from 'lucide-react';
 
@@ -77,20 +77,23 @@ const Nav = () => {
     >
       <Container>
         <div className='relative flex justify-between items-center'>
-          <Link to='/' className='flex items-center gap-3'>
-            <h2 className='md:text-3xl text-xl font-bold tracking-wider text-primary-color'>
-              X
-              <span
-                className={`${
-                  scrollY >= scrollThreshold
-                    ? ' text-secondary-color dark:text-white'
-                    : ' text-white'
-                }  `}
-              >
-                RIDES
-              </span>
-            </h2>
-          </Link>
+          <div className='flex gap-1'>
+            <img className='size-8' src={logo} alt='' />
+            <Link to='/' className='flex items-center gap-3'>
+              <h2 className='md:text-3xl text-xl font-bold tracking-wider text-primary-color'>
+                X
+                <span
+                  className={`${
+                    scrollY >= scrollThreshold
+                      ? ' text-secondary-color dark:text-white'
+                      : ' text-white'
+                  }  `}
+                >
+                  RIDES
+                </span>
+              </h2>
+            </Link>
+          </div>
           <ul className='hidden md:flex  gap-4 lg:gap-6'>
             {/* <button onClick={dark} className='h-10 w-10 mt-0.5 rounded-lg p-2'>
               <svg
