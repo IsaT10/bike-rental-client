@@ -13,7 +13,7 @@ export default function FromTop({
       className={className}
       initial={{ y: -50 }}
       whileInView={{ y: 0 }}
-      // viewport={{ once: true }}
+      viewport={{ once: true }}
       transition={{
         y: { type: 'spring', stiffness: 60 },
         ease: 'easeIn',

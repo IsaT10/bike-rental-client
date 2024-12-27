@@ -50,8 +50,9 @@ export type TBike = {
   description: string;
   pricePerHour: number;
   isAvailable: boolean;
+
   cc: number;
-  reviews: TReview;
+  reviews: TReview[];
   image: string;
   year: number;
   model: string;

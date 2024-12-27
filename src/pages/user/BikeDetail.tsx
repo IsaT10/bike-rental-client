@@ -50,8 +50,10 @@ export default function BikeDetail() {
       </div>
     );
 
-  const totalRatings = data.data.reviews.reduce(
-    (sum, rating) => sum + rating.rating,
+  console.log(data);
+
+  const totalRatings = data.data.reviews?.reduce(
+    (sum: number, rating: TReview) => sum + rating.rating,
     0
   );
   const averageRating = totalRatings / data.data.reviews.length;
@@ -86,7 +88,7 @@ export default function BikeDetail() {
                 Available
               </span>
             ) : (
-              <span className='text-green-600 text-xl mb-6 font-semibold '>
+              <span className='text-red-600 text-xl mb-6 font-semibold '>
                 Not-available
               </span>
             )}
@@ -113,15 +115,23 @@ export default function BikeDetail() {
               src={data.data.image}
               alt=''
             />
-
-            <p className='text-2xl sm:text-3xl lg:text-4xl uppercase font-bold'>
+            <p className='text-2xl sm:text-3xl mb-2 lg:text-4xl uppercase font-bold'>
               {data.data.brand} {data.data.model}
             </p>
+            {data.data?.reviews?.length > 0 ? (
+              <div className='flex gap-2 items-center'>
+                <Star rating={averageRating} />
+                <span className='inline-block'>
+                  ({data.data.reviews.length})
+                </span>
+              </div>
+            ) : (
+              ''
+            )}
 
             <p className=' tracking-wider uppercase text-stone-400 my-5'>
               {data.data.tag}
             </p>
-
             <div className='flex flex-wrap gap-6 pb-6 border-b border-stone-200'>
               <div className='flex gap-1 items-center'>
                 <Motorcycle />
@@ -144,7 +154,6 @@ export default function BikeDetail() {
                 <p className='text-stone-800'>{data.data.gear}</p>
               </div>
             </div>
-
             <div
               className='pt-6 pb-6 md:pb-10 lg:text-base dark:text-stone-400  text-sm'
               dangerouslySetInnerHTML={{ __html: data.data.description }}
@@ -185,42 +194,49 @@ export default function BikeDetail() {
                 </div>
               </div>
             </div>
-
             <div className='pt-6 md:pt-10'>
               <h3 className='text-2xl md:text-3xl font-semibold'>
                 Latest Reviews
               </h3>
               <p className='text-sm text-stone-500 mb-5'>Hear it from them</p>
-              <div className='flex flex-col divide-y divide-stone-200'>
-                {data.data.reviews?.map((review: TReview) => (
-                  <div key={review._id} className='py-5'>
-                    <div className='flex items-start gap-3'>
-                      <img
-                        src={review.userId.image}
-                        className='size-12 rounded-lg'
-                        alt=''
-                      />
-                      <div>
-                        <div className='flex flex-col gap'>
-                          <div className='flex items-center gap-3'>
-                            <p className=' md:text-lg font-semibold'>
-                              {review.userId.name}{' '}
-                            </p>
-                            <p className=' text-xs font-medium text-stone-500'>
-                              {' '}
-                              {formatDate(review.createdAt)}
-                            </p>
+              {data.data.reviews?.length > 0 ? (
+                <div className='flex flex-col divide-y divide-stone-200'>
+                  {data.data.reviews?.map((review: TReview) => (
+                    <div key={review._id} className='py-5'>
+                      <div className='flex items-start gap-3'>
+                        <img
+                          src={review.userId.image}
+                          className='size-12 rounded-lg'
+                          alt=''
+                        />
+                        <div>
+                          <div className='flex flex-col gap'>
+                            <div className='flex items-center gap-3'>
+                              <p className=' md:text-lg font-semibold'>
+                                {review.userId.name}{' '}
+                              </p>
+                              <p className=' text-xs font-medium text-stone-500'>
+                                {' '}
+                                {formatDate(review.createdAt)}
+                              </p>
+                            </div>
+                            <Star rating={review.rating} />
                           </div>
-                          <Star rating={review.rating} />
+                          <p className='text-stone-500 text-sm lg:text-[16px] mt-3'>
+                            {review.review}
+                          </p>
                         </div>
-                        <p className='text-stone-500 text-sm lg:text-[16px] mt-3'>
-                          {review.review}
-                        </p>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className='h-[500px] flex-col flex items-center justify-center'>
+                  <h3 className='text-xl font-semibold'>
+                    This rent bike does not have any review yet!
+                  </h3>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function FromLeft({
       className={className}
       initial={{ x: -100, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
-      // viewport={{ once: true }}
+      viewport={{ once: true }}
       transition={{
         delay: 0.2,
         x: { type: 'spring', stiffness: 60 },

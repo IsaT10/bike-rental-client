@@ -28,7 +28,7 @@ export default function BikeCard({ bike, onCompare }: TBikeCardPros) {
   };
   const location = useLocation();
 
-  const totalRatings = bike.reviews.reduce(
+  const totalRatings = bike.reviews?.reduce(
     (sum, rating) => sum + rating.rating,
     0
   );
