@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Featured from './sections/Featured';
 import Hero from './sections/Hero/Hero';
 import SpinW from './sections/Spin-wheel/SpinW';
-// import Testimonial from './sections/Testimonial';
+import Testimonial from './sections/Testimonial';
 import WhyChooseUs from './sections/WhyChooseUs';
 import PricingInclude from './sections/PricingInclude';
 import FAQ from './sections/FAQ';
@@ -48,9 +48,9 @@ export default function Home() {
       <WhyChooseUs />
       <PricingInclude />
       <SpinW />
+      <Testimonial />
       <FAQ />
       {/* <ContactUs /> */}
-      {/* <Testimonial /> */}
     </div>
   );
 }

@@ -57,7 +57,7 @@ export default function Featured() {
           </FromRight>
         </div>
       </Container>
-      <FromBottom className='border-t bg-stone-50 dark:border-stone-700'>
+      <FromBottom className='border-t bg-[#64d1c41a] dark:border-stone-700'>
         <Container>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-14  '>
             {bikeData?.data?.slice(0, 4).map((item: TBike) => (

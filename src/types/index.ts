@@ -36,10 +36,12 @@ export type TRental = {
 };
 
 export type TReview = {
+  _id: string;
   review: string;
-  userId: TUser;
+  userId: TUserProfile;
   bikeId: TBike;
   rating: number;
+  createdAt: string;
 };
 
 export type TBike = {

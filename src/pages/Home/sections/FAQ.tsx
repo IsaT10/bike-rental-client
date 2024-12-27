@@ -51,7 +51,7 @@ export default function FAQ() {
           {/* Left Side - Contact Info */}
           <FromLeft className='md:w-[50%] hidden md:flex flex-col justify-between '>
             <div>
-              <h2 className='text-3xl font-medium lg:text-4xl'>
+              <h2 className='text-3xl font-semibold lg:text-4xl'>
                 Frequently asked <br /> questions
               </h2>
               <p className='lg:text-lg mt-4 tracking-tight text-stone-500 w-[80%]'>
