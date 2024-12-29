@@ -1,20 +1,17 @@
 import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
-import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
 
 type TFormField = {
   name: string;
   placeholder?: string;
   isUpdate?: boolean;
-  type: string;
   label?: string;
 };
 
-export default function FormInputField({
-  // isUpdate,
+export default function FormTextAreaField({
   name,
   label,
-  type,
   placeholder,
 }: TFormField) {
   return (
@@ -27,21 +24,12 @@ export default function FormInputField({
               <Label className='dark:text-stone-200' htmlFor={name}>
                 {label}
               </Label>
-              <Input
-                type={type}
-                className=' outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700  w-full'
-                placeholder={placeholder}
+              <Textarea
+                className='resize-none outline-none border-stone-300 dark:text-stone-100 dark:border-stone-700 rounded-xl'
                 {...field}
+                placeholder={placeholder}
               />
             </div>
-            {/* <div className='space-y-1.5'>
-              {isUpdate && <Label htmlFor={name}>{placeholder}</Label>}
-              <Input
-                className='py-6 outline-none border-stone-300'
-                placeholder={placeholder}
-                {...field}
-              />
-            </div> */}
           </FormControl>
 
           <FormMessage className='dark:text-red-500' />

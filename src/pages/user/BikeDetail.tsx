@@ -50,8 +50,6 @@ export default function BikeDetail() {
       </div>
     );
 
-  console.log(data);
-
   const totalRatings = data.data.reviews?.reduce(
     (sum: number, rating: TReview) => sum + rating.rating,
     0

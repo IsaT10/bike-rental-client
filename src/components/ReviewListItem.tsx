@@ -14,6 +14,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Trash } from 'lucide-react';
+import Star from './Star';
 
 export default function ReviewListItem({ review }: { review: TReview }) {
   const [deleteReview] = useDeleteReviewMutation();
@@ -28,9 +29,18 @@ export default function ReviewListItem({ review }: { review: TReview }) {
   };
 
   return (
-    <div className='text-xs hover:bg-stone-50 md:text-sm py-5 px-6 md:px-10 dark:text-stone-100 dark:bg-stone-700  flex gap-4 justify-between items-center'>
-      <span className='flex-1 md:ml-6'>{review.review}</span>
-      <span className='flex-[.5] text-center'>{review.rating}</span>
+    <div className=''>
+      <div className='flex gap-3 bg-white p-6 rounded-xl md:w-[90%]  xl:w-[80%]'>
+        <img src={review.bikeId.image} className='size-16 rounded-lg' alt='' />
+        <div>
+          <p className='flex-1 font-semibold mb-2  sm:text-lg'>
+            {review?.bikeId?.brand}{' '}
+            <span className='ml-1'>{review?.bikeId?.model}</span>
+          </p>
+          <Star rating={review.rating} />
+          <p className='text-sm mt-2 text-stone-700'>{review.review}</p>
+        </div>
+      </div>
 
       <div className='flex-[.5] text-center'>
         <AlertDialog>

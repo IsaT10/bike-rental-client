@@ -13,7 +13,7 @@ export default function DashboardLayout() {
         </Helmet>
 
         <DashboardNav />
-        <div className='pl-16 p-6 md:p-8 lg:p-10'>
+        <div className='pl-16 p-6 md:p-8 '>
           <Outlet />
         </div>
       </div>

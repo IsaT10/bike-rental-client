@@ -28,7 +28,10 @@ export default function MyReviews() {
     );
   return (
     <div>
-      {' '}
+      <h2 className='text-2xl font-semibold mb-6'>Rating & review</h2>
+      {data?.data?.map((review: TReview) => (
+        <ReviewListItem key={review._id} review={review} />
+      ))}
       <div className='border border-stone-200 font-semibold rounded-b-none dark:border-stone-700  text-xs text-white md:text-sm rounded-lg py-3 md:py-4 px-6 md:px-10 flex justify-between items-center mt-2 bg-primary-color dark:bg-stone-800 dark:text-stone-200'>
         <span className='flex-1 md:ml-6'>Review Message</span>
         <span className='flex-[.5]  text-center'>Rating</span>
