@@ -89,9 +89,7 @@ export default function UnpaidRent({
   return (
     <div className='bg-white dark:bg-stone-700 text-sm dark:text-stone-100 dark:border-stone-950  hover:bg-stone-100 items-center px-6 py-5   flex justify-between'>
       <p className='flex-[2]'>
-        {data?.data?.brand}{' '}
-        <span className='px-[1px] mx-1 py-1 bg-stone-400'></span>{' '}
-        {data?.data?.model}
+        {data?.data?.brand} <span className='mx-1 '></span> {data?.data?.model}
       </p>
       <p className='flex-[2]'>{formateDate(item.startTime)}</p>
       <p className='flex-[2]'>{formateDate(item.returnTime)}</p>

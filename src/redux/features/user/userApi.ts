@@ -1,4 +1,5 @@
 import { baseApi } from '@/redux/api/baseApi';
+import { TQueryParam } from '@/types';
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -18,10 +19,18 @@ const userApi = baseApi.injectEndpoints({
       invalidatesTags: ['profile'],
     }),
     getAllUser: builder.query({
-      query: () => ({
-        url: '/users',
-        method: 'GET',
-      }),
+      query: (query) => {
+        const params = new URLSearchParams();
+
+        if (query) {
+          query?.forEach((el: TQueryParam) => {
+            if (el.value !== 'all' && el.value !== '') {
+              params.append(el.name, el.value as string);
+            }
+          });
+        }
+        return { url: '/users', method: 'GET', params };
+      },
       providesTags: ['user'],
     }),
     deleteUser: builder.mutation({

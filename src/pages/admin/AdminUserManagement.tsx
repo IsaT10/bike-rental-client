@@ -1,10 +1,23 @@
+import CommonPagination from '@/components/Pagination';
 import UserListItem from '@/components/UserListItem';
 import { useGetAllUserQuery } from '@/redux/features/user/userApi';
 import { TUserProfile } from '@/types';
+import { useState } from 'react';
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminUserManagement() {
-  const { data: userData, error, isLoading } = useGetAllUserQuery(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useGetAllUserQuery([
+    { name: 'page', value: currentPage },
+    { name: 'limit', value: limit },
+  ]);
+
+  const totalPages = Math.ceil(userData?.meta?.total / limit);
 
   if (isLoading)
     return (
@@ -39,6 +52,14 @@ export default function AdminUserManagement() {
           <UserListItem key={idx} user={el} />
         ))}
       </div>
+
+      {userData?.meta?.total < 10 && currentPage === totalPages ? null : (
+        <CommonPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
   );
 }

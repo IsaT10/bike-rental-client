@@ -11,6 +11,7 @@ import { Close } from '@/components/shared/Icons';
 import './MyRentals.css'; // Assuming you create this CSS file for fade animations
 import { useAppSelector } from '@/redux/hooks';
 import { toast } from 'sonner';
+import BookedRent from '@/components/BookedRent';
 type TCouponPopupProps = {
   onClose: () => void;
   coupon: string;
@@ -84,9 +85,7 @@ export default function MyRentals() {
 
   const { couponCode, discount } = useAppSelector((state) => state.coupon);
 
-  const { data, error, isLoading } = useGetAllRentalQuery([
-    { name: 'isRental', value: 'false' },
-  ]);
+  const { data, error, isLoading } = useGetAllRentalQuery([]);
 
   const [showPopup, setShowPopup] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -120,7 +119,7 @@ export default function MyRentals() {
 
   if (isLoading)
     return (
-      <div className='h-[calc(100vh-80px)] flex flex-col items-center justify-center'>
+      <div className='h-[calc(100vh-80px)] flex flex-col items-center  justify-center'>
         <GridLoader
           color='#2A9D90'
           size={10}
@@ -138,8 +137,16 @@ export default function MyRentals() {
       </div>
     );
 
-  const unpaidRent = data.data.filter((item: TRental) => item.isPaid === false);
+  const unpaidRent = data.data.filter(
+    (item: TRental) => item.isPaid === false && item.isReturned === true
+  );
   const paidRent = data.data.filter((item: TRental) => item.isPaid === true);
+  const bookedRent = data.data.filter(
+    (item: TRental) =>
+      item.isPaid === false &&
+      item.isReturned === false &&
+      item.isCanceled === false
+  );
 
   return (
     <div>
@@ -159,8 +166,11 @@ export default function MyRentals() {
         ''
       )}
 
-      <Tabs defaultValue='unpaid' className='max-w-[1200px]'>
-        <TabsList className='w-[400px] grid grid-cols-2 rounded-none rounded-t-lg'>
+      <Tabs defaultValue='booked' className=''>
+        <TabsList className='w-[400px] grid grid-cols-3 rounded-none rounded-t-lg'>
+          <TabsTrigger className='rounded-md' value='booked'>
+            Booked
+          </TabsTrigger>
           <TabsTrigger className='rounded-md' value='unpaid'>
             Unpaid
           </TabsTrigger>
@@ -168,6 +178,35 @@ export default function MyRentals() {
             Paid
           </TabsTrigger>
         </TabsList>
+        <TabsContent className='mt-0' value='booked'>
+          {bookedRent.length ? (
+            <>
+              <div className='bg-primary-color text-white dark:bg-stone-800 items-center  text-sm px-4 lg:px-6 py-3 font-semibold dark:text-stone-200 dark:border-stone-950  flex justify-between border-b border-b-stone-200 rounded-t-lg '>
+                <p className='flex-1 ml-10'>Brand Name</p>
+                <p className='flex-1'>Start Time</p>
+                <p className='flex-1 text-center'>Advanced Payment</p>
+                <p className='flex-1 text-center'>Action</p>
+              </div>
+              <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
+                {bookedRent.map((item: TRental) => (
+                  <BookedRent
+                    key={item._id}
+                    item={item}
+                    finalDiscount={finalDiscount}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold  dark:text-stone-100'>
+              {`${
+                !data.data.length
+                  ? 'You have no rental history'
+                  : 'Your all rental payment has been completed.'
+              }`}
+            </h3>
+          )}
+        </TabsContent>
         <TabsContent className='mt-0' value='unpaid'>
           {unpaidRent.length ? (
             <>

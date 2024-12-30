@@ -19,6 +19,7 @@ const reviewSchema = z.object({
 
 type TBikeFormProps = {
   bikeId?: string;
+  rentId?: string;
   isUpdate?: boolean;
   review?: TReview;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,11 +27,12 @@ type TBikeFormProps = {
 
 export function ReviewForm({
   bikeId,
+  rentId,
   isUpdate,
   review,
   setOpen,
 }: TBikeFormProps) {
-  const [starValue, setStarValue] = useState(5);
+  const [starValue, setStarValue] = useState(review?.rating || 5);
   //   const bikeDetails = {
   //     ...bike,
 
@@ -71,15 +73,16 @@ export function ReviewForm({
 
     try {
       if (isUpdate) {
-        const sonnerId = toast.loading('Updating...');
+        // const sonnerId = toast.loading('Updating...');
         const res = await updateReview({
-          id: bikeId,
+          id: review?._id,
           data,
         }).unwrap();
         toast.success(res?.message, { id: sonnerId });
       } else {
         const res = await addReview({
           id: bikeId,
+          rentId,
           data,
         }).unwrap();
         toast.success(res?.message, { id: sonnerId });
@@ -108,8 +111,8 @@ export function ReviewForm({
         >
           <div className='flex-1'>
             <FormTextAreaField
-              //   isUpdate={isUpdate}
-              label='Review'
+              isUpdate={isUpdate}
+              label='Review details'
               placeholder={'Your Overall Experience'}
               name={'review'}
             />

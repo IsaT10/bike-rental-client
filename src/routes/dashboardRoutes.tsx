@@ -2,12 +2,12 @@ import AdminBikeManagement from '@/pages/admin/AdminBikeManagement';
 import MyRentals from '@/pages/user/MyRentals';
 import AdminUserManagement from '@/pages/admin/AdminUserManagement';
 import AdminRoute from './AdminRoute';
-import UserProfile from '@/pages/user/UserProfile';
 import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
 import CouponManage from '@/pages/admin/CouponManage';
 import AdminOverview from '@/pages/admin/AdminOverview';
 import UserOverview from '@/pages/user/UserOverview';
 import MyReviews from '@/pages/user/MyReviews';
+import CancelBooking from '@/pages/user/CancelBooking';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
@@ -28,12 +28,12 @@ export const dashboardRoutes = [
     element: <UserOverview />,
     roles: ['user'],
   },
-  {
-    name: 'Profile',
-    path: 'profile',
-    element: <UserProfile />,
-    roles: ['user', 'admin'], // Both users and admins can access
-  },
+  // {
+  //   name: 'Profile',
+  //   path: 'profile',
+  //   element: <UserProfile />,
+  //   roles: ['user', 'admin'], // Both users and admins can access
+  // },
   // {
   //   name: 'Bike Listing',
   //   path: 'bike-listing',
@@ -46,6 +46,12 @@ export const dashboardRoutes = [
     name: 'My Rental',
     path: 'my-rental',
     element: <MyRentals />,
+    roles: ['user'],
+  },
+  {
+    name: 'Cancel Booking',
+    path: 'cancle-booking',
+    element: <CancelBooking />,
     roles: ['user'],
   },
   {

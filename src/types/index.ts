@@ -31,6 +31,8 @@ export type TRental = {
   returnTime: Date;
   totalCost: number;
   isReturned: boolean;
+  isCanceled: boolean;
+  isReviewed: boolean;
   isPaid: boolean;
   advancedPayment: number;
 };

@@ -65,12 +65,22 @@ const rentalApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ['rent'],
     }),
+    cancelRent: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/rentals/${id}/cancelRent`,
+          method: 'PATCH',
+        };
+      },
+      invalidatesTags: ['rent'],
+    }),
   }),
 });
 
 export const {
   useGetAllRentalQuery,
   useGetAllUserRentalQuery,
+  useCancelRentMutation,
   useReturnBikeMutation,
   useRentBikeMutation,
   useChangePaymentStatusMutation,

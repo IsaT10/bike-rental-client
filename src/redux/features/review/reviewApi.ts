@@ -22,11 +22,11 @@ const reviewApi = baseApi.injectEndpoints({
 
     addReview: builder.mutation({
       query: (options) => ({
-        url: `/reviews/${options.id}`,
+        url: `/reviews/${options.id}/${options.rentId}`,
         method: 'POST',
         body: options.data,
       }),
-      invalidatesTags: ['review'],
+      invalidatesTags: ['review', 'rent'],
     }),
     updateReview: builder.mutation({
       query: (options) => ({
