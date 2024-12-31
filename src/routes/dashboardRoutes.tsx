@@ -2,12 +2,16 @@ import AdminBikeManagement from '@/pages/admin/AdminBikeManagement';
 import MyRentals from '@/pages/user/MyRentals';
 import AdminUserManagement from '@/pages/admin/AdminUserManagement';
 import AdminRoute from './AdminRoute';
-import ReturnAndBilling from '@/pages/admin/ReturnAndBilling';
 import CouponManage from '@/pages/admin/CouponManage';
 import AdminOverview from '@/pages/admin/AdminOverview';
 import UserOverview from '@/pages/user/UserOverview';
 import MyReviews from '@/pages/user/MyReviews';
 import CancelBooking from '@/pages/user/CancelBooking';
+import CancelBookingForAdmin from '@/pages/admin/CancelBookingFroAdmin';
+import UserProfile from '@/pages/user/UserProfile';
+import Rentals from '@/pages/admin/Rentals';
+import AdminReviewManagement from '@/pages/admin/AdminReviewManagement';
+import Transactions from '@/pages/user/Transactions';
 
 export const dashboardRoutes = [
   // Routes accessible to both users and admins
@@ -28,12 +32,11 @@ export const dashboardRoutes = [
     element: <UserOverview />,
     roles: ['user'],
   },
-  // {
-  //   name: 'Profile',
-  //   path: 'profile',
-  //   element: <UserProfile />,
-  //   roles: ['user', 'admin'], // Both users and admins can access
-  // },
+  {
+    path: 'profile',
+    element: <UserProfile />,
+    roles: ['user', 'admin'], // Both users and admins can access
+  },
   // {
   //   name: 'Bike Listing',
   //   path: 'bike-listing',
@@ -64,7 +67,7 @@ export const dashboardRoutes = [
   // Routes only for admins
 
   {
-    name: 'Bike Manage',
+    name: 'Bikes',
     path: 'bike-management',
     element: (
       <AdminRoute>
@@ -75,7 +78,7 @@ export const dashboardRoutes = [
   },
 
   {
-    name: 'User Manage',
+    name: 'Users',
     path: 'users',
     element: (
       <AdminRoute>
@@ -85,14 +88,40 @@ export const dashboardRoutes = [
     roles: ['admin'],
   },
   {
-    name: 'Return & Billing',
-    path: 'return-&-billing',
+    name: 'Rentals',
+    path: 'rentals',
     element: (
       <AdminRoute>
-        <ReturnAndBilling />
+        <Rentals />
       </AdminRoute>
     ),
     roles: ['admin'],
+  },
+  {
+    name: 'Cancelled Booking',
+    path: 'all-cancelled-booking',
+    element: (
+      <AdminRoute>
+        <CancelBookingForAdmin />
+      </AdminRoute>
+    ),
+    roles: ['admin'],
+  },
+  {
+    name: 'Reviews',
+    path: 'all-reviews',
+    element: (
+      <AdminRoute>
+        <AdminReviewManagement />
+      </AdminRoute>
+    ),
+    roles: ['admin'],
+  },
+  {
+    name: 'Transactions',
+    path: 'transactions',
+    element: <Transactions />,
+    roles: ['user', 'admin'],
   },
   {
     name: 'Coupon Manage',

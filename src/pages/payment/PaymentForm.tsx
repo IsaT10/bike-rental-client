@@ -7,12 +7,14 @@ import {
 } from '@/redux/features/rental/rentalApi';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useAddPaymentMutation } from '@/redux/features/payment/paymentApi';
 
 export default function PaymentForm() {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [rentBike] = useRentBikeMutation();
+  const [saveTransaction] = useAddPaymentMutation();
   const [changeStatus] = useChangePaymentStatusMutation();
 
   const { advancedPayment, bikeId, startTime } = useAppSelector(
@@ -42,7 +44,8 @@ export default function PaymentForm() {
 
       // Proceed with payment confirmation
       const response = await fetch(
-        'https://bike-rental-pied.vercel.app/create-payment-intent',
+        // 'http://localhost:3000/api/payments/create-payment-intent',
+        'https://bike-rental-pied.vercel.app/payments/create-payment-intent',
         {
           method: 'POST',
           headers: {
@@ -61,6 +64,8 @@ export default function PaymentForm() {
           payment_method: paymentMethod.id,
         });
 
+      console.log(paymentIntent);
+
       if (confirmError) {
         console.log('Payment failed:', confirmError.message);
         toast.success('Payment denied', { id: sonnerId });
@@ -74,6 +79,12 @@ export default function PaymentForm() {
         }
         try {
           await rentBike({ advancedPayment, bikeId, startTime }).unwrap();
+          await saveTransaction({
+            transactionId: paymentIntent.id,
+            bike: bikeId,
+            amount: advancedPayment,
+            status: 'completed',
+          }).unwrap();
           toast.success('Payment complete', { id: sonnerId });
           navigate(`/booking-complete`);
         } catch (error) {

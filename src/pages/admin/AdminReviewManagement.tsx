@@ -1,14 +1,14 @@
 import CommonPagination from '@/components/CommonPagination';
 import ReviewListItem from '@/components/ReviewListItem';
-import { useGetAllReviewByUserQuery } from '@/redux/features/review/reviewApi';
+import { useGetAllReviewByAdminQuery } from '@/redux/features/review/reviewApi';
 import { TReview } from '@/types';
 import { useState } from 'react';
 import GridLoader from 'react-spinners/GridLoader';
 
-export default function MyReviews() {
+export default function AdminReviewManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 5;
-  const { data, error, isLoading } = useGetAllReviewByUserQuery([
+  const { data, error, isLoading } = useGetAllReviewByAdminQuery([
     { name: 'page', value: currentPage },
     { name: 'limit', value: limit },
   ]);

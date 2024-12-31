@@ -1,20 +1,38 @@
 import { baseApi } from '@/redux/api/baseApi';
+import { TQueryParam } from '@/types';
 
 const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllReview: builder.query({
-      query: () => {
-        // const params = new URLSearchParams();
+    getAllReviewByUser: builder.query({
+      query: (query) => {
+        const params = new URLSearchParams();
 
-        // if (query) {
-        //   query?.forEach((el: TQueryParam) => {
-        //     params.append(el.name, el.value as string);
-        //   });
-        // }
+        if (query) {
+          query?.forEach((el: TQueryParam) => {
+            params.append(el.name, el.value as string);
+          });
+        }
         return {
           url: '/reviews',
           method: 'GET',
-          //   params,
+          params,
+        };
+      },
+      providesTags: ['review'],
+    }),
+    getAllReviewByAdmin: builder.query({
+      query: (query) => {
+        const params = new URLSearchParams();
+
+        if (query) {
+          query?.forEach((el: TQueryParam) => {
+            params.append(el.name, el.value as string);
+          });
+        }
+        return {
+          url: '/reviews/all',
+          method: 'GET',
+          params,
         };
       },
       providesTags: ['review'],
@@ -47,7 +65,8 @@ const reviewApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetAllReviewQuery,
+  useGetAllReviewByUserQuery,
+  useGetAllReviewByAdminQuery,
   useDeleteReviewMutation,
   useAddReviewMutation,
   useUpdateReviewMutation,

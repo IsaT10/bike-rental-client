@@ -19,7 +19,7 @@ export default function ReviewListItem({ review }: { review: TReview }) {
   };
 
   return (
-    <div className='flex gap-3 bg-white p-6 rounded-xl md:w-[90%]  xl:w-[80%] mb-5'>
+    <div className='flex gap-3 bg-white p-6 rounded-xl  mb-5'>
       <img src={review.bikeId.image} className='size-16 rounded-lg' alt='' />
       <div>
         <p className='flex-1 font-semibold mb-2  sm:text-lg'>

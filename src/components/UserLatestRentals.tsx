@@ -30,21 +30,29 @@ export default function UserLatestRentals() {
   return (
     <div>
       <h2 className='text-xl font-semibold mb-6 mt-10'>Latest Rents</h2>
-      <>
-        <div className='bg-primary-color text-white dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950  flex justify-between border-b border-b-stone-200 rounded-t-lg'>
-          <p className='flex-1'>Brand Name</p>
-          <p className='flex-[2]'>Start Time</p>
-          <p className='flex-[2]'>Return Time</p>
-          <p className='flex-1'>Total Cost</p>
-          <p className='flex-1'>Return Amount</p>
-        </div>
 
-        <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
-          {data?.data?.map((item: TRental) => (
-            <PaidRent key={item._id} item={item} isPaid={true} />
-          ))}
-        </div>
-      </>
+      {data?.data?.length ? (
+        <>
+          <div className='bg-primary-color text-white dark:bg-stone-800 items-center lg:text-base text-sm px-4 lg:px-6 py-2.5 font-semibold dark:text-stone-200 dark:border-stone-950  flex justify-between border-b border-b-stone-200 rounded-t-lg'>
+            <p className='flex-1'>Brand Name</p>
+            <p className='flex-[2]'>Start Time</p>
+            <p className='flex-[2]'>Return Time</p>
+            <p className='flex-1'>Total Cost</p>
+            <p className='flex-1'>Return Amount</p>
+            <p className='flex-1'></p>
+          </div>
+
+          <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
+            {data?.data?.map((item: TRental) => (
+              <PaidRent key={item._id} item={item} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <h3 className='h-[50vh] text-stone-600 flex flex-col items-center justify-center text-lg font-  dark:text-stone-100'>
+          You have no rental history yet.
+        </h3>
+      )}
     </div>
   );
 }

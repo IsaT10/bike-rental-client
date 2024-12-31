@@ -1,10 +1,14 @@
+import CommonPagination from '@/components/CommonPagination';
 import RentalListItem from '@/components/RentalListItem';
 import { useGetAllUserRentalQuery } from '@/redux/features/rental/rentalApi';
 import { TRental } from '@/types';
+import React from 'react';
 
 import GridLoader from 'react-spinners/GridLoader';
 
-export default function ReturnAndBilling() {
+export default function Rentals() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const limit = 5;
   const {
     data: rentalData,
     error,
@@ -12,7 +16,11 @@ export default function ReturnAndBilling() {
   } = useGetAllUserRentalQuery([
     // { name: 'isReturned', value: 'false' },
     { name: 'sort', value: '-startTime' },
+    { name: 'page', value: currentPage },
+    { name: 'limit', value: limit },
   ]);
+
+  const totalPages = Math.ceil(rentalData?.meta?.total / limit);
 
   if (isLoading)
     return (
@@ -36,18 +44,26 @@ export default function ReturnAndBilling() {
 
   return (
     <>
-      <div className='bg-primary-color text-white items-center text-xs sm:text-sm lg:text-base px-6 lg:px-10 py-3 font-semibold border-stone-300 rounded-t-lg flex justify-between  dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950'>
+      <div className='bg-primary-color text-white items-center text-xs sm:text-sm  px-6 lg:px-10 py-3 font-semibold border-stone-300 rounded-t-lg flex justify-between  dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950 '>
         <p className='flex-[2]'>Brand Name</p>
         <p className='flex-[2]'>Start Time</p>
         <p className='flex-[2]'>Return Time</p>
         <p className='flex-1'>Action</p>
       </div>
 
-      <div className=' flex flex-col border border-stone-300'>
+      <div className=' flex flex-col border border-stone-300 mb-10 rounded-b-lg'>
         {rentalData?.data?.map((item: TRental) => (
           <RentalListItem key={item._id} item={item} />
         ))}
       </div>
+
+      {rentalData?.meta?.total < 5 && currentPage === totalPages ? null : (
+        <CommonPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </>
   );
 }

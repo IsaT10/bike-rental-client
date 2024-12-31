@@ -5,6 +5,7 @@ import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
 import { MenuIcon } from 'lucide-react';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '@/assets/images/logo.png';
 
 export default function Sidebar() {
   // const [isDark, setIsDark] = React.useState(true);
@@ -45,16 +46,14 @@ export default function Sidebar() {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } 900:translate-x-0 900:w-56 lg:w-64 flex flex-col gap-4`}
       >
-        <div className='flex justify-between items-center mb-4'>
-          <Link to='/'>
-            <h2 className='text-xl font-bold tracking-wider text-primary-color '>
-              X
-              <span className=' text-secondary-color dark:text-white'>
-                RIDES
-              </span>
-            </h2>
-          </Link>
-        </div>
+        <Link className='flex justify-start gap-1 items-center mb-4' to='/'>
+          <img className='size-7' src={logo} alt='' />
+          <h2 className='text-2xl font-bold tracking-wider text-primary-color '>
+            X
+            <span className=' text-secondary-color dark:text-white'>RIDES</span>
+          </h2>
+        </Link>
+
         {SidebarLinkItems.map((item) => (
           <NavLink
             key={item.path}

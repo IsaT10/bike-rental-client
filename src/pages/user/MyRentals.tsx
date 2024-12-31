@@ -145,7 +145,7 @@ export default function MyRentals() {
     (item: TRental) =>
       item.isPaid === false &&
       item.isReturned === false &&
-      item.isCanceled === false
+      item.isCancelled === false
   );
 
   return (
@@ -153,6 +153,8 @@ export default function MyRentals() {
       {/* {couponCode && discount && (
         <h2 className='text-right '>Coupon Code: {couponCode}</h2>
       )} */}
+      <h2 className='text-2xl font-semibold mb-6'>My Rentals</h2>
+
       {!finalDiscount && couponCode && discount && data?.data.length ? (
         <div className='bg-green-100 px-4 py-2 rounded mb-4 flex justify-between items-center'>
           <p>
@@ -198,10 +200,10 @@ export default function MyRentals() {
               </div>
             </>
           ) : (
-            <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold  dark:text-stone-100'>
+            <h3 className='h-[70vh] flex flex-col items-center justify-center text-lg   dark:text-stone-100 text-stone-600'>
               {`${
                 !data.data.length
-                  ? 'You have no rental history'
+                  ? 'You have no rental history yet.'
                   : 'Your all rental payment has been completed.'
               }`}
             </h3>
@@ -228,10 +230,10 @@ export default function MyRentals() {
               </div>
             </>
           ) : (
-            <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold  dark:text-stone-100'>
+            <h3 className='h-[70vh] flex flex-col items-center justify-center text-lg   dark:text-stone-100 text-stone-600'>
               {`${
                 !data.data.length
-                  ? 'You have no rental history'
+                  ? 'You have no rental history yet.'
                   : 'Your all rental payment has been completed.'
               }`}
             </h3>
@@ -255,8 +257,8 @@ export default function MyRentals() {
               </div>
             </>
           ) : (
-            <h3 className='h-[calc(100vh-150px)] flex flex-col items-center justify-center text-2xl font-semibold dark:text-stone-100'>
-              You have no rental history
+            <h3 className='h-[70vh] flex flex-col items-center justify-center text-lg   dark:text-stone-100 text-stone-600'>
+              You have no rental history yet.
             </h3>
           )}
         </TabsContent>

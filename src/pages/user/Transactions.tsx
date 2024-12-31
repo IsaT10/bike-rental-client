@@ -1,23 +1,19 @@
 import CommonPagination from '@/components/CommonPagination';
-import UserListItem from '@/components/UserListItem';
-import { useGetAllUserQuery } from '@/redux/features/user/userApi';
-import { TUserProfile } from '@/types';
+import TransactionListItem from '@/components/TransactionListItem';
+import { useGetAllPaymentsQuery } from '@/redux/features/payment/paymentApi';
+import { TPayment } from '@/types';
 import { useState } from 'react';
 import GridLoader from 'react-spinners/GridLoader';
 
-export default function AdminUserManagement() {
+export default function Transactions() {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
-  const {
-    data: userData,
-    error,
-    isFetching,
-  } = useGetAllUserQuery([
+  const { data, error, isFetching } = useGetAllPaymentsQuery([
     { name: 'page', value: currentPage },
     { name: 'limit', value: limit },
   ]);
 
-  const totalPages = Math.ceil(userData?.meta?.total / limit);
+  const totalPages = Math.ceil(data?.meta?.total / limit);
 
   if (isFetching)
     return (
@@ -41,19 +37,20 @@ export default function AdminUserManagement() {
   return (
     <div className=''>
       <div className='border border-stone-200 font-semibold rounded-b-none dark:border-stone-700  text-xs text-white md:text-sm rounded-lg py-3 md:py-4 px-6 md:px-10 flex justify-between items-center mt-2 bg-primary-color dark:bg-stone-800 dark:text-stone-200'>
-        <span className='flex-1 md:ml-6'>Name</span>
+        <span className='flex-1 md:ml-6'>Transaction Id</span>
+        <span className='flex-1  text-center'>Name</span>
         <span className='flex-1  text-center'>Email</span>
-        <span className='flex-1 text-center'>Role</span>
-        <span className='flex-[.5] text-center'>Actions</span>
+        <span className='flex-1 text-center'>Amount</span>
+        <span className='flex-[.5] text-center'>Status</span>
       </div>
 
       <div className='rounded-lg border border-t-0 dark:border-stone-700 rounded-t-none border-stone-300 divide-y bg-white divide-stone-300 dark:divide-stone-950 mb-10'>
-        {userData?.data?.map((el: TUserProfile, idx: number) => (
-          <UserListItem key={idx} user={el} />
+        {data?.data?.map((el: TPayment, idx: number) => (
+          <TransactionListItem key={idx} transaction={el} />
         ))}
       </div>
 
-      {userData?.meta?.total < 10 && currentPage === totalPages ? null : (
+      {data?.meta?.total < 10 && currentPage === totalPages ? null : (
         <CommonPagination
           currentPage={currentPage}
           totalPages={totalPages}

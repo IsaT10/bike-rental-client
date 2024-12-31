@@ -1,5 +1,6 @@
 import AddBikeModal from '@/components/AddBikeModal';
 import BikeListItem from '@/components/BikeListItem';
+import CommonPagination from '@/components/CommonPagination';
 import FilterSelect from '@/components/FilterSelect';
 
 import useBrand from '@/hooks/useBrand';
@@ -12,7 +13,8 @@ export default function AdminBikeManagement() {
   const [availability, setAvailability] = React.useState<string>('');
   const [brand, setBrand] = React.useState<string>('');
   const [model, setModel] = React.useState<string>('');
-
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const limit = 10;
   const { brandOptions, modelOptions } = useBrand();
 
   const {
@@ -23,7 +25,11 @@ export default function AdminBikeManagement() {
     { name: 'isAvailable', value: availability },
     { name: 'brand', value: brand },
     { name: 'model', value: model },
+    { name: 'page', value: currentPage },
+    { name: 'limit', value: limit },
   ]);
+
+  const totalPages = Math.ceil(bikeData?.meta?.total / limit);
 
   if (isLoading)
     return (
@@ -100,13 +106,13 @@ export default function AdminBikeManagement() {
         </>
       )}
 
-      {/* {products?.data?.products?.length < 10 ? null : (
-        <PaginationProducts
+      {bikeData?.meta?.total < 10 && currentPage === totalPages ? null : (
+        <CommonPagination
           currentPage={currentPage}
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
         />
-      )} */}
+      )}
     </>
   );
 }

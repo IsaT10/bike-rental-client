@@ -1,4 +1,3 @@
-import { useSingleBikeQuery } from '@/redux/features/bikes/bikesApi';
 import { useCancelRentMutation } from '@/redux/features/rental/rentalApi';
 import { TErrorResponse, TRental } from '@/types';
 import moment from 'moment';
@@ -11,7 +10,6 @@ export default function BookedRent({
   isPaid?: boolean;
   finalDiscount?: number;
 }) {
-  const { data } = useSingleBikeQuery(item.bikeId);
   const [cancelRent] = useCancelRentMutation();
 
   function formateDate(date: Date) {
@@ -38,7 +36,7 @@ export default function BookedRent({
   return (
     <div className='bg-white dark:bg-stone-700 text-sm dark:text-stone-100 dark:border-stone-950  hover:bg-stone-100 items-center px-6 py-5   flex justify-between'>
       <p className='flex-1'>
-        {data?.data?.brand} <span className='mx-1 '></span> {data?.data?.model}
+        {item.bikeId.brand} <span className='mx-1 '></span> {item.bikeId.model}
       </p>
       <p className='flex-1'>{formateDate(item.startTime)}</p>
 

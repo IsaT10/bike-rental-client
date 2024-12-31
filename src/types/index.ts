@@ -23,15 +23,23 @@ export type TUser = {
   exp: number;
 };
 
+export type TPayment = {
+  transactionId: string;
+  user: TUserProfile;
+  bike: TBike;
+  amount: number;
+  status: string;
+};
+
 export type TRental = {
   _id: string;
   userId: string;
-  bikeId: string;
+  bikeId: TBike;
   startTime: Date;
   returnTime: Date;
   totalCost: number;
   isReturned: boolean;
-  isCanceled: boolean;
+  isCancelled: boolean;
   isReviewed: boolean;
   isPaid: boolean;
   advancedPayment: number;
