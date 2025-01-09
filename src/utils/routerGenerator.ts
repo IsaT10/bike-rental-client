@@ -1,6 +1,6 @@
-import { TPathItem, TRoute } from '@/types';
+import { TDashboardRouteItems, TRoute } from '@/types';
 
-export const routesGenerator = (items: TPathItem[]) => {
+export const routesGenerator = (items: TDashboardRouteItems[]) => {
   const routes = items.reduce((acc: TRoute[], item) => {
     if (item.path && item.element) {
       acc.push({
@@ -9,14 +9,14 @@ export const routesGenerator = (items: TPathItem[]) => {
       });
     }
 
-    // if (item.children) {
-    //   item.children.forEach((child) =>
-    //     acc.push({
-    //       path: child.path!,
-    //       element: child.element,
-    //     })
-    //   );
-    // }
+    if (item.children) {
+      item.children.forEach((child) =>
+        acc.push({
+          path: child.path!,
+          element: child.element,
+        })
+      );
+    }
     return acc;
   }, []);
 

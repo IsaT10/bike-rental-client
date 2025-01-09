@@ -16,7 +16,6 @@ export default function DashboardNav() {
 
   const { data } = useGetProfileQuery(undefined);
   const { image } = data?.data || {};
-
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
@@ -24,7 +23,7 @@ export default function DashboardNav() {
   };
   return (
     <div className='bg-stone-200 sticky top-0 py-2.5 pr-4 text-black'>
-      <div className='flex  gap-5 items-center justify-end '>
+      <div className='flex relative  gap-5 items-center justify-end '>
         <button onClick={() => setShowNotification(!showNotification)}>
           <Notification />
         </button>

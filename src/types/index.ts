@@ -1,12 +1,7 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
-export type TPathItem = {
+export type TNavbarItem = {
   name?: string;
-  path: string;
-  element: ReactNode;
-};
-
-export type TRoute = {
   path: string;
   element: ReactNode;
 };
@@ -14,6 +9,24 @@ export type TRoute = {
 export type TSidebarItem = {
   key: string;
   path: string;
+};
+export type TDashboardRouteItems = {
+  icon?: FC<{ className?: string }>;
+  name?: string;
+  path?: string;
+  element?: ReactNode;
+  children?: TDashboardRouteItems[];
+};
+
+export type TSidebarItem2 = {
+  icon?: FC<{ className?: string }>;
+  key?: string;
+  path?: string;
+  children?: TSidebarItem2[];
+};
+export type TRoute = {
+  path: string;
+  element: ReactNode;
 };
 
 export type TUser = {

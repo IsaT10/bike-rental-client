@@ -17,10 +17,8 @@ export default function UserOverview() {
             <span className='block mt-6 '>{name}</span>
           </p>
 
-          <button className='relative text-lg p-16 rounded-full bg-white text-black font-semibold'>
-            <span className='absolute inset-0 flex items-center justify-center'>
-              Book Now
-            </span>
+          <button className=' text-lg py-16 px-8 rounded-full bg-white text-black font-semibold'>
+            <span className=''>Book Now</span>
           </button>
         </div>
       </div>

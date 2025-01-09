@@ -145,13 +145,13 @@ const Nav = () => {
                 {showDropdown ? (
                   <div className='bg-white rounded-lg w-[170px] border divide-y divide-stone-300 border-stone-300  flex flex-col absolute right-0 top-14'>
                     <Link
-                      to='/dashboard'
+                      to={`/${user.role}/dashboard/overview`}
                       className='px-5 py-3 text-sm font-medium hover:bg-stone-200 duration-150 rounded-t-lg '
                     >
                       Dashboard
                     </Link>
                     <Link
-                      to='/dashboard/profile'
+                      to={`/${user.role}/dashboard/profile`}
                       className='px-5 py-3 text-sm font-medium hover:bg-stone-200 duration-150 '
                     >
                       Profile

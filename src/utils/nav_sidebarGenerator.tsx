@@ -1,6 +1,6 @@
-import { TPathItem, TSidebarItem } from '@/types';
+import { TNavbarItem, TSidebarItem } from '@/types';
 
-export const nav_sidebarGenerator = (items: TPathItem[]) => {
+export const nav_sidebarGenerator = (items: TNavbarItem[]) => {
   const sidebarItems = items.reduce((acc: TSidebarItem[], item) => {
     if (item.path && item.name) {
       acc.push({

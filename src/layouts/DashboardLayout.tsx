@@ -1,5 +1,5 @@
 import DashboardNav from '@/components/shared/DashboardNav';
-import Sidebar from '@/components/shared/Sidebar';
+import Sidebar from '@/components/shared/newSidebar';
 import { Helmet } from 'react-helmet-async';
 import { Outlet } from 'react-router-dom';
 

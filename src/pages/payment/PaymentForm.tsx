@@ -45,7 +45,7 @@ export default function PaymentForm() {
       // Proceed with payment confirmation
       const response = await fetch(
         // 'http://localhost:3000/api/payments/create-payment-intent',
-        'https://bike-rental-pied.vercel.app/payments/create-payment-intent',
+        'https://bike-rental-pied.vercel.app/api/payments/create-payment-intent',
         {
           method: 'POST',
           headers: {
@@ -63,8 +63,6 @@ export default function PaymentForm() {
         await stripe.confirmCardPayment(clientSecret, {
           payment_method: paymentMethod.id,
         });
-
-      console.log(paymentIntent);
 
       if (confirmError) {
         console.log('Payment failed:', confirmError.message);
