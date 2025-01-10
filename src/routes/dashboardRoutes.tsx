@@ -7,7 +7,7 @@ import AdminOverview from '@/pages/admin/AdminOverview';
 import UserOverview from '@/pages/user/UserOverview';
 import MyReviews from '@/pages/user/MyReviews';
 import CancelBooking from '@/pages/user/CancelBooking';
-import CancelBookingForAdmin from '@/pages/admin/CancelBookingFroAdmin';
+import CancelBookingForAdmin from '@/pages/admin/CancelledRentals';
 import UserProfile from '@/pages/user/UserProfile';
 import Rentals from '@/pages/admin/Rentals';
 import AdminReviewManagement from '@/pages/admin/AdminReviewManagement';

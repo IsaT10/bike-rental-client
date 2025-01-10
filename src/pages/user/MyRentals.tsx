@@ -26,14 +26,14 @@ function CouponPopup({
   setFinalDiscount,
 }: TCouponPopupProps) {
   const { couponCode, discount } = useAppSelector((state) => state.coupon);
-
+  const server = import.meta.env.VITE_SERVER;
   // const [couponCode, setCouponCode] = useState('');
 
   const handleApplyCoupon = async () => {
     if (coupon.trim() === couponCode && discount) {
       const response = await fetch(
         // `http://localhost:3000/api/coupons/${coupon}`
-        `https://bike-rental-pied.vercel.app/api/coupons/${coupon}`
+        `${server}/coupons/${coupon}`
       );
       const data = await response.json();
 
@@ -191,11 +191,7 @@ export default function MyRentals() {
               </div>
               <div className='rounded-lg bg-white border border-stone-300 border-t-0 rounded-t-none dark:border-stone-700  divide-y dark:divide-stone-950 divide-stone-300 mb-10'>
                 {bookedRent.map((item: TRental) => (
-                  <BookedRent
-                    key={item._id}
-                    item={item}
-                    finalDiscount={finalDiscount}
-                  />
+                  <BookedRent key={item._id} item={item} />
                 ))}
               </div>
             </>

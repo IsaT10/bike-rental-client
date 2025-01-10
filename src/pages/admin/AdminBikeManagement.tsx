@@ -1,4 +1,3 @@
-import AddBikeModal from '@/components/AddBikeModal';
 import BikeListItem from '@/components/BikeListItem';
 import CommonPagination from '@/components/CommonPagination';
 import FilterSelect from '@/components/FilterSelect';
@@ -7,6 +6,7 @@ import useBrand from '@/hooks/useBrand';
 import { useGetAllBikesQuery } from '@/redux/features/bikes/bikesApi';
 import { TBike } from '@/types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import GridLoader from 'react-spinners/GridLoader';
 
 export default function AdminBikeManagement() {
@@ -54,7 +54,15 @@ export default function AdminBikeManagement() {
     <>
       <div className='flex justify-between gap-10'>
         <div className='flex flex-col gap-5'>
-          <AddBikeModal />
+          {/* <AddBikeModal /> */}
+
+          <Link
+            to='/admin/dashboard/add-bike'
+            className='font-medium px-8 py-2.5 rounded-lg bg-primary-color text-white text-sm'
+          >
+            Add new bike
+          </Link>
+
           {/* <SortByStock byStock={byStock} setByStock={setByStock} /> */}
           <FilterSelect
             label='Models'

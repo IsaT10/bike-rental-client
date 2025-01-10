@@ -16,12 +16,15 @@ import {
 } from '@/utils/localstorageCompare';
 import { toast } from 'sonner';
 import { Helmet } from 'react-helmet-async';
+import CommonPagination from '@/components/CommonPagination';
 
 export default function BikeListing() {
   const [availability, setAvailability] = React.useState<string>('');
   const [model, setModel] = React.useState<string>('');
   const [searchTerm, setSearchTerm] = React.useState<string>('');
   const value = useDebounce(searchTerm, 500);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const limit = 12;
   const storedCompareList = getCompareListFromLocalStorage();
   const [compareList, setCompareList] =
     React.useState<TBike[]>(storedCompareList);
@@ -36,7 +39,10 @@ export default function BikeListing() {
     { name: 'isAvailable', value: availability },
     { name: 'searchTerm', value },
     { name: 'model', value: model },
+    { name: 'page', value: currentPage },
+    { name: 'limit', value: limit },
   ]);
+  const totalPages = Math.ceil(bikeData?.meta?.total / limit);
 
   // const [compareList, setCompareList] = React.useState<TBike[]>([]);
 
@@ -128,7 +134,7 @@ export default function BikeListing() {
         </div>
       </Container>
 
-      <div className='border-t border-b dark:border-stone-700'>
+      <div className='border-t border-b dark:border-stone-700 pb-10'>
         <Container>
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-20 gap-x-6 lg:grid-cols-4 py-16 xl:py-20 '>
             {bikeData?.data?.map((item: TBike) => (
@@ -136,6 +142,13 @@ export default function BikeListing() {
             ))}
           </div>
         </Container>
+        {bikeData?.meta?.total < 12 && currentPage === totalPages ? null : (
+          <CommonPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </div>
   );

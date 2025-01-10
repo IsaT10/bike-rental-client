@@ -8,6 +8,11 @@ import EditBikeModal from './EditBikeModal';
 export default function BikeListItem({ bike }: { bike: TBike }) {
   const [deleteBike] = useDeleteBikeMutation();
 
+  // const navigate = useNavigate();
+
+  // const handleEditBike = () => {
+  //   navigate('/admin/dashboard/add-bike', { state: { bike } }); // Pass bike data as state
+  // };
   const handleDeleteBike = async () => {
     const sonnerId = toast.loading('Deleting...');
     try {
@@ -28,6 +33,8 @@ export default function BikeListItem({ bike }: { bike: TBike }) {
         $ {bike.pricePerHour}
       </span>
       <span className='flex-1 text-center'>
+        {/* <button onClick={handleEditBike}>Edit</button> */}
+
         <ThreeDotButton
           handleDelete={handleDeleteBike}
           itemType='bike'

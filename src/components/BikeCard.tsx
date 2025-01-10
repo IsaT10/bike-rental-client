@@ -48,9 +48,18 @@ export default function BikeCard({ bike, onCompare }: TBikeCardPros) {
         {averageRating > 1 ? <Star rating={averageRating} /> : ''}
       </div>
 
-      <p className='text-sm font-medium dark:text-stone-400  text-stone-500'>
-        Model : {bike.model}
-      </p>
+      <div className='flex justify-between'>
+        <p className='text-sm font-medium dark:text-stone-400  text-stone-500'>
+          Model : {bike.model}
+        </p>
+        <p className='text-sm font-semibold dark:text-stone-400  text-stone-500'>
+          {bike.isAvailable ? (
+            <span className='text-green-500 animate-pulse'>Available</span>
+          ) : (
+            <span className='text-red-500'>Booked</span>
+          )}
+        </p>
+      </div>
       <div className='flex justify-between items-center mt-5'>
         <p className='text-2xl font-bold text-primary-color'>
           ${bike.pricePerHour}{' '}

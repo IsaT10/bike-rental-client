@@ -23,6 +23,8 @@ export default function BikeDetail() {
 
   const { data, isLoading, error } = useSingleBikeQuery(id);
 
+  console.log(data);
+
   const navigate = useNavigate();
 
   const handleBookNow = () => {

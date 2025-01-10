@@ -63,8 +63,6 @@ export default function Signup() {
   const [register] = useSignupMutation();
 
   async function onSubmit(data: z.infer<typeof signupSchema>) {
-    console.log(data);
-
     const formData = new FormData();
 
     formData.append('data', JSON.stringify({ ...data }));

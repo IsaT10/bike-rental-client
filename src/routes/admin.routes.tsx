@@ -5,20 +5,20 @@ import {
   Handshake,
   Review,
   Transaction,
+  Users,
 } from '@/components/shared/Icons';
 import AddBike from '@/pages/admin/AddBike';
 import AdminBikeManagement from '@/pages/admin/AdminBikeManagement';
 import AdminOverview from '@/pages/admin/AdminOverview';
 import AdminReviewManagement from '@/pages/admin/AdminReviewManagement';
-import BookedRentals from '@/pages/admin/BookedRentals';
-import CancelBookingForAdmin from '@/pages/admin/CancelBookingFroAdmin';
-import CancelledRentals from '@/pages/admin/CancelledRentals';
+import AdminUserManagement from '@/pages/admin/AdminUserManagement';
 import CouponManage from '@/pages/admin/CouponManage';
 import PaidRentals from '@/pages/admin/PaidRentals';
-import Rentals from '@/pages/admin/Rentals';
 import UnpaidRentals from '@/pages/admin/UnpaidRentals';
 import Transactions from '@/pages/user/Transactions';
 import UserProfile from '@/pages/user/UserProfile';
+import OngoingRentals from '@/pages/admin/OngoingRentals';
+import CancelledRentals from '@/pages/admin/CancelledRentals';
 
 export const adminPaths = [
   {
@@ -47,15 +47,15 @@ export const adminPaths = [
     icon: Handshake,
     name: 'Rentals',
     children: [
+      // {
+      //   name: 'Rental List',
+      //   path: 'all-rentals',
+      //   element: <Rentals />,
+      // },
       {
-        name: 'Rental List',
-        path: 'all-rentals',
-        element: <Rentals />,
-      },
-      {
-        name: 'Booked List',
-        path: 'booked-rentals',
-        element: <BookedRentals />,
+        name: 'Ongoing List',
+        path: 'ongoing-rentals',
+        element: <OngoingRentals />,
       },
       {
         name: 'Paid List',
@@ -72,14 +72,15 @@ export const adminPaths = [
         path: 'cancelled-rentals',
         element: <CancelledRentals />,
       },
-      {
-        name: 'Cancelled List Rentals',
-        path: 'cancelled-rentals-list',
-        element: <CancelBookingForAdmin />,
-      },
     ],
   },
 
+  {
+    icon: Users,
+    name: 'Users',
+    path: 'all-user',
+    element: <AdminUserManagement />,
+  },
   {
     icon: Review,
     name: 'Reviews',

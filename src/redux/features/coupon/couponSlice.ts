@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
+const server = import.meta.env.VITE_SERVER;
 // Define the async thunk for fetching coupons
 export const fetchCoupons = createAsyncThunk(
   'coupon/fetchCoupons',
@@ -8,7 +8,7 @@ export const fetchCoupons = createAsyncThunk(
     try {
       const response = await fetch(
         // 'http://localhost:3000/api/coupons?isActive=true'
-        'https://bike-rental-pied.vercel.app/api/coupons?isActive=true'
+        `${server}/coupons?isActive=true`
       );
       const data = await response.json();
 

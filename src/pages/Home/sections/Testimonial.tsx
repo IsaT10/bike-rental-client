@@ -4,53 +4,28 @@ export default function Testimonial() {
   const reviews = [
     {
       message:
-        'Thank you so much for the course! It helped change my life and made me learn so many things I never thought I would learn and I am forever grateful to the team.',
-      name: 'Valentina Hayden',
+        'The rental process was so smooth and easy! The bike was in great condition, and I had an amazing experience.',
+      name: 'John Doe',
     },
     {
       message:
-        'The instructor was very knowledgeable and made complex topics easy to understand. I highly recommend this course!',
-      name: 'Liam Turner',
+        'I needed a bike for my weekend getaway, and XRiDES made it hassle-free. Highly recommend their service!',
+      name: 'Jane Smith',
     },
     {
       message:
-        'An excellent course that provided practical knowledge and skills. The real-world examples were particularly helpful.',
-      name: 'Sophia Martinez',
+        'Excellent customer service and top-notch bikes. The 24/7 support really sets them apart!',
+      name: 'Alex Brown',
     },
     {
       message:
-        'I appreciated the hands-on approach and the supportive community. This course exceeded my expectations.',
-      name: 'James Lee',
+        'The discounts and offers were a great bonus! I love how transparent and efficient the rental process is.',
+      name: 'Emily Wilson',
     },
     {
       message:
-        'Well-structured and comprehensive course. The instructor’s teaching style is engaging and effective.',
-      name: 'Olivia Brown',
-    },
-    {
-      message:
-        'Great content and pace. The assignments were challenging but rewarding, helping me to solidify my understanding.',
-      name: 'William Johnson',
-    },
-    {
-      message:
-        'This course helped me to advance my career. The knowledge and skills I gained are directly applicable to my job.',
-      name: 'Isabella Williams',
-    },
-    {
-      message:
-        'I loved the interactive sessions and the practical labs. The instructor was very responsive to questions.',
-      name: 'Ethan Davis',
-    },
-    {
-      message:
-        'A fantastic course with a lot of valuable information. I feel much more confident in my abilities now.',
-      name: 'Mia Wilson',
-    },
-    {
-      message:
-        'The course content was up-to-date and relevant. The projects were particularly useful for building my portfolio.',
-      name: 'Lucas Anderson',
+        'The helmets and accessories provided were high-quality, ensuring both safety and comfort during the ride.',
+      name: 'Chris Johnson',
     },
   ];
 

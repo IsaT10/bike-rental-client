@@ -106,7 +106,7 @@ export const InfiniteMovingCards = ({
               </div>
               <div className='relative z-20 flex flex-row items-center mt-auto'>
                 <span className='flex flex-col'>
-                  <span className='text-[13px] sm:text-lg font-bold sm:leading-6 tracking-[-0.7px] text-tertiaryColor'>
+                  <span className='text-[13px] sm:text-lg font-medium sm:leading-6 tracking-[-0.7px] text-tertiaryColor'>
                     {item.name}
                   </span>
                 </span>

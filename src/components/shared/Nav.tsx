@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../Container';
-import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
+import { navbarGenerator } from '@/utils/navbarGenerator';
 import { publicRoutes } from '@/routes/publicRoutes';
 import { NavClose, NavOpen } from './Icons';
 import avatar from '@/assets/images/avatar.png';
@@ -13,7 +13,7 @@ import logo from '@/assets/images/logo.png';
 import { useGetProfileQuery } from '@/redux/features/user/userApi';
 import { LogOutIcon } from 'lucide-react';
 
-const navItems = nav_sidebarGenerator(publicRoutes);
+const navItems = navbarGenerator(publicRoutes);
 
 const Nav = () => {
   // const [isDark, setIsDark] = React.useState(true);

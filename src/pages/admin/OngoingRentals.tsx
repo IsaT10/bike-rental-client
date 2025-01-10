@@ -3,9 +3,10 @@ import RentalListItem from '@/components/RentalListItem';
 import { useGetAllUserRentalQuery } from '@/redux/features/rental/rentalApi';
 import { TRental } from '@/types';
 import React from 'react';
+
 import GridLoader from 'react-spinners/GridLoader';
 
-export default function PaidRentals() {
+export default function OngoingRentals() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const limit = 10;
   const {
@@ -13,8 +14,7 @@ export default function PaidRentals() {
     error,
     isLoading,
   } = useGetAllUserRentalQuery([
-    { name: 'isReturned', value: 'true' },
-    { name: 'isPaid', value: 'true' },
+    { name: 'isReturned', value: 'false' },
     { name: 'sort', value: '-startTime' },
     { name: 'page', value: currentPage },
     { name: 'limit', value: limit },
@@ -44,7 +44,7 @@ export default function PaidRentals() {
 
   return (
     <>
-      <h2 className='text-xl font-semibold mb-6'>Paid Rentals</h2>
+      <h2 className='text-xl font-semibold mb-6'>Ongoing Rentals</h2>
       <div className='bg-primary-color text-white items-center text-xs sm:text-sm  px-6 lg:px-10 py-3 font-semibold border-stone-300 rounded-t-lg flex justify-between  dark:bg-stone-800 dark:text-stone-200 dark:border-stone-950 '>
         <p className='flex-[2]'>Brand Name</p>
         <p className='flex-[2]'>Start Time</p>

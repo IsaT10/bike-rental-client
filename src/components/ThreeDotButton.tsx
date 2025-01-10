@@ -34,7 +34,6 @@ export default function ThreeDotButton({
   handleAdmin,
   item,
 }: TThreeDotButtonProps) {
-  console.log(item);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

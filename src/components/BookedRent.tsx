@@ -8,7 +8,6 @@ export default function BookedRent({
 }: {
   item: TRental;
   isPaid?: boolean;
-  finalDiscount?: number;
 }) {
   const [cancelRent] = useCancelRentMutation();
 

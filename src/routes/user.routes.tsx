@@ -4,12 +4,14 @@ import {
   Review,
   Transaction,
 } from '@/components/shared/Icons';
-import CancelBooking from '@/pages/user/CancelBooking';
-import MyRentals from '@/pages/user/MyRentals';
 import MyReviews from '@/pages/user/MyReviews';
 import Transactions from '@/pages/user/Transactions';
+import UserBookedRentals from '@/pages/user/UserBookedRentals';
+import UserCancelledRentals from '@/pages/user/UserCancelledRentals';
 import UserOverview from '@/pages/user/UserOverview';
+import UserPaidRentals from '@/pages/user/UserPaidRentals';
 import UserProfile from '@/pages/user/UserProfile';
+import UserUnpaidRentals from '@/pages/user/UserUnpaidRentals';
 
 export const userPaths = [
   {
@@ -22,15 +24,31 @@ export const userPaths = [
     icon: Handshake,
     name: 'My Rentals',
     children: [
+      // {
+      //   name: 'My Rental',
+      //   path: 'my-rental',
+      //   element: <MyRentals />,
+      // },
+
       {
-        name: 'My Rental',
-        path: 'my-rental',
-        element: <MyRentals />,
+        name: 'Paid List',
+        path: 'paid-rentals',
+        element: <UserPaidRentals />,
       },
       {
-        name: 'Cancel Booking',
-        path: 'cancle-booking',
-        element: <CancelBooking />,
+        name: 'Booked List',
+        path: 'booked-rentals',
+        element: <UserBookedRentals />,
+      },
+      {
+        name: 'Unpaid List',
+        path: 'unpaid-rentals',
+        element: <UserUnpaidRentals />,
+      },
+      {
+        name: 'Cancelled List',
+        path: 'cancelled-rentals',
+        element: <UserCancelledRentals />,
       },
     ],
   },

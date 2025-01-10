@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from '@/redux/hooks';
 import { dashboardRoutes } from '@/routes/dashboardRoutes';
-import { nav_sidebarGenerator } from '@/utils/nav_sidebarGenerator';
+import { navbarGenerator } from '@/utils/navbarGenerator';
 import { MenuIcon } from 'lucide-react';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   // const SidebarLinkItems = nav_sidebarGenerator(dashboardRoutes);
   const { user } = useAppSelector((state) => state.auth);
-  const SidebarLinkItems = nav_sidebarGenerator(
+  const SidebarLinkItems = navbarGenerator(
     dashboardRoutes.filter((route) =>
       route.roles.includes(user?.role || 'user')
     )

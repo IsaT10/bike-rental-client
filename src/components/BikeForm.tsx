@@ -11,29 +11,26 @@ import {
   useUpdateBikeMutation,
 } from '@/redux/features/bikes/bikesApi';
 import { toast } from 'sonner';
-
-const bikeSchema = z.object({
-  description: z.string().min(1, 'Desription is required!'),
-  brand: z.string().min(1, 'Brand is required!'),
-  pricePerHour: z.string().min(1, 'Price is required!'),
-  cc: z.string().min(1, 'CC is required!'),
-  year: z.string().min(1, 'Year is required!'),
-  model: z.string().min(1, 'Model is required!'),
-  image: z.string().min(1, 'Image is required!'),
-});
+import { bikeSchema } from '@/schema';
+import { Label } from './ui/label';
 
 type TBikeFormProps = {
   isUpdate?: boolean;
   bike?: TBike;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
+  const [imageFile, setImageFile] = React.useState<File | null>(null);
+
   const bikeDetails = {
     ...bike,
     pricePerHour: bike?.pricePerHour?.toString(),
     cc: bike?.cc?.toString(),
     year: bike?.year?.toString(),
+    highestKmph: bike?.highestKmph?.toString(),
+    horsepower: bike?.horsepower?.toString(),
+    bikeWeight: bike?.bikeWeight?.toString(),
   };
 
   const defaultValues = {
@@ -44,6 +41,11 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
     year: bikeDetails?.year || '',
     model: bikeDetails?.model || '',
     brand: bikeDetails?.brand || '',
+    highestKmph: bikeDetails?.highestKmph || '',
+    horsepower: bikeDetails?.horsepower || '',
+    bikeWeight: bikeDetails?.bikeWeight || '',
+    tag: bikeDetails?.tag || '',
+    gear: bikeDetails?.gear || '',
   };
 
   const form = useForm({
@@ -55,6 +57,7 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
 
   const {
     formState: { isSubmitting },
+    reset,
   } = form;
 
   const [addBike] = useAddBikeMutation();
@@ -63,13 +66,23 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
 
   async function onSubmit(values: z.infer<typeof bikeSchema>) {
     const sonnerId = toast.loading('Loading...');
-
     const data = {
       ...values,
       pricePerHour: parseFloat(values.pricePerHour),
       cc: parseInt(values.cc, 10),
       year: parseInt(values.year, 10),
+      bikeWeight: parseInt(values.bikeWeight, 10),
+      horsepower: parseInt(values.horsepower, 10),
+      highestKmph: parseInt(values.highestKmph, 10),
     };
+
+    const formData = new FormData();
+
+    formData.append('data', JSON.stringify({ ...data }));
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
     try {
       if (isUpdate) {
         // const sonnerId = toast.loading('Updating...');
@@ -80,7 +93,7 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
 
         toast.success(res?.message, { id: sonnerId });
       } else {
-        const res = await addBike(data).unwrap();
+        const res = await addBike(formData).unwrap();
         toast.success(res?.message, { id: sonnerId });
       }
     } catch (error) {
@@ -92,7 +105,8 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
         toast.error('Something went wrong!', { id: sonnerId });
       }
     } finally {
-      setOpen(false); // Close the form dialog
+      if (setOpen) setOpen(false);
+      reset();
     }
   }
 
@@ -107,7 +121,6 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                   // isUpdate={isUpdate}
                   label='Brand'
                   type='text'
-                  placeholder={'Brand'}
                   name={'brand'}
                 />
               </div>
@@ -116,7 +129,6 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                   // isUpdate={isUpdate}
                   label='Model'
                   type='text'
-                  placeholder={'Model'}
                   name={'model'}
                 />
               </div>
@@ -128,7 +140,6 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                   // isUpdate={isUpdate}
                   label='CC '
                   type='text'
-                  placeholder={'CC (Engine Capacity)'}
                   name={'cc'}
                 />
               </div>
@@ -137,8 +148,43 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                   // isUpdate={isUpdate}
                   label='Year'
                   type='text'
-                  placeholder={'Year'}
                   name={'year'}
+                />
+              </div>
+            </div>
+            <div className='flex   gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Horsepower '
+                  type='text'
+                  name={'horsepower'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Highest Speed (Km/h)'
+                  type='text'
+                  name={'highestKmph'}
+                />
+              </div>
+            </div>
+            <div className='flex   gap-6'>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Tag'
+                  type='text'
+                  name={'tag'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
+                  label='Bike Weight (kg)'
+                  type='text'
+                  name={'bikeWeight'}
                 />
               </div>
             </div>
@@ -149,17 +195,32 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
                   // isUpdate={isUpdate}
                   label='Price Per Hour'
                   type='text'
-                  placeholder={'Price per Hour'}
                   name={'pricePerHour'}
                 />
               </div>
-              <div className='flex-1'>
+              {/* <div className='flex-1'>
                 <FormInputField
                   // isUpdate={isUpdate}
                   label='Image URL'
                   type='text'
-                  placeholder={'Image URL'}
                   name={'image'}
+                />
+              </div> */}
+              <div className='flex-1'>
+                <Label className='dark:text-stone-200'>Bike Image</Label>
+                <label
+                  className='flex rounded-lg bg-white text-sm w-full cursor-pointer py-3 pl-5 text-stone-700  border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400'
+                  htmlFor='image'
+                >
+                  {imageFile?.name ? imageFile?.name : 'Upload Image'}
+                </label>
+                <input
+                  multiple
+                  className='hidden '
+                  type='file'
+                  id='image'
+                  name='image'
+                  onChange={(e) => setImageFile(e.target.files![0])}
                 />
               </div>
             </div>
@@ -168,9 +229,16 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
               <div className='flex-1'>
                 <FormInputField
                   // isUpdate={isUpdate}
+                  label='Gear'
+                  type='text'
+                  name={'gear'}
+                />
+              </div>
+              <div className='flex-1'>
+                <FormInputField
+                  // isUpdate={isUpdate}
                   label='Description'
                   type='text'
-                  placeholder={'Description'}
                   name={'description'}
                 />
               </div>
@@ -178,7 +246,7 @@ export function BikeForm({ isUpdate, bike, setOpen }: TBikeFormProps) {
           </div>
 
           <button
-            className='px-8   disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-3 font-medium rounded-[17px]  bg-primary-color text-white md:text-base text-sm mt-10'
+            className='px-8 w-max  disabled:cursor-not-allowed disabled:opacity-55  duration-200 py-2.5 font-medium rounded-lg  bg-primary-color text-white md:text-base text-sm mt-10'
             type='submit'
           >
             {isSubmitting ? (

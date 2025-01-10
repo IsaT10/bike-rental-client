@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
             
           </div> */}
 
-          <div className='md:w-1/2 grid grid-cols-2  pb-10 md:py-12 gap-y-10 lg:gap-y-20 lg:py-14  '>
+          <div className='md:w-1/2 grid grid-cols-2  pb-10 md:py-12 gap-y-10 lg:gap-y-20 py-14 lg:py-20 xl:py-24  '>
             <FromBottom className='flex flex-col items-center'>
               <img className='w-16 h-16 mb-2' src={img2} alt='' />
               <p className='text-lg sm:text-xl xl:text-2xl dark:text-stone-200 font-semibold'>

@@ -45,7 +45,7 @@ export default function DashboardNav() {
           {showDropdown ? (
             <div className='bg-white rounded-lg z-50 w-[170px] border divide-y divide-stone-300 border-stone-300  flex flex-col absolute right-3 top-[60px]'>
               <Link
-                to='/dashboard/profile'
+                to={`profile`}
                 className='px-5 py-3 text-sm font-medium hover:bg-stone-200 duration-300 '
               >
                 Profile

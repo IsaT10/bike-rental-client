@@ -8,7 +8,15 @@ const authApi = baseApi.injectEndpoints({
         method: 'POST',
         body: userInfo,
       }),
-      invalidatesTags: ['profile'],
+      invalidatesTags: [
+        'profile',
+        'bike',
+        'user',
+        'rent',
+        'coupon',
+        'review',
+        'payment',
+      ],
     }),
     googleLogin: builder.mutation({
       query: (userInfo) => ({
@@ -16,6 +24,15 @@ const authApi = baseApi.injectEndpoints({
         method: 'POST',
         body: userInfo,
       }),
+      invalidatesTags: [
+        'profile',
+        'bike',
+        'user',
+        'rent',
+        'coupon',
+        'review',
+        'payment',
+      ],
     }),
     signup: builder.mutation({
       query: (userInfo) => ({
@@ -23,7 +40,15 @@ const authApi = baseApi.injectEndpoints({
         method: 'POST',
         body: userInfo,
       }),
-      invalidatesTags: ['profile'],
+      invalidatesTags: [
+        'profile',
+        'bike',
+        'user',
+        'rent',
+        'coupon',
+        'review',
+        'payment',
+      ],
     }),
   }),
 });

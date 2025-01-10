@@ -16,7 +16,7 @@ export default function PaymentForm() {
   const [rentBike] = useRentBikeMutation();
   const [saveTransaction] = useAddPaymentMutation();
   const [changeStatus] = useChangePaymentStatusMutation();
-
+  const server = import.meta.env.VITE_SERVER;
   const { advancedPayment, bikeId, startTime } = useAppSelector(
     (state) => state.booking
   );
@@ -45,7 +45,7 @@ export default function PaymentForm() {
       // Proceed with payment confirmation
       const response = await fetch(
         // 'http://localhost:3000/api/payments/create-payment-intent',
-        'https://bike-rental-pied.vercel.app/api/payments/create-payment-intent',
+        `${server}/payments/create-payment-intent`,
         {
           method: 'POST',
           headers: {
